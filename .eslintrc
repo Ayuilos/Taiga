@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
+  // Waiting tailwindcss plugin to support tailwind v4
+  "extends": ["plugin:react-hooks/recommended"],
+  "rules": {
+    "react/jsx-key": "off",
+    "react/no-unescaped-entities": "off",
+    "tailwindcss/no-custom-classname": "off",
+  },
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn"],
+      "config": "tailwind.config.js",
+    },
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.jsx"],
+      "parser": "@typescript-eslint/parser",
+    },
+  ],
+}

@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-02-13 18:14+0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/features/provider-management.tsx:128
+msgid "Add"
+msgstr "Add"
+
+#: src/features/provider-management.tsx:126
+msgid "API Key"
+msgstr "API Key"
+
+#: src/features/provider-management.tsx:127
+msgid "Base URL"
+msgstr "Base URL"
+
+#: src/features/provider-management.tsx:129
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/features/provider-management.tsx:128
+msgid "Confirm"
+msgstr "Confirm"
+
+#: src/features/translator.tsx:77
+msgid "Into"
+msgstr "Into"
+
+#: src/routes/__root.tsx:41
+msgid "Model Management"
+msgstr "Model Management"
+
+#: src/features/provider-management.tsx:125
+msgid "Name"
+msgstr "Name"
+
+#: src/routes/__root.tsx:40
+msgid "Translate"
+msgstr "Translate"
+
+#: src/features/provider-management.tsx:124
+msgid "You're adding new provider"
+msgstr "You're adding new provider"
+
+#: src/features/translator.tsx:60
+msgid "You're translating"
+msgstr "You're translating"

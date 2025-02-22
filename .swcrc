@@ -1,0 +1,15 @@
+{
+    "$schema": "https://json.schemastore.org/swcrc",
+    "jsc": {
+      "experimental": {
+        "plugins": [
+          [
+            "@lingui/swc-plugin",
+            {
+              // Additional Configuration
+            }
+          ]
+        ]
+      }
+    }
+  }
