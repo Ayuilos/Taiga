@@ -1,3 +1,5 @@
+import { useCallback, useMemo, useRef, useState } from "react"
+import { Message } from "@ai-sdk/react"
 import { t } from "@lingui/core/macro"
 import {
   CoreMessage,
@@ -6,8 +8,7 @@ import {
   LanguageModelV1,
   streamText,
 } from "ai"
-import { Message } from "@ai-sdk/react"
-import { useCallback, useMemo, useRef, useState } from "react"
+
 import { stringifyObject } from "@/lib/utils"
 
 interface IUseChat {
@@ -19,7 +20,7 @@ interface IUseChat {
     timeout?: number
   }
 }
-export type TExpandedMessage = Omit<Message, "createdAt"> & {
+export type TExpandedMessage = Partial<Omit<Message, "createdAt">> & {
   createdAt?: number
   endedAt?: number
   tokenUsage?: LanguageModelUsage
