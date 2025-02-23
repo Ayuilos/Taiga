@@ -262,20 +262,25 @@ function InternalProviderManagement({
   )
 
   const onSubmit = useCallback(
-    (values: z.infer<typeof formSchema>) => {
+    async (values: z.infer<typeof formSchema>) => {
       if (isAddingNew) {
-        AIProviderManager.addProvider(values).then(() => {
-          fetchProviders()
-          setIsAddingNew(false)
-        })
+        await AIProviderManager.addProvider(values)
+        fetchProviders()
+        setIsAddingNew(false)
       } else {
-        AIProviderManager.modifyProvider(values.name, values).then(() => {
+        // If provider name has changed
+        if (currentProvider!.name !== values.name) {
+          await AIProviderManager.addProvider(values)
+          await AIProviderManager.deleteProvider(currentProvider!.name)
           fetchProviders()
-        })
+        } else {
+          await AIProviderManager.modifyProvider(values.name, values)
+          fetchProviders()
+        }
       }
       updateProvider(values)
     },
-    [isAddingNew, fetchProviders, updateProvider]
+    [isAddingNew, currentProvider, fetchProviders, updateProvider]
   )
 
   useEffect(() => {
@@ -337,7 +342,6 @@ function InternalProviderManagement({
           <FormField
             control={form.control}
             name="name"
-            disabled={!isAddingNew}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{nameLabelString}</FormLabel>
