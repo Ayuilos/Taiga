@@ -18,6 +18,7 @@ import {
   MessageSquarePlus,
   SendHorizonal,
   StopCircle,
+  Trash,
   X,
 } from "lucide-react"
 import { toast } from "sonner"
@@ -44,6 +45,16 @@ import {
   SHOULD_RENDER_SCROLL_TO_BOTTOM_HEIGHT,
 } from "@/components/ScrollToBottom"
 import { SimplePagination } from "@/components/SimplePagination"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -217,10 +228,6 @@ function InternalChat({ model, requireModel }: IInternalChat) {
     }
   }, [id, model, result, messages])
 
-  const clearAllHistory = async () => {
-    await ChatStore.clearAllChats()
-  }
-
   const saveChatHistory = useCallback(async () => {
     if (newMessageCreated) {
       let summary: string
@@ -363,17 +370,32 @@ function InternalChat({ model, requireModel }: IInternalChat) {
     }
   }, [model, messages, input, startChat, requireModel, updateChatNodes])
 
+  const _startNewChat = useCallback(() => {
+    setChatNodes(initialChatNodes)
+    setChatId(crypto.randomUUID())
+    setChatPath([0])
+    sessionPath.current = [0]
+    setInput("")
+    prevInputRef.current = ""
+    clearChat()
+  }, [clearChat])
+
   const startNewChat = useCallback(() => {
     if (!chatIsFresh) {
-      setChatNodes(initialChatNodes)
-      setChatId(crypto.randomUUID())
-      setChatPath([0])
-      sessionPath.current = [0]
-      setInput("")
-      prevInputRef.current = ""
-      clearChat()
+      _startNewChat()
     }
-  }, [clearChat, chatIsFresh])
+  }, [_startNewChat, chatIsFresh])
+
+  const deleteChat = useCallback(async () => {
+    if (id) {
+      await ChatStore.deleteChat(id)
+      _startNewChat()
+    }
+  }, [id, _startNewChat])
+
+  const onHistoryDelete = useCallback(async () => {
+    _startNewChat()
+  }, [_startNewChat])
 
   useEffect(() => {
     if (messagesRef.current) {
@@ -403,6 +425,31 @@ function InternalChat({ model, requireModel }: IInternalChat) {
         messagesRef.current.scrollHeight - messagesRef.current.clientHeight
     }
   }, [result, shouldAutoScroll])
+
+  const deleteChatTitleString = t`Are you sure to delete this chat?`
+  const deleteChatConfirmString = t`Delete`
+  const deleteChatCancelString = t`Cancel`
+
+  const deleteChatButton = !chatIsFresh ? (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button size="icon" variant="destructive">
+          <Trash />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{deleteChatTitleString}</AlertDialogTitle>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>{deleteChatCancelString}</AlertDialogCancel>
+          <AlertDialogAction variant="destructive" onClick={deleteChat}>
+            {deleteChatConfirmString}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  ) : null
 
   return (
     <>
@@ -479,9 +526,7 @@ function InternalChat({ model, requireModel }: IInternalChat) {
                   >
                     <History />
                   </Button>
-                  <Button variant="destructive" onClick={clearAllHistory}>
-                    X
-                  </Button>
+                  {deleteChatButton}
                 </>
               )}
             </div>
@@ -515,6 +560,7 @@ function InternalChat({ model, requireModel }: IInternalChat) {
         open={showChatHistory}
         onOpen={setShowChatHistory}
         onSelect={onHistoryChatSelect}
+        onHistoryDelete={onHistoryDelete}
       />
     </>
   )
