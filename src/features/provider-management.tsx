@@ -26,6 +26,16 @@ import {
   TAIProviderContextType,
 } from "@/components/AIProvidersContext"
 import { Alert, AlertTitle } from "@/components/ui/alert"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -212,6 +222,20 @@ function InternalProviderManagement({
     updateProvider(prevProvider.current!)
   }, [updateProvider])
 
+  const deleteCurrentProvider = useCallback(async () => {
+    const deletedProviderIdx = providers.findIndex(
+      (p) => p.name === currentProvider!.name
+    )
+
+    const newCurrentProvider =
+      providers[deletedProviderIdx === 0 ? 1 : deletedProviderIdx - 1]
+
+    updateProvider(newCurrentProvider)
+
+    await AIProviderManager.deleteProvider(currentProvider!.name)
+    await fetchProviders()
+  }, [updateProvider, providers, currentProvider, fetchProviders])
+
   const onProviderChange = useCallback(
     (name: string) => {
       const provider = providers.find((_p) => _p.name === name)!
@@ -266,6 +290,10 @@ function InternalProviderManagement({
   const cancelButtonString = t`Cancel`
   const modelManagementString = t`Model Management`
   const modelManagementButtonString = t`Manage Models`
+  const deleteProviderButtonString = t`Delete Provider`
+  const deleteProviderDialogTitleString = t`Are you sure you want to delete this provider?`
+  const deleteProviderDialogCancelString = t`Cancel`
+  const deleteProviderDialogConfirmString = t`Delete`
 
   const submitButtonKey = "submit-button"
   const cancelButtonKey = "cancel-button"
@@ -399,6 +427,34 @@ function InternalProviderManagement({
                 {cancelButtonString}
               </Button>
             </>
+          ) : null}
+
+          {!isAddingNew && providers.length > 1 ? (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive">
+                  {deleteProviderButtonString}
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    {deleteProviderDialogTitleString}
+                  </AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>
+                    {deleteProviderDialogCancelString}
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    variant="destructive"
+                    onClick={deleteCurrentProvider}
+                  >
+                    {deleteProviderDialogConfirmString}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           ) : null}
         </form>
       </Form>
