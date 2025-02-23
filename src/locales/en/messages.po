@@ -13,46 +13,196 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/provider-management.tsx:128
+#: src/components/ChatHistory.tsx:38
+msgid "[TODO: Support Delete]"
+msgstr "[TODO: Support Delete]"
+
+#: src/features/provider-management.tsx:289
 msgid "Add"
 msgstr "Add"
 
-#: src/features/provider-management.tsx:126
+#: src/features/provider-management.tsx:158
+#: src/features/provider-management.tsx:585
+msgid "Added models"
+msgstr "Added models"
+
+#: src/features/provider-management.tsx:287
 msgid "API Key"
 msgstr "API Key"
 
-#: src/features/provider-management.tsx:127
+#: src/features/provider-management.tsx:294
+msgid "Are you sure you want to delete this provider?"
+msgstr "Are you sure you want to delete this provider?"
+
+#: src/features/provider-management.tsx:586
+msgid "Available models"
+msgstr "Available models"
+
+#: src/features/provider-management.tsx:288
 msgid "Base URL"
 msgstr "Base URL"
 
-#: src/features/provider-management.tsx:129
+#: src/features/provider-management.tsx:290
+#: src/features/provider-management.tsx:295
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/features/provider-management.tsx:128
+#: src/routes/__root.tsx:45
+msgid "Chat"
+msgstr "Chat"
+
+#: src/components/ChatHistory.tsx:37
+msgid "Chat History"
+msgstr "Chat History"
+
+#: src/features/chat.tsx:114
+msgid "Chat stopped by user"
+msgstr "Chat stopped by user"
+
+#: src/features/translator.tsx:180
+msgid "Check reasoning process"
+msgstr "Check reasoning process"
+
+#: src/features/provider-management.tsx:584
+msgid "Choose models"
+msgstr "Choose models"
+
+#: src/features/provider-management.tsx:289
 msgid "Confirm"
 msgstr "Confirm"
 
-#: src/features/translator.tsx:77
+#: src/features/chat.tsx:557
+msgid "Copy"
+msgstr "Copy"
+
+#: src/features/provider-management.tsx:296
+msgid "Delete"
+msgstr "Delete"
+
+#: src/features/provider-management.tsx:293
+msgid "Delete Provider"
+msgstr "Delete Provider"
+
+#: src/features/chat.tsx:556
+msgid "Edit message"
+msgstr "Edit message"
+
+#: src/features/chat.tsx:534
+msgid "Failed to copy to clipboard"
+msgstr "Failed to copy to clipboard"
+
+#: src/features/chat.tsx:195
+msgid "Failed to summarize"
+msgstr "Failed to summarize"
+
+#: src/features/provider-management.tsx:584
+msgid "Getting models..."
+msgstr "Getting models..."
+
+#: src/features/translator.tsx:139
 msgid "Into"
 msgstr "Into"
 
-#: src/routes/__root.tsx:41
+#: src/features/chat.tsx:554
+msgid "Is reasoning..."
+msgstr "Is reasoning..."
+
+#: src/features/provider-management.tsx:292
+msgid "Manage Models"
+msgstr "Manage Models"
+
+#: src/routes/__root.tsx:47
+#: src/features/provider-management.tsx:291
 msgid "Model Management"
 msgstr "Model Management"
 
-#: src/features/provider-management.tsx:125
+#: src/features/provider-management.tsx:286
 msgid "Name"
 msgstr "Name"
 
-#: src/routes/__root.tsx:40
+#: src/components/ChatHistory.tsx:39
+msgid "No chats found"
+msgstr "No chats found"
+
+#: src/components/ModelSelectorContext.tsx:135
+msgid "No models found"
+msgstr "No models found"
+
+#: src/features/provider-management.tsx:115
+msgid "Provider name already exists"
+msgstr "Provider name already exists"
+
+#: src/features/chat.tsx:554
+msgid "Reasoning process"
+msgstr "Reasoning process"
+
+#: src/features/translator.tsx:184
+msgid "Reasoning Process"
+msgstr "Reasoning Process"
+
+#: src/features/translator.tsx:178
+msgid "Reasoning..."
+msgstr "Reasoning..."
+
+#: src/features/provider-management.tsx:159
+msgid "Removed models"
+msgstr "Removed models"
+
+#: src/hooks/useChat.ts:131
+#: src/features/provider-management.tsx:561
+#: src/components/ErrorsToastText.ts:4
+msgid "Request timeout"
+msgstr "Request timeout"
+
+#: src/components/ModelSelectorContext.tsx:131
+msgid "Select a model"
+msgstr "Select a model"
+
+#: src/features/translator.tsx:163
+msgid "Select model"
+msgstr "Select model"
+
+#: src/features/translator.tsx:159
+msgid "Stop"
+msgstr "Stop"
+
+#: src/features/translator.tsx:83
+msgid "Text copied to clipboard"
+msgstr "Text copied to clipboard"
+
+#: src/routes/__root.tsx:46
+#: src/features/translator.tsx:161
 msgid "Translate"
 msgstr "Translate"
 
-#: src/features/provider-management.tsx:124
+#: src/features/translator.tsx:57
+msgid "Translation cancelled"
+msgstr "Translation cancelled"
+
+#: src/features/translator.tsx:53
+msgid "Translation completed"
+msgstr "Translation completed"
+
+#: src/components/ErrorsToastText.ts:5
+msgid "Unknown error"
+msgstr "Unknown error"
+
+#: src/hooks/useChat.ts:81
+msgid "User stopped chat"
+msgstr "User stopped chat"
+
+#: src/features/provider-management.tsx:285
 msgid "You're adding new provider"
 msgstr "You're adding new provider"
 
-#: src/features/translator.tsx:60
+#: src/features/translator.tsx:121
 msgid "You're translating"
 msgstr "You're translating"
+
+#: src/features/translator.tsx:186
+msgid "You're using reasoning model in translation which is not recommended"
+msgstr "You're using reasoning model in translation which is not recommended"
+
+#: src/features/chat.tsx:555
+msgid "You're using reasoning model!"
+msgstr "You're using reasoning model!"

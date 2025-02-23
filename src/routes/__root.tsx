@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-router"
 import { ChevronRight, CloudCog, Languages, MessageSquare } from "lucide-react"
 import { t } from "@lingui/core/macro"
-import { TanStackRouterDevtools } from "@tanstack/router-devtools"
+// import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
