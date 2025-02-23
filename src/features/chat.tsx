@@ -146,13 +146,15 @@ function InternalChat({ model, requireModel }: IInternalChat) {
 
   const updateChatNodes = useCallback(
     (
-      newMessage: TExpandedMessage,
+      newMessage: TExpandedMessage | null,
       toUpdatePath = chatPath,
       updateChatPath: boolean = true
     ) => {
       let newIndex = 0
-      setChatNodes(
-        produce((draft) => {
+
+      if (newMessage) {
+        // Can not use callback in `setChatNodes`, because there's effect in the function
+        const newChatNodes = produce(chatNodes, (draft) => {
           let toUpdateNode: TChatNode | undefined
           let nodes = draft
 
@@ -165,6 +167,9 @@ function InternalChat({ model, requireModel }: IInternalChat) {
             }
           }
 
+          // this is the effect, if put this logic as a function to `setChatNodes`
+          // this function excution will be delayed, so the `newIndex` may always be `0`
+          // when we calculate `newPath`
           newIndex = toUpdateNode!.children.length
 
           toUpdateNode!.children.push({
@@ -174,14 +179,17 @@ function InternalChat({ model, requireModel }: IInternalChat) {
 
           return draft
         })
-      )
 
-      if (updateChatPath) {
-        setChatPath([...toUpdatePath, newIndex])
+        setChatNodes(newChatNodes)
       }
-      sessionPath.current = [...toUpdatePath, newIndex]
+
+      const newPath = newMessage ? [...toUpdatePath, newIndex] : toUpdatePath
+      if (updateChatPath) {
+        setChatPath(newPath)
+      }
+      sessionPath.current = newPath
     },
-    [chatPath]
+    [chatPath, chatNodes]
   )
 
   const prevIsChatting = useRef(isChatting)
@@ -308,6 +316,28 @@ function InternalChat({ model, requireModel }: IInternalChat) {
     setEditedNodePath(null)
     setInput(prevInputRef.current)
   }, [])
+
+  const reGenerateReply = useCallback(
+    async (regenerateNodePath: number[]) => {
+      if (model) {
+        updateChatNodes(null, regenerateNodePath)
+
+        const keepedMessages = messages.slice(0, regenerateNodePath.length)
+
+        startChat({
+          messages: keepedMessages.map((message) => {
+            return {
+              role: message.role,
+              content: message.content,
+            } as CoreMessage
+          }),
+        })
+      } else {
+        requireModel()
+      }
+    },
+    [messages, model, requireModel, startChat, updateChatNodes]
+  )
 
   const editMessage = useCallback(async () => {
     if (model) {
@@ -467,7 +497,11 @@ function InternalChat({ model, requireModel }: IInternalChat) {
               .map((message, index) => {
                 const isLastReasoning =
                   isReasoning && index === messages.length - 1
+                // chatPath [0] -> systemRoleNode, chatPath [0, 0] -> userRoleNode
+                // index = 0 -> userRoleNode -> chatPathLength = 2
+                // index + 2 = chatPathLength
                 const toEditNodePath = chatPath.slice(0, index + 2)
+                const parentNodePath = toEditNodePath.slice(0, -1)
 
                 return (
                   <Message
@@ -479,14 +513,15 @@ function InternalChat({ model, requireModel }: IInternalChat) {
                         ? () => {
                             startEditMessage(toEditNodePath)
                           }
-                        : undefined
+                        : message.role === "assistant"
+                          ? () => {
+                              reGenerateReply(parentNodePath)
+                            }
+                          : undefined
                     }
                     onChange={(idx: number) => {
                       setChatPath(
-                        _resetSearchPath(chatNodes, [
-                          ...toEditNodePath.slice(0, -1),
-                          idx,
-                        ])
+                        _resetSearchPath(chatNodes, [...parentNodePath, idx])
                       )
                     }}
                   />
@@ -599,7 +634,12 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
   const date = message.endedAt || message.createdAt
   const reasoningButtonStrings = [t`Is reasoning...`, t`Reasoning process`]
   const reasoningDialogDescString = t`You're using reasoning model!`
-  const editMessageString = t`Edit message`
+  const editMessageString =
+    message.role === "user"
+      ? t`Edit message`
+      : message.role === "assistant"
+        ? t`Regenerate reply`
+        : null
   const copyString = t`Copy`
 
   return (
