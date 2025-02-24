@@ -1,4 +1,3 @@
-import { AIProviderManager, IAIProvider } from "@/lib/ai-providers"
 import {
   createContext,
   PropsWithChildren,
@@ -6,6 +5,13 @@ import {
   useMemo,
   useState,
 } from "react"
+import { produce } from "immer"
+
+import { AIProviderManager, IAIProvider } from "@/lib/ai-providers"
+import {
+  DefaultModelStore,
+  TDefaultModels,
+} from "@/lib/default-model-store"
 
 export default function AIProviderContextProvider({
   children,
@@ -23,10 +29,17 @@ export type TAIProviderContextType = ReturnType<typeof useAIProviderContext>
 export const AIProviderContext = createContext<TAIProviderContextType>({
   providers: [],
   allProviders: [],
+  defaultModels: {
+    translate: null,
+    chat: null,
+    summarize: null,
+  },
   selectedModel: null,
   isLoadingProviders: false,
+  setDefaultModel: async () => {},
   setSelectedModel: () => {},
   fetchProviders: (async () => []) as () => Promise<IAIProvider[]>,
+  fetchDefaultModels: (async () => ({})) as () => Promise<TDefaultModels>,
 })
 
 function useAIProviderContext() {
@@ -35,6 +48,11 @@ function useAIProviderContext() {
   const [selectedModel, setSelectedModel] = useState<[string, string] | null>(
     null
   )
+  const [defaultModels, setDefaultModels] = useState<TDefaultModels>({
+    translate: null,
+    chat: null,
+    summarize: null,
+  })
   const [isLoadingProviders, setIsLoadingProviders] = useState<boolean>(false)
 
   const providers = useMemo(
@@ -51,12 +69,59 @@ function useAIProviderContext() {
     return _providers
   }, [])
 
+  const fetchDefaultModels = useCallback(async () => {
+    const _defaultModels = await DefaultModelStore.getDefaultModels()
+    const newProviders = await fetchProviders()
+
+    const validDefaultModels = produce(_defaultModels, (draft) => {
+      Object.entries(draft)
+        .filter(([_, model]) => model !== null)
+        .forEach(async ([type, model]) => {
+          let found = false
+          for (const provider of newProviders) {
+            if (provider.name === model![0]) {
+              if (provider.models.includes(model![1])) {
+                found = true
+                break
+              } else {
+                break
+              }
+            }
+          }
+          if (!found) {
+            draft[type as keyof TDefaultModels] = null
+
+            // effect
+            await DefaultModelStore.setDefaultModel(
+              type as keyof TDefaultModels,
+              null
+            )
+          }
+        })
+    })
+
+    setDefaultModels(validDefaultModels)
+
+    return validDefaultModels
+  }, [fetchProviders])
+
+  const setDefaultModel = useCallback<typeof DefaultModelStore.setDefaultModel>(
+    async (type, model) => {
+      await DefaultModelStore.setDefaultModel(type, model)
+      await fetchDefaultModels()
+    },
+    [fetchDefaultModels]
+  )
+
   return {
     providers,
     allProviders,
     selectedModel,
+    defaultModels,
     isLoadingProviders,
+    setDefaultModel,
     setSelectedModel,
     fetchProviders,
+    fetchDefaultModels,
   }
 }

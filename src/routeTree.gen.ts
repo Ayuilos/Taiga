@@ -12,8 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TranslateImport } from './routes/translate'
-import { Route as ManageProvidersImport } from './routes/manage-providers'
 import { Route as IndexImport } from './routes/index'
+import { Route as ModelManagementIndexImport } from './routes/model-management.index'
+import { Route as ModelManagementManageDefaultModelsImport } from './routes/model-management.manage-default-models'
 
 // Create/Update Routes
 
@@ -23,17 +24,24 @@ const TranslateRoute = TranslateImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ManageProvidersRoute = ManageProvidersImport.update({
-  id: '/manage-providers',
-  path: '/manage-providers',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
+
+const ModelManagementIndexRoute = ModelManagementIndexImport.update({
+  id: '/model-management/',
+  path: '/model-management/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ModelManagementManageDefaultModelsRoute =
+  ModelManagementManageDefaultModelsImport.update({
+    id: '/model-management/manage-default-models',
+    path: '/model-management/manage-default-models',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -46,18 +54,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/manage-providers': {
-      id: '/manage-providers'
-      path: '/manage-providers'
-      fullPath: '/manage-providers'
-      preLoaderRoute: typeof ManageProvidersImport
-      parentRoute: typeof rootRoute
-    }
     '/translate': {
       id: '/translate'
       path: '/translate'
       fullPath: '/translate'
       preLoaderRoute: typeof TranslateImport
+      parentRoute: typeof rootRoute
+    }
+    '/model-management/manage-default-models': {
+      id: '/model-management/manage-default-models'
+      path: '/model-management/manage-default-models'
+      fullPath: '/model-management/manage-default-models'
+      preLoaderRoute: typeof ModelManagementManageDefaultModelsImport
+      parentRoute: typeof rootRoute
+    }
+    '/model-management/': {
+      id: '/model-management/'
+      path: '/model-management'
+      fullPath: '/model-management'
+      preLoaderRoute: typeof ModelManagementIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,42 +82,61 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/manage-providers': typeof ManageProvidersRoute
   '/translate': typeof TranslateRoute
+  '/model-management/manage-default-models': typeof ModelManagementManageDefaultModelsRoute
+  '/model-management': typeof ModelManagementIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/manage-providers': typeof ManageProvidersRoute
   '/translate': typeof TranslateRoute
+  '/model-management/manage-default-models': typeof ModelManagementManageDefaultModelsRoute
+  '/model-management': typeof ModelManagementIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/manage-providers': typeof ManageProvidersRoute
   '/translate': typeof TranslateRoute
+  '/model-management/manage-default-models': typeof ModelManagementManageDefaultModelsRoute
+  '/model-management/': typeof ModelManagementIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/manage-providers' | '/translate'
+  fullPaths:
+    | '/'
+    | '/translate'
+    | '/model-management/manage-default-models'
+    | '/model-management'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/manage-providers' | '/translate'
-  id: '__root__' | '/' | '/manage-providers' | '/translate'
+  to:
+    | '/'
+    | '/translate'
+    | '/model-management/manage-default-models'
+    | '/model-management'
+  id:
+    | '__root__'
+    | '/'
+    | '/translate'
+    | '/model-management/manage-default-models'
+    | '/model-management/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ManageProvidersRoute: typeof ManageProvidersRoute
   TranslateRoute: typeof TranslateRoute
+  ModelManagementManageDefaultModelsRoute: typeof ModelManagementManageDefaultModelsRoute
+  ModelManagementIndexRoute: typeof ModelManagementIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ManageProvidersRoute: ManageProvidersRoute,
   TranslateRoute: TranslateRoute,
+  ModelManagementManageDefaultModelsRoute:
+    ModelManagementManageDefaultModelsRoute,
+  ModelManagementIndexRoute: ModelManagementIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +150,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/manage-providers",
-        "/translate"
+        "/translate",
+        "/model-management/manage-default-models",
+        "/model-management/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/manage-providers": {
-      "filePath": "manage-providers.tsx"
-    },
     "/translate": {
       "filePath": "translate.tsx"
+    },
+    "/model-management/manage-default-models": {
+      "filePath": "model-management.manage-default-models.tsx"
+    },
+    "/model-management/": {
+      "filePath": "model-management.index.tsx"
     }
   }
 }

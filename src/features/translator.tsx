@@ -1,15 +1,29 @@
 import {
   useCallback,
   useContext,
+  useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from "react"
+import { useChat } from "@/hooks/useChat"
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
+import { t } from "@lingui/core/macro"
+import { Trans } from "@lingui/react/macro"
 import { LanguageModelV1 } from "ai"
 import { ClipboardCopy, StopCircle } from "lucide-react"
-import { Trans } from "@lingui/react/macro"
-import { Textarea } from "../components/ui/textarea"
+import { toast } from "sonner"
+
+import { stringifyObject } from "@/lib/utils"
+import { AIProviderContext } from "@/components/AIProvidersContext"
+import { ErrorsToastText } from "@/components/ErrorsToastText"
+import {
+  ModelSelectorContext,
+  TModelSelectorContext,
+} from "@/components/ModelSelectorContext"
+import ReasoningDisplay from "@/components/ReasoningDisplay"
+import { Button } from "../components/ui/button"
 import {
   Select,
   SelectContent,
@@ -17,20 +31,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select"
+import { Textarea } from "../components/ui/textarea"
 import { LANG, LANG_CODE } from "../lib/consts"
-import { Button } from "../components/ui/button"
-import { AIProviderContext } from "@/components/AIProvidersContext"
-import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
-import {
-  ModelSelectorContext,
-  TModelSelectorContext,
-} from "@/components/ModelSelectorContext"
-import { t } from "@lingui/core/macro"
-import { toast } from "sonner"
-import ReasoningDisplay from "@/components/ReasoningDisplay"
-import { useChat } from "@/hooks/useChat"
-import { ErrorsToastText } from "@/components/ErrorsToastText"
-import { stringifyObject } from "@/lib/utils"
 
 interface ITranslator {
   model: LanguageModelV1 | null
@@ -214,9 +216,21 @@ function InternalTranslator({ model, requireModel }: ITranslator) {
 }
 
 export default function Translator() {
-  const { providers, selectedModel } = useContext(AIProviderContext)
+  const { providers, selectedModel, setSelectedModel, fetchDefaultModels } = useContext(AIProviderContext)
   const { requireModel } = useContext(ModelSelectorContext)
   let model: LanguageModelV1 | null = null
+
+  const setModelToDefault = useCallback(async () => {
+    const defaultModels = await fetchDefaultModels()
+
+    if (defaultModels.translate) {
+      setSelectedModel(defaultModels.translate)
+    }
+  }, [setSelectedModel, fetchDefaultModels])
+
+  useEffect(() => {
+    setModelToDefault()
+  }, [setModelToDefault])
 
   if (selectedModel) {
     const provider = providers.find((p) => p.name === selectedModel[0])

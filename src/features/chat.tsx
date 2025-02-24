@@ -67,6 +67,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 interface IInternalChat {
   model: LanguageModelV1 | null
+  summarizeModel: LanguageModelV1 | null
   requireModel: TModelSelectorContext["requireModel"]
 }
 
@@ -81,7 +82,7 @@ const initialChatNodes: TChatNode[] = [
   },
 ]
 
-function InternalChat({ model, requireModel }: IInternalChat) {
+function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   const [chatNodes, setChatNodes] = useState<TChatNode[]>(initialChatNodes)
   // `chatPath` for rendering chat flow
   const [chatPath, setChatPath] = useState<number[]>([0])
@@ -205,7 +206,8 @@ function InternalChat({ model, requireModel }: IInternalChat) {
   prevIsChatting.current = isChatting
 
   const _createChatSummary = useCallback(async () => {
-    if (model) {
+    const toSummarizeModel = summarizeModel || model
+    if (toSummarizeModel) {
       const chatContent = messages
         .map((message) => `${message.role}: ${message.content}`)
         .concat([`${result.role}: ${result.content}`])
@@ -214,8 +216,8 @@ function InternalChat({ model, requireModel }: IInternalChat) {
       let summaryText = t`Failed to summarize`
       try {
         const { text } = await generateText({
-          model,
-          system: `You're good at summarizing, summarize the content provided by user in 15 words directly, don't say extra words`,
+          model: toSummarizeModel,
+          system: `You're good at summarizing, summarize the content provided by user in 10 words directly, don't add extra words`,
           prompt: chatContent,
           abortSignal: AbortSignal.timeout(10_000),
         })
@@ -234,7 +236,7 @@ function InternalChat({ model, requireModel }: IInternalChat) {
 
       return summaryText
     }
-  }, [id, model, result, messages])
+  }, [id, model, summarizeModel, result, messages])
 
   const saveChatHistory = useCallback(async () => {
     if (newMessageCreated) {
@@ -353,7 +355,6 @@ function InternalChat({ model, requireModel }: IInternalChat) {
       setEditedNodePath(null)
 
       const keepedMessages = messages.slice(0, editedNodePath!.length)
-      console.log(stringifyObject(keepedMessages))
 
       startChat({
         messages: [...keepedMessages, newMessage].map((message) => {
@@ -724,9 +725,28 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
 }
 
 export default function Chat() {
-  const { providers, selectedModel } = useContext(AIProviderContext)
+  const {
+    providers,
+    selectedModel,
+    defaultModels,
+    setSelectedModel,
+    fetchDefaultModels,
+  } = useContext(AIProviderContext)
   const { requireModel } = useContext(ModelSelectorContext)
   let model: LanguageModelV1 | null = null
+  let summarizeModel: LanguageModelV1 | null = null
+
+  const setModelToDefault = useCallback(async () => {
+    const defaultModels = await fetchDefaultModels()
+
+    if (defaultModels.chat) {
+      setSelectedModel(defaultModels.chat)
+    }
+  }, [setSelectedModel, fetchDefaultModels])
+
+  useEffect(() => {
+    setModelToDefault()
+  }, [setModelToDefault])
 
   if (selectedModel) {
     const provider = providers.find((p) => p.name === selectedModel[0])
@@ -742,5 +762,27 @@ export default function Chat() {
     }
   }
 
-  return <InternalChat model={model} requireModel={requireModel} />
+  if (defaultModels.summarize) {
+    const provider = providers.find(
+      (p) => p.name === defaultModels.summarize![0]
+    )
+
+    if (provider) {
+      const aiCompaProvider = createOpenAICompatible({
+        name: provider.name,
+        baseURL: provider.baseURL,
+        apiKey: provider.apiKey,
+      })
+
+      summarizeModel = aiCompaProvider(defaultModels.summarize[1])
+    }
+  }
+
+  return (
+    <InternalChat
+      model={model}
+      summarizeModel={summarizeModel}
+      requireModel={requireModel}
+    />
+  )
 }

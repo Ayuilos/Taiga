@@ -106,7 +106,6 @@ function InternalModelSelector({
       return (
         <CommandGroup key={provider.name} heading={provider.name}>
           {provider.models.map((model) => {
-            const modelName = model.replace(`${provider.name}/`, "")
             const selected = selectedModel && selectedModel[1] === model
 
             return (
@@ -118,7 +117,7 @@ function InternalModelSelector({
                   setSelectedModel([provider.name, model])
                 }}
               >
-                <span>{modelName}</span>
+                <span>{model}</span>
                 {selected && <Check className="ml-auto h-4 w-4" />}
               </CommandItem>
             )
