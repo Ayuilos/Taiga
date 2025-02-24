@@ -144,9 +144,12 @@ export async function listModels({
   } catch (e) {
     // Catched `e` will be `string` type
     let error: Error
+    const ERROR_REQUEST_CANCELLED = "Request canceled"
+
     if (typeof e === "string") {
       error = new Error(e)
-      error.name = "TimeoutError"
+
+      if (e === ERROR_REQUEST_CANCELLED) error.name = "TimeoutError"
     } else {
       error = e as Error
     }
