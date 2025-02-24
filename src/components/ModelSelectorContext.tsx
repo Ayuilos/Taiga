@@ -1,4 +1,3 @@
-import { t } from "@lingui/core/macro"
 import {
   createContext,
   useCallback,
@@ -6,8 +5,12 @@ import {
   useMemo,
   useState,
 } from "react"
+import { t } from "@lingui/core/macro"
 import { produce } from "immer"
-import { Check } from "lucide-react"
+import { Bot, Check } from "lucide-react"
+
+import { AIProviderContext, TAIProviderContextType } from "./AIProvidersContext"
+import { Button } from "./ui/button"
 import {
   CommandDialog,
   CommandEmpty,
@@ -16,8 +19,6 @@ import {
   CommandItem,
   CommandList,
 } from "./ui/command"
-import { Button } from "./ui/button"
-import { AIProviderContext, TAIProviderContextType } from "./AIProvidersContext"
 
 export type TModelSelectorContext = ReturnType<typeof useModelSelector>
 export const ModelSelectorContext = createContext<TModelSelectorContext>({
@@ -76,7 +77,9 @@ function InternalModelSelector({
   // Check if `selectedModel` is still in `provider.models` and update if not
   // No unlimited rerender risk found
   if (selectedModel) {
-    if (!providers.some((provider) => provider.models.includes(selectedModel[1]))) {
+    if (
+      !providers.some((provider) => provider.models.includes(selectedModel[1]))
+    ) {
       setSelectedModel(null)
     }
   }
@@ -135,7 +138,13 @@ function InternalModelSelector({
 
   return (
     <>
-      <Button variant="secondary" type="button" onClick={() => requireModel()}>
+      <Button
+        variant="secondary"
+        type="button"
+        className="flex items-center gap-2"
+        onClick={() => requireModel()}
+      >
+        <Bot />
         <span className="max-w-[38vw] truncate text-left">{selectorName}</span>
       </Button>
       <CommandDialog open={showModel} onOpenChange={closeModel}>

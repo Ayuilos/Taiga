@@ -1,7 +1,13 @@
 import { useContext, useEffect, useMemo, useState } from "react"
 import { t } from "@lingui/core/macro"
 import { produce } from "immer"
-import { Check, ChevronDown } from "lucide-react"
+import {
+  Check,
+  ChevronDown,
+  Languages,
+  MessageSquare,
+  Sticker,
+} from "lucide-react"
 
 import { IAIProvider } from "@/lib/ai-providers"
 import { TDefaultModel, TDefaultModels } from "@/lib/default-model-store"
@@ -58,9 +64,9 @@ function InternalDefaultModelManagement({
   }, [fetchDefaultModels])
 
   const labels = {
-    translate: t`Default Translate Model`,
-    chat: t`Default Chat Model`,
-    summarize: t`Default Chat Summarize Model`,
+    translate: [<Languages size={20} />, t`Default Translate Model`],
+    chat: [<MessageSquare size={20} />, t`Default Chat Model`],
+    summarize: [<Sticker size={20} />, t`Default Chat Summarize Model`],
   }
 
   return (
@@ -70,8 +76,8 @@ function InternalDefaultModelManagement({
         const model = entry[1]
 
         return (
-          <div key={type}>
-            <Label>{labels[type]}</Label>
+          <div className="flex flex-col gap-2" key={type}>
+            <Label className="flex items-center gap-2">{labels[type]}</Label>
             <DefaultModelSelector
               providers={providers}
               selectedModel={model}
@@ -152,7 +158,9 @@ function DefaultModelSelector({
             variant="outline"
             className="w-full flex gap-2 justify-between"
           >
-            <span className="flex-auto text-start truncate">{selectedModel?.[1]}</span>
+            <span className="flex-auto text-start truncate">
+              {selectedModel?.[1]}
+            </span>
             <ChevronDown />
           </Button>
         </PopoverTrigger>

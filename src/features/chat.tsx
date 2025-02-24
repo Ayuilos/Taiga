@@ -14,8 +14,11 @@ import { CoreMessage, generateText, LanguageModelV1 } from "ai"
 import { produce } from "immer"
 import {
   Check,
+  Copy,
   History,
   MessageSquarePlus,
+  Pen,
+  RefreshCw,
   SendHorizonal,
   StopCircle,
   Trash,
@@ -637,11 +640,11 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
   const reasoningDialogDescString = t`You're using reasoning model!`
   const editMessageString =
     message.role === "user"
-      ? t`Edit message`
+      ? [<Pen />, t`Edit message`]
       : message.role === "assistant"
-        ? t`Regenerate reply`
+        ? [<RefreshCw />, t`Regenerate reply`]
         : null
-  const copyString = t`Copy`
+  const copyString = [<Copy />, t`Copy`]
 
   return (
     <ContextMenu>
@@ -712,11 +715,14 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
       </ContextMenuTrigger>
       <ContextMenuContent>
         {onEdit ? (
-          <ContextMenuItem onClick={onEdit}>
+          <ContextMenuItem className="flex items-center gap-2" onClick={onEdit}>
             {editMessageString}
           </ContextMenuItem>
         ) : null}
-        <ContextMenuItem onClick={copyToClipboard}>
+        <ContextMenuItem
+          className="flex items-center gap-2"
+          onClick={copyToClipboard}
+        >
           {copyString}
         </ContextMenuItem>
       </ContextMenuContent>
