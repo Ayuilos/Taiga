@@ -1,3 +1,3 @@
-package com.taida.app
+package com.taiga.app
 
 class MainActivity : TauriActivity()
