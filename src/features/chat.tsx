@@ -669,7 +669,7 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
           <div
             className={`${
               message.role === "user" ? "bg-blue-500" : "bg-gray-500"
-            } flex flex-col gap-2 text-white p-2 whitespace-pre-wrap break-words rounded-lg max-w-full`}
+            } flex flex-col gap-2 text-white p-2 whitespace-pre-wrap break-words hyphens-auto rounded-lg max-w-full`}
           >
             {message.parts?.map((p, i) => {
               switch (p.type) {
