@@ -493,6 +493,11 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
             ref={messagesRef}
             className="w-full pt-20 flex-auto flex flex-col gap-4 overflow-y-auto"
           >
+            {/* Use this flex-auto div to make message show at the bottom.
+             * This is a trick, as `justify-end` will cause overflow-auto invalid for unknown reason.
+             * Refer to https://stackoverflow.com/a/37515194 */}
+            <div className="flex-auto"></div>
+
             {(isChatting && sameArrays(chatPath, sessionPath.current)
               ? messages.concat(result)
               : messages
