@@ -61,8 +61,9 @@ export function ScrollToBottom({ observedRef, onClick }: IScrollToBottom) {
 
   return (
     <Button
-      className="absolute bottom-4 right-0"
-      variant="outline"
+      className="absolute w-10 h-10 bottom-4 right-0 rounded-full"
+      size="icon"
+      variant="secondary"
       onClick={scrollToBottom}
     >
       <ArrowDown />
