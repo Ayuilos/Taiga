@@ -7,7 +7,7 @@ import {
 } from "react"
 import { t } from "@lingui/core/macro"
 import { produce } from "immer"
-import { Bot, Check } from "lucide-react"
+import { Bot, Check, Cloud } from "lucide-react"
 
 import { AIProviderContext, TAIProviderContextType } from "./AIProvidersContext"
 import { Button } from "./ui/button"
@@ -131,9 +131,8 @@ function InternalModelSelector({
   }, [providers, selectedModel, setSelectedModel, closeModel])
 
   const selectModelString = t`Select a model`
-  const selectorName = selectedModel
-    ? `${selectedModel[1]} | ${selectedModel[0]}`
-    : selectModelString
+  const selectorName = selectedModel ? selectedModel[1] : selectModelString
+  const providerNameOfSelectedModel = selectedModel?.[0]
   const emptyString = t`No models found`
 
   return (
@@ -141,11 +140,17 @@ function InternalModelSelector({
       <Button
         variant="secondary"
         type="button"
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 relative"
         onClick={() => requireModel()}
       >
         <Bot />
         <span className="max-w-[38vw] truncate text-left">{selectorName}</span>
+        {providerNameOfSelectedModel ? (
+          <span className="flex items-center gap-1 absolute top-[100%] right-2 bg-gray-300/70 p-1 rounded-b-md">
+            <Cloud />
+            <span>{providerNameOfSelectedModel}</span>
+          </span>
+        ) : null}
       </Button>
       <CommandDialog open={showModel} onOpenChange={closeModel}>
         <CommandInput autoFocus={false} placeholder={selectModelString} />
