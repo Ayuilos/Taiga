@@ -18,10 +18,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Toaster } from "@/components/ui/sonner"
+import { SettingsFeatureToggle } from "@/components/SettingsFeatureToggle"
 
 import "../App.css"
-
-import { ModelManagementFeatureToggle } from "@/components/ModelManagementFeatureToggle"
 
 dynamicActivate("en")
 
@@ -47,7 +46,7 @@ function Navigation() {
   const registry: Record<string, [string, React.ReactNode]> = {
     "/": [t`Chat`, <MessageSquare />],
     "/translate": [t`Translate`, <Languages />],
-    "/model-management": [t`Model Management`, <CloudCog />],
+    "/settings": [t`Settings`, <CloudCog />],
   }
   const router = useRouter()
   const matchRoute = useMatchRoute()
@@ -102,7 +101,7 @@ function Navigation() {
 function HeaderRegister() {
   const registry = new Map([
     [["/", "/translate"], <ModelSelector />],
-    [["/model-management"], <ModelManagementFeatureToggle />],
+    [["/settings"], <SettingsFeatureToggle />],
   ])
 
   const matchRoute = useMatchRoute()

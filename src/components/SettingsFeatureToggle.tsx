@@ -10,12 +10,13 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export function ModelManagementFeatureToggle() {
+export function SettingsFeatureToggle() {
   const location = useLocation()
   const router = useRouter()
 
   const providerItemString = t`Providers`
   const modelItemString = t`Default Models`
+  const searchApiItemString = t`Search APIs`
 
   return (
     <Select
@@ -32,11 +33,14 @@ export function ModelManagementFeatureToggle() {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="/model-management">
+          <SelectItem value="/settings">
             {providerItemString}
           </SelectItem>
-          <SelectItem value="/model-management/manage-default-models">
+          <SelectItem value="/settings/manage-default-models">
             {modelItemString}
+          </SelectItem>
+          <SelectItem value="/settings/manage-search-apis">
+            {searchApiItemString}
           </SelectItem>
         </SelectGroup>
       </SelectContent>

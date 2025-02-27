@@ -13,8 +13,9 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as TranslateImport } from './routes/translate'
 import { Route as IndexImport } from './routes/index'
-import { Route as ModelManagementIndexImport } from './routes/model-management.index'
-import { Route as ModelManagementManageDefaultModelsImport } from './routes/model-management.manage-default-models'
+import { Route as SettingsIndexImport } from './routes/settings.index'
+import { Route as SettingsManageSearchApisImport } from './routes/settings.manage-search-apis'
+import { Route as SettingsManageDefaultModelsImport } from './routes/settings.manage-default-models'
 
 // Create/Update Routes
 
@@ -30,16 +31,22 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ModelManagementIndexRoute = ModelManagementIndexImport.update({
-  id: '/model-management/',
-  path: '/model-management/',
+const SettingsIndexRoute = SettingsIndexImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const ModelManagementManageDefaultModelsRoute =
-  ModelManagementManageDefaultModelsImport.update({
-    id: '/model-management/manage-default-models',
-    path: '/model-management/manage-default-models',
+const SettingsManageSearchApisRoute = SettingsManageSearchApisImport.update({
+  id: '/settings/manage-search-apis',
+  path: '/settings/manage-search-apis',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SettingsManageDefaultModelsRoute =
+  SettingsManageDefaultModelsImport.update({
+    id: '/settings/manage-default-models',
+    path: '/settings/manage-default-models',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -61,18 +68,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TranslateImport
       parentRoute: typeof rootRoute
     }
-    '/model-management/manage-default-models': {
-      id: '/model-management/manage-default-models'
-      path: '/model-management/manage-default-models'
-      fullPath: '/model-management/manage-default-models'
-      preLoaderRoute: typeof ModelManagementManageDefaultModelsImport
+    '/settings/manage-default-models': {
+      id: '/settings/manage-default-models'
+      path: '/settings/manage-default-models'
+      fullPath: '/settings/manage-default-models'
+      preLoaderRoute: typeof SettingsManageDefaultModelsImport
       parentRoute: typeof rootRoute
     }
-    '/model-management/': {
-      id: '/model-management/'
-      path: '/model-management'
-      fullPath: '/model-management'
-      preLoaderRoute: typeof ModelManagementIndexImport
+    '/settings/manage-search-apis': {
+      id: '/settings/manage-search-apis'
+      path: '/settings/manage-search-apis'
+      fullPath: '/settings/manage-search-apis'
+      preLoaderRoute: typeof SettingsManageSearchApisImport
+      parentRoute: typeof rootRoute
+    }
+    '/settings/': {
+      id: '/settings/'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -83,23 +97,26 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/translate': typeof TranslateRoute
-  '/model-management/manage-default-models': typeof ModelManagementManageDefaultModelsRoute
-  '/model-management': typeof ModelManagementIndexRoute
+  '/settings/manage-default-models': typeof SettingsManageDefaultModelsRoute
+  '/settings/manage-search-apis': typeof SettingsManageSearchApisRoute
+  '/settings': typeof SettingsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/translate': typeof TranslateRoute
-  '/model-management/manage-default-models': typeof ModelManagementManageDefaultModelsRoute
-  '/model-management': typeof ModelManagementIndexRoute
+  '/settings/manage-default-models': typeof SettingsManageDefaultModelsRoute
+  '/settings/manage-search-apis': typeof SettingsManageSearchApisRoute
+  '/settings': typeof SettingsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/translate': typeof TranslateRoute
-  '/model-management/manage-default-models': typeof ModelManagementManageDefaultModelsRoute
-  '/model-management/': typeof ModelManagementIndexRoute
+  '/settings/manage-default-models': typeof SettingsManageDefaultModelsRoute
+  '/settings/manage-search-apis': typeof SettingsManageSearchApisRoute
+  '/settings/': typeof SettingsIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -107,36 +124,40 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/translate'
-    | '/model-management/manage-default-models'
-    | '/model-management'
+    | '/settings/manage-default-models'
+    | '/settings/manage-search-apis'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/translate'
-    | '/model-management/manage-default-models'
-    | '/model-management'
+    | '/settings/manage-default-models'
+    | '/settings/manage-search-apis'
+    | '/settings'
   id:
     | '__root__'
     | '/'
     | '/translate'
-    | '/model-management/manage-default-models'
-    | '/model-management/'
+    | '/settings/manage-default-models'
+    | '/settings/manage-search-apis'
+    | '/settings/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TranslateRoute: typeof TranslateRoute
-  ModelManagementManageDefaultModelsRoute: typeof ModelManagementManageDefaultModelsRoute
-  ModelManagementIndexRoute: typeof ModelManagementIndexRoute
+  SettingsManageDefaultModelsRoute: typeof SettingsManageDefaultModelsRoute
+  SettingsManageSearchApisRoute: typeof SettingsManageSearchApisRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TranslateRoute: TranslateRoute,
-  ModelManagementManageDefaultModelsRoute:
-    ModelManagementManageDefaultModelsRoute,
-  ModelManagementIndexRoute: ModelManagementIndexRoute,
+  SettingsManageDefaultModelsRoute: SettingsManageDefaultModelsRoute,
+  SettingsManageSearchApisRoute: SettingsManageSearchApisRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -151,8 +172,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/translate",
-        "/model-management/manage-default-models",
-        "/model-management/"
+        "/settings/manage-default-models",
+        "/settings/manage-search-apis",
+        "/settings/"
       ]
     },
     "/": {
@@ -161,11 +183,14 @@ export const routeTree = rootRoute
     "/translate": {
       "filePath": "translate.tsx"
     },
-    "/model-management/manage-default-models": {
-      "filePath": "model-management.manage-default-models.tsx"
+    "/settings/manage-default-models": {
+      "filePath": "settings.manage-default-models.tsx"
     },
-    "/model-management/": {
-      "filePath": "model-management.index.tsx"
+    "/settings/manage-search-apis": {
+      "filePath": "settings.manage-search-apis.tsx"
+    },
+    "/settings/": {
+      "filePath": "settings.index.tsx"
     }
   }
 }
