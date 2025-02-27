@@ -9,7 +9,16 @@ import {
 } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { t } from "@lingui/core/macro"
-import { ChevronRight, Info, Loader2, Minus, Plus } from "lucide-react"
+import { produce } from "immer"
+import {
+  Check,
+  ChevronDown,
+  ChevronRight,
+  Info,
+  Loader2,
+  Minus,
+  Plus,
+} from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
@@ -45,6 +54,14 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+import {
   Drawer,
   DrawerContent,
   DrawerDescription,
@@ -61,12 +78,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Toggle } from "@/components/ui/toggle"
 
 const formSchema = zAIProvider
@@ -109,6 +124,7 @@ function InternalProviderManagement({
   const [isAddingNew, setIsAddingNew] = useState(false)
   const [showModelManagement, setShowModelManagement] =
     useState(directManageModel)
+  const [showProviderSelect, setShowProviderSelect] = useState(false)
 
   const prevProvider = useRef<IAIProvider>(undefined)
 
@@ -139,16 +155,6 @@ function InternalProviderManagement({
   })
 
   const pendingValues = form.watch()
-
-  const providerItems = useMemo(
-    () =>
-      providers.map((provider) => (
-        <SelectItem key={provider.name} value={provider.name}>
-          {provider.name}
-        </SelectItem>
-      )),
-    [providers]
-  )
 
   const modelsChange = useMemo(() => {
     const { added, removed } = diffStringArrays(
@@ -283,10 +289,64 @@ function InternalProviderManagement({
     [isAddingNew, currentProvider, fetchProviders, updateProvider]
   )
 
+  const providerItems = useMemo(() => {
+    const { preset, custom } = produce(providers, (draft) =>
+      draft.sort((a, b) =>
+        a.name === currentProvider?.name ? -1 : a.name.localeCompare(b.name)
+      )
+    ).reduce<{
+      preset: IAIProvider[]
+      custom: IAIProvider[]
+    }>(
+      (classified, curr) => {
+        if (curr.preset) classified.preset.push(curr)
+        else classified.custom.push(curr)
+
+        return classified
+      },
+      { preset: [], custom: [] }
+    )
+
+    const presetString = t`Preset`
+    const customString = t`Custom`
+
+    const mapFunc = (provider: IAIProvider) => {
+      const selected = currentProvider?.name === provider.name
+
+      return (
+        <CommandItem
+          className="flex items-center justify-between"
+          key={provider.name}
+          value={provider.name}
+          onSelect={() => {
+            setShowProviderSelect(false)
+            onProviderChange(provider.name)
+          }}
+        >
+          <span>{provider.name}</span>
+          {selected ? <Check /> : null}
+        </CommandItem>
+      )
+    }
+
+    return (
+      <CommandList>
+        <CommandGroup heading={presetString}>
+          {preset.map(mapFunc)}
+        </CommandGroup>
+        <CommandGroup heading={customString}>
+          {custom.map(mapFunc)}
+        </CommandGroup>
+      </CommandList>
+    )
+  }, [providers, currentProvider?.name, onProviderChange])
+
   useEffect(() => {
     loadProvidersFromStore()
   }, [loadProvidersFromStore])
 
+  const providerSearchString = t`Search provider...`
+  const noProviderEmptyString = t`No provider found`
   const addingNewProviderString = t`You're adding new provider`
   const nameLabelString = t`Name`
   const apiKeyLabelString = t`API Key`
@@ -310,15 +370,29 @@ function InternalProviderManagement({
     <div className="w-[92%] py-20 self-center flex flex-col gap-4">
       {!isAddingNew ? (
         <div className="flex gap-2 items-center">
-          <Select
-            value={currentProvider?.name}
-            onValueChange={onProviderChange}
+          <Popover
+            open={showProviderSelect}
+            onOpenChange={setShowProviderSelect}
           >
-            <SelectTrigger>
-              <SelectValue></SelectValue>
-            </SelectTrigger>
-            <SelectContent>{providerItems}</SelectContent>
-          </Select>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-full flex gap-2 justify-between"
+              >
+                <span className="flex-auto text-start truncate">
+                  {currentProvider?.name}
+                </span>
+                <ChevronDown />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0">
+              <Command value={currentProvider?.name}>
+                <CommandInput placeholder={providerSearchString} />
+                <CommandEmpty>{noProviderEmptyString}</CommandEmpty>
+                {providerItems}
+              </Command>
+            </PopoverContent>
+          </Popover>
           <Button
             className="aspect-square"
             size="icon"

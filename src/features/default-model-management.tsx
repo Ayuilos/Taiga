@@ -11,7 +11,6 @@ import {
 
 import { IAIProvider } from "@/lib/ai-providers"
 import { TDefaultModel, TDefaultModels } from "@/lib/default-model-store"
-import { stringifyObject } from "@/lib/utils"
 import { AIProviderContext } from "@/components/AIProvidersContext"
 import { Button } from "@/components/ui/button"
 import {
@@ -102,8 +101,6 @@ function DefaultModelSelector({
 }: IDefaultModelSelector) {
   const [open, setOpen] = useState(false)
 
-  console.log(stringifyObject(selectedModel))
-
   const commandList = useMemo(() => {
     const sortedProviders = selectedModel
       ? produce(providers, (draft) => {
@@ -150,6 +147,9 @@ function DefaultModelSelector({
     })
   }, [providers, selectedModel, setSelectedModel])
 
+  const searchModelString = t`Search models...`
+  const noModelEmptyString = t`No models found`
+
   return (
     <div className="flex flex-col w-60 gap-2">
       <Popover open={open} onOpenChange={setOpen}>
@@ -166,8 +166,8 @@ function DefaultModelSelector({
         </PopoverTrigger>
         <PopoverContent className="p-0">
           <Command>
-            <CommandInput placeholder={`Search models...`} />
-            <CommandEmpty>No results.</CommandEmpty>
+            <CommandInput placeholder={searchModelString} />
+            <CommandEmpty>{noModelEmptyString}</CommandEmpty>
             <CommandList>{commandList}</CommandList>
           </Command>
         </PopoverContent>
