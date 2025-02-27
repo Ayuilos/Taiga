@@ -342,6 +342,7 @@ function InternalProviderManagement({
           <FormField
             control={form.control}
             name="name"
+            disabled={pendingValues.preset}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{nameLabelString}</FormLabel>
@@ -433,7 +434,7 @@ function InternalProviderManagement({
             </>
           ) : null}
 
-          {!isAddingNew && providers.length > 1 ? (
+          {!isAddingNew && providers.length > 1 && !pendingValues.preset ? (
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="destructive">

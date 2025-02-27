@@ -9,6 +9,7 @@ export const zAIProvider = z.object({
   baseURL: z.string().url(),
   apiKey: z.string(),
   models: z.array(z.string().min(1)),
+  preset: z.boolean().optional()
 })
 
 export type IAIProvider = z.infer<typeof zAIProvider>
