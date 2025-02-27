@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { t } from "@lingui/core/macro"
 import {
   createRootRoute,
@@ -7,9 +8,10 @@ import {
 } from "@tanstack/react-router"
 import { ChevronRight, CloudCog, Languages, MessageSquare } from "lucide-react"
 
+import { update } from "@/lib/updater"
 import { dynamicActivate } from "@/lib/utils"
 import ModelSelector from "@/components/ModelSelectorContext"
-// import { TanStackRouterDevtools } from "@tanstack/router-devtools"
+import { SettingsFeatureToggle } from "@/components/SettingsFeatureToggle"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -18,28 +20,35 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Toaster } from "@/components/ui/sonner"
-import { SettingsFeatureToggle } from "@/components/SettingsFeatureToggle"
 
 import "../App.css"
+
+// import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 
 dynamicActivate("en")
 
 export const Route = createRootRoute({
-  component: () => (
-    <>
-      <div className="min-h-screen max-h-screen flex flex-col">
-        <header className="fixed top-0 z-20 flex justify-between items-center p-4 border-b w-full bg-background/80 backdrop-blur-xs">
-          <Navigation />
-          <HeaderRegister />
-        </header>
-        <main className="flex-auto container flex flex-col">
-          <Outlet />
-        </main>
-      </div>
-      <Toaster />
-      {/* <TanStackRouterDevtools /> */}
-    </>
-  ),
+  component: function Root() {
+    useEffect(() => {
+      update()
+    }, [])
+
+    return (
+      <>
+        <div className="min-h-screen max-h-screen flex flex-col">
+          <header className="fixed top-0 z-20 flex justify-between items-center p-4 border-b w-full bg-background/80 backdrop-blur-xs">
+            <Navigation />
+            <HeaderRegister />
+          </header>
+          <main className="flex-auto container flex flex-col">
+            <Outlet />
+          </main>
+        </div>
+        <Toaster />
+        {/* <TanStackRouterDevtools /> */}
+      </>
+    )
+  },
 })
 
 function Navigation() {

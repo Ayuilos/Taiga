@@ -10,9 +10,6 @@ export const SearchApiSchema = z.object({
 })
 
 export type TBaseSearchAPI = z.infer<typeof SearchApiSchema>
-export type TJinaSearchAPI = TBaseSearchAPI & {
-  name: "jina"
-}
 
 export class SearchApiStore {
   static async getSearchApi(name: string) {

@@ -1,19 +1,6 @@
-import {
-  createContext,
-  PropsWithChildren,
-  useCallback,
-  useState,
-} from "react"
+import { createContext, PropsWithChildren, useCallback, useState } from "react"
 
 import { SearchApiStore, TBaseSearchAPI } from "@/lib/search-api-store"
-
-const getDefaultSearchApi = () => {
-  return {
-    name: "jina",
-    searchURL: "https://s.jina.ai/",
-    apiKey: "",
-  } as TBaseSearchAPI
-}
 
 type TSearchApisContextType = ReturnType<typeof useSearchApisContext>
 export const SearchApisContext = createContext<TSearchApisContextType>({
@@ -38,14 +25,7 @@ function useSearchApisContext() {
   const fetchSearchApis = useCallback(async () => {
     const _searchAPIs = await SearchApiStore.getAllSearchApis()
 
-    // [NOTICE] This is a temporary solution when default search API is not set
-    if (_searchAPIs.length === 0) {
-      const defaultApi = getDefaultSearchApi()
-      setSearchApis([defaultApi])
-      await SearchApiStore.setSearchApi(defaultApi)
-    } else {
-      setSearchApis(_searchAPIs)
-    }
+    setSearchApis(_searchAPIs)
 
     return _searchAPIs
   }, [])
