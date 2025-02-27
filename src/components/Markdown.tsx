@@ -1,8 +1,10 @@
 // Refer to https://github.com/vercel/ai-chatbot/blob/27ff56625848f091b40c65506858c146f742a047/components/markdown.tsx
 
 import { memo } from "react"
+import { openUrl } from "@tauri-apps/plugin-opener"
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
+
 import { CodeBlock } from "./CodeBlock"
 
 const components: Partial<Components> = {
@@ -37,12 +39,17 @@ const components: Partial<Components> = {
       </span>
     )
   },
-  a: ({ node, children, ...props }) => {
+  a: ({ node, children, href, ...props }) => {
     return (
       <a
         className="text-blue-500 hover:underline"
         target="_blank"
         rel="noreferrer"
+        onClick={() => {
+          if (href) {
+            openUrl(href)
+          }
+        }}
         {...props}
       >
         {children}
@@ -92,9 +99,7 @@ const components: Partial<Components> = {
     )
   },
   hr: ({ node, children, ...props }) => {
-    return (
-      <hr className="border-t border-gray-300" {...props} />
-    )
+    return <hr className="border-t border-gray-300" {...props} />
   },
 }
 
