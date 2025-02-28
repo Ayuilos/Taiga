@@ -507,6 +507,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   const deleteChatCancelString = t`Cancel`
   const jumpToSearchApiSetPageString = t`Your search api is not set`
   const jumpToSearchApiSetPageButtonString = t`Set now`
+  const textareaPlaceholder = t`What can I help you?`
 
   const openSearchButton = (
     <Popover
@@ -650,7 +651,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
         <div className="relative shrink-0 pb-4 w-full">
           <Textarea
             className="w-full resize-none pb-20"
-            placeholder="Type a message..."
+            placeholder={textareaPlaceholder}
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
