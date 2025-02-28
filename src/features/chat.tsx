@@ -759,7 +759,7 @@ function Message({
   const callingToolButtonStrings = [t`Is calling tool...`, t`Tool-Call Result`]
   const callingToolDescStrings = [t`Used Tool`, t`Args Input by Model`]
   const callingToolWaitingString = t`Waiting...`
-  const stepOverString = t`Step Over`
+  const stepOverString = t`Step End`
   const stepSpendTimeString = t`Spend Time`
   const errorMessageString = t`Error Happen`
   const editMessageString =
