@@ -26,7 +26,7 @@ import "../App.css"
 // import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 
 try {
-  dynamicActivate(navigator.language)
+  await dynamicActivate(navigator.language)
 } catch(e) {
   console.error(e)
   dynamicActivate("en")
