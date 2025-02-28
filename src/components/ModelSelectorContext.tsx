@@ -6,6 +6,7 @@ import {
   useState,
 } from "react"
 import { t } from "@lingui/core/macro"
+import { Link } from "@tanstack/react-router"
 import { produce } from "immer"
 import { Bot, Check, Cloud } from "lucide-react"
 
@@ -134,6 +135,7 @@ function InternalModelSelector({
   const selectorName = selectedModel ? selectedModel[1] : selectModelString
   const providerNameOfSelectedModel = selectedModel?.[0]
   const emptyString = t`No models found`
+  const goProviderConfigLinkString = t`Add models`
 
   return (
     <>
@@ -155,7 +157,13 @@ function InternalModelSelector({
       <CommandDialog open={showModel} onOpenChange={closeModel}>
         <CommandInput autoFocus={false} placeholder={selectModelString} />
         <CommandList>
-          <CommandEmpty>{emptyString}</CommandEmpty>
+          <CommandEmpty>
+            {emptyString}
+            <br />
+            <Link className="text-blue-500" href="/settings" to="/settings">
+              {goProviderConfigLinkString}
+            </Link>
+          </CommandEmpty>
           {commandList}
         </CommandList>
       </CommandDialog>
