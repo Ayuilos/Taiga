@@ -5,7 +5,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: fr\n"
+"Language: pt\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -15,244 +15,244 @@ msgstr ""
 
 #: src/features/provider-management.tsx:358
 msgid "Add"
-msgstr "Ajouter"
+msgstr "Adicionar"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Add models"
-msgstr "Ajouter des modèles"
+msgstr "Adicionar modelos"
 
 #: src/features/provider-management.tsx:164
 #: src/features/provider-management.tsx:668
 msgid "Added models"
-msgstr "Modèles ajoutés"
+msgstr "Modelos adicionados"
 
 #: src/features/provider-management.tsx:356
 msgid "API Key"
-msgstr "Clé API"
+msgstr "Chave de API"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:504
 msgid "Are you sure to delete this chat?"
-msgstr "Êtes-vous sûr de vouloir supprimer cette conversation ?"
+msgstr "Tem certeza que deseja excluir este chat?"
 
 #: src/components/ChatHistory.tsx:71
 msgid "Are you sure you want to delete all chat history?"
-msgstr "Êtes-vous sûr de vouloir supprimer tout l'historique des conversations ?"
+msgstr "Tem certeza que deseja excluir todo o histórico de chat?"
 
 #: src/features/provider-management.tsx:363
 msgid "Are you sure you want to delete this provider?"
-msgstr "Êtes-vous sûr de vouloir supprimer ce fournisseur ?"
+msgstr "Tem certeza que deseja excluir este provedor?"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Args Input by Model"
-msgstr "Arguments saisis par le modèle"
+msgstr "Argumentos de Entrada pelo Modelo"
 
 #: src/features/provider-management.tsx:669
 msgid "Available models"
-msgstr "Modèles disponibles"
+msgstr "Modelos disponíveis"
 
 #: src/features/provider-management.tsx:357
 msgid "Base URL"
-msgstr "URL de base"
+msgstr "URL Base"
 
 #: src/features/provider-management.tsx:359
 #: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:506
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancelar"
 
-#: src/routes/__root.tsx:57
+#: src/routes/__root.tsx:61
 msgid "Chat"
-msgstr "Conversation"
+msgstr "Chat"
 
 #: src/components/ChatHistory.tsx:69
 msgid "Chat History"
-msgstr "Historique des conversations"
+msgstr "Histórico de Chat"
 
 #: src/features/chat.tsx:153
 msgid "Chat stopped by user"
-msgstr "Conversation arrêtée par l'utilisateur"
+msgstr "Chat interrompido pelo usuário"
 
 #: src/features/translator.tsx:182
 msgid "Check reasoning process"
-msgstr "Vérifier le processus de raisonnement"
+msgstr "Verificar processo de raciocínio"
 
 #: src/features/provider-management.tsx:667
 msgid "Choose models"
-msgstr "Choisir des modèles"
+msgstr "Escolher modelos"
 
 #: src/features/provider-management.tsx:358
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
-msgstr "Confirmer"
+msgstr "Confirmar"
 
-#: src/features/chat.tsx:771
+#: src/features/chat.tsx:770
 msgid "Copy"
-msgstr "Copier"
+msgstr "Copiar"
 
 #: src/features/provider-management.tsx:315
 msgid "Custom"
-msgstr "Personnalisé"
+msgstr "Personalizado"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
-msgstr "Modèle de conversation par défaut"
+msgstr "Modelo de Chat Padrão"
 
 #: src/features/default-model-management.tsx:68
 msgid "Default Chat Summarize Model"
-msgstr "Modèle de résumé de conversation par défaut"
+msgstr "Modelo de Resumo de Chat Padrão"
 
 #: src/components/SettingsFeatureToggle.tsx:18
 msgid "Default Models"
-msgstr "Modèles par défaut"
+msgstr "Modelos Padrão"
 
 #: src/features/default-model-management.tsx:66
 msgid "Default Translate Model"
-msgstr "Modèle de traduction par défaut"
+msgstr "Modelo de Tradução Padrão"
 
 #: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:505
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Excluir"
 
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
-msgstr "Supprimer tout l'historique des conversations"
+msgstr "Excluir todo o histórico de chat"
 
 #: src/features/provider-management.tsx:362
 msgid "Delete Provider"
-msgstr "Supprimer le fournisseur"
+msgstr "Excluir Provedor"
 
-#: src/features/chat.tsx:767
+#: src/features/chat.tsx:766
 msgid "Edit message"
-msgstr "Modifier le message"
+msgstr "Editar mensagem"
 
-#: src/features/chat.tsx:764
+#: src/features/chat.tsx:763
 msgid "Error Happen"
-msgstr "Une erreur s'est produite"
+msgstr "Ocorreu um erro"
 
-#: src/features/chat.tsx:737
+#: src/features/chat.tsx:736
 msgid "Failed to copy to clipboard"
-msgstr "Échec de la copie dans le presse-papiers"
+msgstr "Falha ao copiar para a área de transferência"
 
 #: src/features/chat.tsx:247
 msgid "Failed to summarize"
-msgstr "Échec du résumé"
+msgstr "Falha ao resumir"
 
 #: src/features/provider-management.tsx:667
 msgid "Getting models..."
-msgstr "Récupération des modèles..."
+msgstr "Obtendo modelos..."
 
 #: src/features/translator.tsx:141
 msgid "Into"
-msgstr "Vers"
+msgstr "Para"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Is calling tool..."
-msgstr "Appel de l'outil en cours..."
+msgstr "Está chamando a ferramenta..."
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Is reasoning..."
-msgstr "Raisonnement en cours..."
+msgstr "Está raciocinando..."
 
 #: src/features/provider-management.tsx:361
 msgid "Manage Models"
-msgstr "Gérer les modèles"
+msgstr "Gerenciar Modelos"
 
 #: src/features/provider-management.tsx:360
 msgid "Model Management"
-msgstr "Gestion des modèles"
+msgstr "Gerenciamento de Modelos"
 
 #: src/features/provider-management.tsx:355
 msgid "Name"
-msgstr "Nom"
+msgstr "Nome"
 
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
-msgstr "Aucune conversation trouvée"
+msgstr "Nenhum chat encontrado"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:137
 msgid "No models found"
-msgstr "Aucun modèle trouvé"
+msgstr "Nenhum modelo encontrado"
 
 #: src/features/provider-management.tsx:353
 msgid "No provider found"
-msgstr "Aucun fournisseur trouvé"
+msgstr "Nenhum provedor encontrado"
 
 #: src/features/provider-management.tsx:314
 msgid "Preset"
-msgstr "Prédéfini"
+msgstr "Predefinido"
 
 #: src/features/provider-management.tsx:131
 msgid "Provider name already exists"
-msgstr "Le nom du fournisseur existe déjà"
+msgstr "O nome do provedor já existe"
 
 #: src/components/SettingsFeatureToggle.tsx:17
 msgid "Providers"
-msgstr "Fournisseurs"
+msgstr "Provedores"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Reasoning process"
-msgstr "Processus de raisonnement"
+msgstr "Processo de raciocínio"
 
 #: src/features/translator.tsx:186
 msgid "Reasoning Process"
-msgstr "Processus de raisonnement"
+msgstr "Processo de Raciocínio"
 
 #: src/features/translator.tsx:180
 msgid "Reasoning..."
-msgstr "Raisonnement..."
+msgstr "Raciocinando..."
 
-#: src/features/chat.tsx:769
+#: src/features/chat.tsx:768
 msgid "Regenerate reply"
-msgstr "Régénérer la réponse"
+msgstr "Regenerar resposta"
 
 #: src/features/provider-management.tsx:165
 msgid "Removed models"
-msgstr "Modèles supprimés"
+msgstr "Modelos removidos"
 
 #: src/hooks/useChat.ts:237
 #: src/features/provider-management.tsx:644
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
-msgstr "Délai d'attente de la requête dépassé"
+msgstr "Tempo limite da solicitação"
 
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
-msgstr "API de recherche"
+msgstr "APIs de pesquisa"
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."
-msgstr "Rechercher des modèles..."
+msgstr "Pesquisar modelos..."
 
 #: src/features/provider-management.tsx:352
 msgid "Search provider..."
-msgstr "Rechercher un fournisseur..."
+msgstr "Pesquisar provedor..."
 
 #: src/components/ModelSelectorContext.tsx:134
 msgid "Select a model"
-msgstr "Sélectionner un modèle"
+msgstr "Selecione um modelo"
 
 #: src/features/translator.tsx:165
 msgid "Select model"
-msgstr "Sélectionner un modèle"
+msgstr "Selecionar modelo"
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:508
 msgid "Set now"
-msgstr "Définir maintenant"
+msgstr "Definir agora"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Settings"
-msgstr "Paramètres"
-
-#: src/features/chat.tsx:763
-msgid "Spend Time"
-msgstr "Temps passé"
+msgstr "Configurações"
 
 #: src/features/chat.tsx:762
+msgid "Spend Time"
+msgstr "Tempo Gasto"
+
+#: src/features/chat.tsx:761
 msgid "Step End"
-msgstr "Fin de l'étape"
+msgstr "Fim da Etapa"
 
 #: src/features/chat.tsx:762
 #~ msgid "Step Over"
@@ -260,65 +260,65 @@ msgstr "Fin de l'étape"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
-msgstr "Arrêter"
+msgstr "Parar"
 
 #: src/features/translator.tsx:85
 msgid "Text copied to clipboard"
-msgstr "Texte copié dans le presse-papiers"
+msgstr "Texto copiado para a área de transferência"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Tool-Call Result"
-msgstr "Résultat de l'appel d'outil"
+msgstr "Resultado da Chamada de Ferramenta"
 
-#: src/routes/__root.tsx:58
+#: src/routes/__root.tsx:62
 #: src/features/translator.tsx:163
 msgid "Translate"
-msgstr "Traduire"
+msgstr "Traduzir"
 
 #: src/features/translator.tsx:59
 msgid "Translation cancelled"
-msgstr "Traduction annulée"
+msgstr "Tradução cancelada"
 
 #: src/features/translator.tsx:55
 msgid "Translation completed"
-msgstr "Traduction terminée"
+msgstr "Tradução concluída"
 
 #: src/components/ErrorsToastText.ts:5
 msgid "Unknown error"
-msgstr "Erreur inconnue"
+msgstr "Erro desconhecido"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Used Tool"
-msgstr "Outil utilisé"
+msgstr "Ferramenta Usada"
 
 #: src/hooks/useChat.ts:183
 msgid "User stopped chat"
-msgstr "Conversation arrêtée par l'utilisateur"
+msgstr "Chat interrompido pelo usuário"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:760
 msgid "Waiting..."
-msgstr "En attente..."
+msgstr "Aguardando..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:509
 msgid "What can I help you?"
-msgstr "Que puis-je faire pour vous aider ?"
+msgstr "Em que posso ajudar?"
 
 #: src/features/provider-management.tsx:354
 msgid "You're adding new provider"
-msgstr "Vous ajoutez un nouveau fournisseur"
+msgstr "Você está adicionando um novo provedor"
 
 #: src/features/translator.tsx:123
 msgid "You're translating"
-msgstr "Vous traduisez"
+msgstr "Você está traduzindo"
 
 #: src/features/translator.tsx:188
 msgid "You're using reasoning model in translation which is not recommended"
-msgstr "Vous utilisez un modèle de raisonnement dans la traduction, ce qui n'est pas recommandé"
+msgstr "Você está usando o modelo de raciocínio na tradução, o que não é recomendado"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:757
 msgid "You're using reasoning model!"
-msgstr "Vous utilisez un modèle de raisonnement !"
+msgstr "Você está usando o modelo de raciocínio!"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:507
 msgid "Your search api is not set"
-msgstr "Votre API de recherche n'est pas configurée"
+msgstr "Sua API de pesquisa não está definida"

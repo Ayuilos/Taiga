@@ -30,7 +30,7 @@ msgstr "मॉडल जोड़े गए"
 msgid "API Key"
 msgstr "एपीआई कुंजी"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:504
 msgid "Are you sure to delete this chat?"
 msgstr "क्या आप वाकई इस चैट को हटाना चाहते हैं?"
 
@@ -42,7 +42,7 @@ msgstr "क्या आप वाकई सभी चैट इतिहास 
 msgid "Are you sure you want to delete this provider?"
 msgstr "क्या आप वाकई इस प्रदाता को हटाना चाहते हैं?"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Args Input by Model"
 msgstr "मॉडल द्वारा इनपुट किए गए तर्क"
 
@@ -56,12 +56,12 @@ msgstr "बेस यूआरएल"
 
 #: src/features/provider-management.tsx:359
 #: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:506
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "रद्द करें"
 
-#: src/routes/__root.tsx:57
+#: src/routes/__root.tsx:61
 msgid "Chat"
 msgstr "चैट"
 
@@ -86,7 +86,7 @@ msgstr "मॉडल चुनें"
 msgid "Confirm"
 msgstr "पुष्टि करें"
 
-#: src/features/chat.tsx:771
+#: src/features/chat.tsx:770
 msgid "Copy"
 msgstr "कॉपी"
 
@@ -111,7 +111,7 @@ msgid "Default Translate Model"
 msgstr "डिफ़ॉल्ट अनुवाद मॉडल"
 
 #: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:505
 msgid "Delete"
 msgstr "हटाएं"
 
@@ -123,15 +123,15 @@ msgstr "सभी चैट इतिहास हटाएं"
 msgid "Delete Provider"
 msgstr "प्रदाता हटाएं"
 
-#: src/features/chat.tsx:767
+#: src/features/chat.tsx:766
 msgid "Edit message"
 msgstr "संदेश संपादित करें"
 
-#: src/features/chat.tsx:764
+#: src/features/chat.tsx:763
 msgid "Error Happen"
 msgstr "त्रुटि हुई"
 
-#: src/features/chat.tsx:737
+#: src/features/chat.tsx:736
 msgid "Failed to copy to clipboard"
 msgstr "क्लिपबोर्ड पर कॉपी करने में विफल"
 
@@ -147,11 +147,11 @@ msgstr "मॉडल प्राप्त किए जा रहे हैं.
 msgid "Into"
 msgstr "में"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Is calling tool..."
 msgstr "टूल को कॉल किया जा रहा है..."
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Is reasoning..."
 msgstr "तर्क किया जा रहा है..."
 
@@ -192,7 +192,7 @@ msgstr "प्रदाता नाम पहले से मौजूद ह�
 msgid "Providers"
 msgstr "प्रदाता"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Reasoning process"
 msgstr "तर्क प्रक्रिया"
 
@@ -204,7 +204,7 @@ msgstr "तर्क प्रक्रिया"
 msgid "Reasoning..."
 msgstr "तर्क किया जा रहा है..."
 
-#: src/features/chat.tsx:769
+#: src/features/chat.tsx:768
 msgid "Regenerate reply"
 msgstr "उत्तर को पुन: उत्पन्न करें"
 
@@ -238,19 +238,19 @@ msgstr "एक मॉडल चुनें"
 msgid "Select model"
 msgstr "मॉडल चुनें"
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:508
 msgid "Set now"
 msgstr "अभी सेट करें"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Settings"
 msgstr "सेटिंग्स"
 
-#: src/features/chat.tsx:763
+#: src/features/chat.tsx:762
 msgid "Spend Time"
 msgstr "खर्च किया गया समय"
 
-#: src/features/chat.tsx:762
+#: src/features/chat.tsx:761
 msgid "Step End"
 msgstr "चरण समाप्त"
 
@@ -266,11 +266,11 @@ msgstr "बंद करें"
 msgid "Text copied to clipboard"
 msgstr "टेक्स्ट को क्लिपबोर्ड पर कॉपी किया गया"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Tool-Call Result"
 msgstr "टूल-कॉल परिणाम"
 
-#: src/routes/__root.tsx:58
+#: src/routes/__root.tsx:62
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "अनुवाद करें"
@@ -287,7 +287,7 @@ msgstr "अनुवाद पूरा हुआ"
 msgid "Unknown error"
 msgstr "अज्ञात त्रुटि"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Used Tool"
 msgstr "उपयोग किया गया टूल"
 
@@ -295,11 +295,11 @@ msgstr "उपयोग किया गया टूल"
 msgid "User stopped chat"
 msgstr "उपयोगकर्ता ने चैट बंद कर दी"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:760
 msgid "Waiting..."
 msgstr "प्रतीक्षा कर रहा है..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:509
 msgid "What can I help you?"
 msgstr "मैं आपकी क्या मदद कर सकता हूँ?"
 
@@ -315,10 +315,10 @@ msgstr "आप अनुवाद कर रहे हैं"
 msgid "You're using reasoning model in translation which is not recommended"
 msgstr "आप अनुवाद में तर्क मॉडल का उपयोग कर रहे हैं जो अनुशंसित नहीं है"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:757
 msgid "You're using reasoning model!"
 msgstr "आप तर्क मॉडल का उपयोग कर रहे हैं!"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:507
 msgid "Your search api is not set"
 msgstr "आपका खोज एपीआई सेट नहीं है"

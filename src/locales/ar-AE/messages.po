@@ -5,7 +5,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: id\n"
+"Language: ar\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -15,244 +15,244 @@ msgstr ""
 
 #: src/features/provider-management.tsx:358
 msgid "Add"
-msgstr "Tambah"
+msgstr "أضف"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Add models"
-msgstr "Tambahkan model"
+msgstr "إضافة نماذج"
 
 #: src/features/provider-management.tsx:164
 #: src/features/provider-management.tsx:668
 msgid "Added models"
-msgstr "Model ditambahkan"
+msgstr "تمت إضافة النماذج"
 
 #: src/features/provider-management.tsx:356
 msgid "API Key"
-msgstr "Kunci API"
+msgstr "مفتاح API"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:504
 msgid "Are you sure to delete this chat?"
-msgstr "Apakah Anda yakin ingin menghapus obrolan ini?"
+msgstr "هل أنت متأكد من حذف هذه المحادثة؟"
 
 #: src/components/ChatHistory.tsx:71
 msgid "Are you sure you want to delete all chat history?"
-msgstr "Apakah Anda yakin ingin menghapus semua riwayat obrolan?"
+msgstr "هل أنت متأكد من أنك تريد حذف سجل المحادثات بالكامل؟"
 
 #: src/features/provider-management.tsx:363
 msgid "Are you sure you want to delete this provider?"
-msgstr "Apakah Anda yakin ingin menghapus penyedia ini?"
+msgstr "هل أنت متأكد من أنك تريد حذف هذا الموفر؟"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Args Input by Model"
-msgstr "Argumen Input oleh Model"
+msgstr "مدخلات الوسائط بواسطة النموذج"
 
 #: src/features/provider-management.tsx:669
 msgid "Available models"
-msgstr "Model yang tersedia"
+msgstr "النماذج المتاحة"
 
 #: src/features/provider-management.tsx:357
 msgid "Base URL"
-msgstr "URL Dasar"
+msgstr "عنوان URL الأساسي"
 
 #: src/features/provider-management.tsx:359
 #: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:506
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
-msgstr "Batal"
+msgstr "إلغاء"
 
-#: src/routes/__root.tsx:57
+#: src/routes/__root.tsx:61
 msgid "Chat"
-msgstr "Obrolan"
+msgstr "محادثة"
 
 #: src/components/ChatHistory.tsx:69
 msgid "Chat History"
-msgstr "Riwayat Obrolan"
+msgstr "سجل المحادثات"
 
 #: src/features/chat.tsx:153
 msgid "Chat stopped by user"
-msgstr "Obrolan dihentikan oleh pengguna"
+msgstr "تم إيقاف المحادثة بواسطة المستخدم"
 
 #: src/features/translator.tsx:182
 msgid "Check reasoning process"
-msgstr "Periksa proses penalaran"
+msgstr "تحقق من عملية الاستدلال"
 
 #: src/features/provider-management.tsx:667
 msgid "Choose models"
-msgstr "Pilih model"
+msgstr "اختر النماذج"
 
 #: src/features/provider-management.tsx:358
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
-msgstr "Konfirmasi"
+msgstr "تأكيد"
 
-#: src/features/chat.tsx:771
+#: src/features/chat.tsx:770
 msgid "Copy"
-msgstr "Salin"
+msgstr "نسخ"
 
 #: src/features/provider-management.tsx:315
 msgid "Custom"
-msgstr "Kustom"
+msgstr "مخصص"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
-msgstr "Model Obrolan Default"
+msgstr "نموذج الدردشة الافتراضي"
 
 #: src/features/default-model-management.tsx:68
 msgid "Default Chat Summarize Model"
-msgstr "Model Ringkasan Obrolan Default"
+msgstr "نموذج تلخيص الدردشة الافتراضي"
 
 #: src/components/SettingsFeatureToggle.tsx:18
 msgid "Default Models"
-msgstr "Model Default"
+msgstr "النماذج الافتراضية"
 
 #: src/features/default-model-management.tsx:66
 msgid "Default Translate Model"
-msgstr "Model Terjemahan Default"
+msgstr "نموذج الترجمة الافتراضي"
 
 #: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:505
 msgid "Delete"
-msgstr "Hapus"
+msgstr "حذف"
 
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
-msgstr "Hapus semua riwayat obrolan"
+msgstr "حذف سجل المحادثات بالكامل"
 
 #: src/features/provider-management.tsx:362
 msgid "Delete Provider"
-msgstr "Hapus Penyedia"
+msgstr "حذف الموفر"
 
-#: src/features/chat.tsx:767
+#: src/features/chat.tsx:766
 msgid "Edit message"
-msgstr "Edit pesan"
+msgstr "تحرير الرسالة"
 
-#: src/features/chat.tsx:764
+#: src/features/chat.tsx:763
 msgid "Error Happen"
-msgstr "Terjadi Kesalahan"
+msgstr "حدث خطأ"
 
-#: src/features/chat.tsx:737
+#: src/features/chat.tsx:736
 msgid "Failed to copy to clipboard"
-msgstr "Gagal menyalin ke clipboard"
+msgstr "فشل النسخ إلى الحافظة"
 
 #: src/features/chat.tsx:247
 msgid "Failed to summarize"
-msgstr "Gagal meringkas"
+msgstr "فشل التلخيص"
 
 #: src/features/provider-management.tsx:667
 msgid "Getting models..."
-msgstr "Mendapatkan model..."
+msgstr "جارٍ الحصول على النماذج..."
 
 #: src/features/translator.tsx:141
 msgid "Into"
-msgstr "Ke"
+msgstr "إلى"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Is calling tool..."
-msgstr "Memanggil alat..."
+msgstr "جارٍ استدعاء الأداة..."
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Is reasoning..."
-msgstr "Sedang menalar..."
+msgstr "جارٍ الاستدلال..."
 
 #: src/features/provider-management.tsx:361
 msgid "Manage Models"
-msgstr "Kelola Model"
+msgstr "إدارة النماذج"
 
 #: src/features/provider-management.tsx:360
 msgid "Model Management"
-msgstr "Manajemen Model"
+msgstr "إدارة النماذج"
 
 #: src/features/provider-management.tsx:355
 msgid "Name"
-msgstr "Nama"
+msgstr "اسم"
 
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
-msgstr "Tidak ada obrolan yang ditemukan"
+msgstr "لم يتم العثور على أي محادثات"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:137
 msgid "No models found"
-msgstr "Tidak ada model yang ditemukan"
+msgstr "لم يتم العثور على أي نماذج"
 
 #: src/features/provider-management.tsx:353
 msgid "No provider found"
-msgstr "Tidak ada penyedia yang ditemukan"
+msgstr "لم يتم العثور على أي موفر"
 
 #: src/features/provider-management.tsx:314
 msgid "Preset"
-msgstr "Preset"
+msgstr "مسبق"
 
 #: src/features/provider-management.tsx:131
 msgid "Provider name already exists"
-msgstr "Nama penyedia sudah ada"
+msgstr "اسم الموفر موجود بالفعل"
 
 #: src/components/SettingsFeatureToggle.tsx:17
 msgid "Providers"
-msgstr "Penyedia"
+msgstr "الموفرون"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Reasoning process"
-msgstr "Proses penalaran"
+msgstr "عملية الاستدلال"
 
 #: src/features/translator.tsx:186
 msgid "Reasoning Process"
-msgstr "Proses Penalaran"
+msgstr "عملية الاستدلال"
 
 #: src/features/translator.tsx:180
 msgid "Reasoning..."
-msgstr "Menalar..."
+msgstr "الاستدلال..."
 
-#: src/features/chat.tsx:769
+#: src/features/chat.tsx:768
 msgid "Regenerate reply"
-msgstr "Hasilkan ulang balasan"
+msgstr "إعادة إنشاء الرد"
 
 #: src/features/provider-management.tsx:165
 msgid "Removed models"
-msgstr "Model dihapus"
+msgstr "تمت إزالة النماذج"
 
 #: src/hooks/useChat.ts:237
 #: src/features/provider-management.tsx:644
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
-msgstr "Waktu permintaan habis"
+msgstr "انتهت مهلة الطلب"
 
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
-msgstr "API Pencarian"
+msgstr "واجهات برمجة تطبيقات البحث"
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."
-msgstr "Cari model..."
+msgstr "البحث عن النماذج..."
 
 #: src/features/provider-management.tsx:352
 msgid "Search provider..."
-msgstr "Cari penyedia..."
+msgstr "البحث عن موفر..."
 
 #: src/components/ModelSelectorContext.tsx:134
 msgid "Select a model"
-msgstr "Pilih model"
+msgstr "اختر نموذجًا"
 
 #: src/features/translator.tsx:165
 msgid "Select model"
-msgstr "Pilih model"
+msgstr "اختر نموذجًا"
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:508
 msgid "Set now"
-msgstr "Atur sekarang"
+msgstr "تعيين الآن"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Settings"
-msgstr "Pengaturan"
-
-#: src/features/chat.tsx:763
-msgid "Spend Time"
-msgstr "Waktu yang Dihabiskan"
+msgstr "إعدادات"
 
 #: src/features/chat.tsx:762
+msgid "Spend Time"
+msgstr "قضاء الوقت"
+
+#: src/features/chat.tsx:761
 msgid "Step End"
-msgstr "Langkah Selesai"
+msgstr "نهاية الخطوة"
 
 #: src/features/chat.tsx:762
 #~ msgid "Step Over"
@@ -260,65 +260,65 @@ msgstr "Langkah Selesai"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
-msgstr "Berhenti"
+msgstr "إيقاف"
 
 #: src/features/translator.tsx:85
 msgid "Text copied to clipboard"
-msgstr "Teks disalin ke clipboard"
+msgstr "تم نسخ النص إلى الحافظة"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Tool-Call Result"
-msgstr "Hasil Panggilan Alat"
+msgstr "نتيجة استدعاء الأداة"
 
-#: src/routes/__root.tsx:58
+#: src/routes/__root.tsx:62
 #: src/features/translator.tsx:163
 msgid "Translate"
-msgstr "Terjemahkan"
+msgstr "ترجمة"
 
 #: src/features/translator.tsx:59
 msgid "Translation cancelled"
-msgstr "Terjemahan dibatalkan"
+msgstr "تم إلغاء الترجمة"
 
 #: src/features/translator.tsx:55
 msgid "Translation completed"
-msgstr "Terjemahan selesai"
+msgstr "اكتملت الترجمة"
 
 #: src/components/ErrorsToastText.ts:5
 msgid "Unknown error"
-msgstr "Kesalahan tidak dikenal"
+msgstr "خطأ غير معروف"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Used Tool"
-msgstr "Alat yang Digunakan"
+msgstr "الأداة المستخدمة"
 
 #: src/hooks/useChat.ts:183
 msgid "User stopped chat"
-msgstr "Pengguna menghentikan obrolan"
+msgstr "أوقف المستخدم الدردشة"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:760
 msgid "Waiting..."
-msgstr "Menunggu..."
+msgstr "انتظار..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:509
 msgid "What can I help you?"
-msgstr "Ada yang bisa saya bantu?"
+msgstr "بماذا يمكنني مساعدتك؟"
 
 #: src/features/provider-management.tsx:354
 msgid "You're adding new provider"
-msgstr "Anda menambahkan penyedia baru"
+msgstr "أنت تضيف موفرًا جديدًا"
 
 #: src/features/translator.tsx:123
 msgid "You're translating"
-msgstr "Anda menerjemahkan"
+msgstr "أنت تترجم"
 
 #: src/features/translator.tsx:188
 msgid "You're using reasoning model in translation which is not recommended"
-msgstr "Anda menggunakan model penalaran dalam terjemahan yang tidak disarankan"
+msgstr "أنت تستخدم نموذج الاستدلال في الترجمة وهو أمر غير مستحسن"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:757
 msgid "You're using reasoning model!"
-msgstr "Anda menggunakan model penalaran!"
+msgstr "أنت تستخدم نموذج الاستدلال!"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:507
 msgid "Your search api is not set"
-msgstr "API pencarian Anda belum diatur"
+msgstr "واجهة برمجة تطبيقات البحث الخاصة بك غير معينة"

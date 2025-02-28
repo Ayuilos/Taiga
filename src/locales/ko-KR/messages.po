@@ -5,7 +5,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: pt\n"
+"Language: ko\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -15,244 +15,244 @@ msgstr ""
 
 #: src/features/provider-management.tsx:358
 msgid "Add"
-msgstr "Adicionar"
+msgstr "추가"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Add models"
-msgstr "Adicionar modelos"
+msgstr "모델 추가"
 
 #: src/features/provider-management.tsx:164
 #: src/features/provider-management.tsx:668
 msgid "Added models"
-msgstr "Modelos adicionados"
+msgstr "추가된 모델"
 
 #: src/features/provider-management.tsx:356
 msgid "API Key"
-msgstr "Chave de API"
+msgstr "API 키"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:504
 msgid "Are you sure to delete this chat?"
-msgstr "Tem certeza que deseja excluir este chat?"
+msgstr "이 채팅을 삭제하시겠습니까?"
 
 #: src/components/ChatHistory.tsx:71
 msgid "Are you sure you want to delete all chat history?"
-msgstr "Tem certeza que deseja excluir todo o histórico de chat?"
+msgstr "모든 채팅 기록을 삭제하시겠습니까?"
 
 #: src/features/provider-management.tsx:363
 msgid "Are you sure you want to delete this provider?"
-msgstr "Tem certeza que deseja excluir este provedor?"
+msgstr "이 제공자를 삭제하시겠습니까?"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Args Input by Model"
-msgstr "Argumentos de Entrada pelo Modelo"
+msgstr "모델별 인수 입력"
 
 #: src/features/provider-management.tsx:669
 msgid "Available models"
-msgstr "Modelos disponíveis"
+msgstr "사용 가능한 모델"
 
 #: src/features/provider-management.tsx:357
 msgid "Base URL"
-msgstr "URL Base"
+msgstr "기본 URL"
 
 #: src/features/provider-management.tsx:359
 #: src/features/provider-management.tsx:364
-#: src/chat.tsx:507
+#: src/features/chat.tsx:506
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "취소"
 
-#: src/routes/__root.tsx:57
+#: src/routes/__root.tsx:61
 msgid "Chat"
-msgstr "Chat"
+msgstr "채팅"
 
 #: src/components/ChatHistory.tsx:69
 msgid "Chat History"
-msgstr "Histórico de Chat"
+msgstr "채팅 기록"
 
 #: src/features/chat.tsx:153
 msgid "Chat stopped by user"
-msgstr "Chat interrompido pelo usuário"
+msgstr "사용자에 의해 채팅이 중단됨"
 
 #: src/features/translator.tsx:182
 msgid "Check reasoning process"
-msgstr "Verificar processo de raciocínio"
+msgstr "추론 과정 확인"
 
 #: src/features/provider-management.tsx:667
 msgid "Choose models"
-msgstr "Escolher modelos"
+msgstr "모델 선택"
 
 #: src/features/provider-management.tsx:358
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr "확인"
 
-#: src/features/chat.tsx:771
+#: src/features/chat.tsx:770
 msgid "Copy"
-msgstr "Copiar"
+msgstr "복사"
 
 #: src/features/provider-management.tsx:315
 msgid "Custom"
-msgstr "Personalizado"
+msgstr "사용자 정의"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
-msgstr "Modelo de Chat Padrão"
+msgstr "기본 채팅 모델"
 
 #: src/features/default-model-management.tsx:68
 msgid "Default Chat Summarize Model"
-msgstr "Modelo de Resumo de Chat Padrão"
+msgstr "기본 채팅 요약 모델"
 
 #: src/components/SettingsFeatureToggle.tsx:18
 msgid "Default Models"
-msgstr "Modelos Padrão"
+msgstr "기본 모델"
 
 #: src/features/default-model-management.tsx:66
 msgid "Default Translate Model"
-msgstr "Modelo de Tradução Padrão"
+msgstr "기본 번역 모델"
 
 #: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:505
 msgid "Delete"
-msgstr "Excluir"
+msgstr "삭제"
 
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
-msgstr "Excluir todo o histórico de chat"
+msgstr "모든 채팅 기록 삭제"
 
 #: src/features/provider-management.tsx:362
 msgid "Delete Provider"
-msgstr "Excluir Provedor"
+msgstr "제공자 삭제"
 
-#: src/features/chat.tsx:767
+#: src/features/chat.tsx:766
 msgid "Edit message"
-msgstr "Editar mensagem"
+msgstr "메시지 편집"
 
-#: src/features/chat.tsx:764
+#: src/features/chat.tsx:763
 msgid "Error Happen"
-msgstr "Ocorreu um erro"
+msgstr "오류 발생"
 
-#: src/features/chat.tsx:737
+#: src/features/chat.tsx:736
 msgid "Failed to copy to clipboard"
-msgstr "Falha ao copiar para a área de transferência"
+msgstr "클립보드에 복사 실패"
 
 #: src/features/chat.tsx:247
 msgid "Failed to summarize"
-msgstr "Falha ao resumir"
+msgstr "요약 실패"
 
 #: src/features/provider-management.tsx:667
 msgid "Getting models..."
-msgstr "Obtendo modelos..."
+msgstr "모델 가져오는 중..."
 
 #: src/features/translator.tsx:141
 msgid "Into"
-msgstr "Para"
+msgstr "대상"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Is calling tool..."
-msgstr "Está chamando a ferramenta..."
+msgstr "도구 호출 중..."
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Is reasoning..."
-msgstr "Está raciocinando..."
+msgstr "추론 중..."
 
 #: src/features/provider-management.tsx:361
 msgid "Manage Models"
-msgstr "Gerenciar Modelos"
+msgstr "모델 관리"
 
 #: src/features/provider-management.tsx:360
 msgid "Model Management"
-msgstr "Gerenciamento de Modelos"
+msgstr "모델 관리"
 
 #: src/features/provider-management.tsx:355
 msgid "Name"
-msgstr "Nome"
+msgstr "이름"
 
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
-msgstr "Nenhum chat encontrado"
+msgstr "채팅을 찾을 수 없음"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:137
 msgid "No models found"
-msgstr "Nenhum modelo encontrado"
+msgstr "모델을 찾을 수 없음"
 
 #: src/features/provider-management.tsx:353
 msgid "No provider found"
-msgstr "Nenhum provedor encontrado"
+msgstr "제공자를 찾을 수 없음"
 
 #: src/features/provider-management.tsx:314
 msgid "Preset"
-msgstr "Predefinido"
+msgstr "사전 설정"
 
 #: src/features/provider-management.tsx:131
 msgid "Provider name already exists"
-msgstr "O nome do provedor já existe"
+msgstr "제공자 이름이 이미 존재함"
 
 #: src/components/SettingsFeatureToggle.tsx:17
 msgid "Providers"
-msgstr "Provedores"
+msgstr "제공자"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Reasoning process"
-msgstr "Processo de raciocínio"
+msgstr "추론 과정"
 
 #: src/features/translator.tsx:186
 msgid "Reasoning Process"
-msgstr "Processo de Raciocínio"
+msgstr "추론 과정"
 
 #: src/features/translator.tsx:180
 msgid "Reasoning..."
-msgstr "Raciocinando..."
+msgstr "추론 중..."
 
-#: src/features/chat.tsx:769
+#: src/features/chat.tsx:768
 msgid "Regenerate reply"
-msgstr "Regenerar resposta"
+msgstr "응답 다시 생성"
 
 #: src/features/provider-management.tsx:165
 msgid "Removed models"
-msgstr "Modelos removidos"
+msgstr "제거된 모델"
 
 #: src/hooks/useChat.ts:237
 #: src/features/provider-management.tsx:644
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
-msgstr "Tempo limite da solicitação"
+msgstr "요청 시간 초과"
 
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
-msgstr "APIs de pesquisa"
+msgstr "검색 API"
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."
-msgstr "Pesquisar modelos..."
+msgstr "모델 검색 중..."
 
 #: src/features/provider-management.tsx:352
 msgid "Search provider..."
-msgstr "Pesquisar provedor..."
+msgstr "제공자 검색 중..."
 
 #: src/components/ModelSelectorContext.tsx:134
 msgid "Select a model"
-msgstr "Selecione um modelo"
+msgstr "모델 선택"
 
 #: src/features/translator.tsx:165
 msgid "Select model"
-msgstr "Selecionar modelo"
+msgstr "모델 선택"
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:508
 msgid "Set now"
-msgstr "Definir agora"
+msgstr "지금 설정"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Settings"
-msgstr "Configurações"
-
-#: src/features/chat.tsx:763
-msgid "Spend Time"
-msgstr "Tempo Gasto"
+msgstr "설정"
 
 #: src/features/chat.tsx:762
+msgid "Spend Time"
+msgstr "소요 시간"
+
+#: src/features/chat.tsx:761
 msgid "Step End"
-msgstr "Fim da Etapa"
+msgstr "단계 종료"
 
 #: src/features/chat.tsx:762
 #~ msgid "Step Over"
@@ -260,65 +260,65 @@ msgstr "Fim da Etapa"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
-msgstr "Parar"
+msgstr "중지"
 
 #: src/features/translator.tsx:85
 msgid "Text copied to clipboard"
-msgstr "Texto copiado para a área de transferência"
+msgstr "텍스트가 클립보드에 복사됨"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Tool-Call Result"
-msgstr "Resultado da Chamada de Ferramenta"
+msgstr "도구 호출 결과"
 
-#: src/routes/__root.tsx:58
+#: src/routes/__root.tsx:62
 #: src/features/translator.tsx:163
 msgid "Translate"
-msgstr "Traduzir"
+msgstr "번역"
 
 #: src/features/translator.tsx:59
 msgid "Translation cancelled"
-msgstr "Tradução cancelada"
+msgstr "번역 취소됨"
 
 #: src/features/translator.tsx:55
 msgid "Translation completed"
-msgstr "Tradução concluída"
+msgstr "번역 완료됨"
 
 #: src/components/ErrorsToastText.ts:5
 msgid "Unknown error"
-msgstr "Erro desconhecido"
+msgstr "알 수 없는 오류"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Used Tool"
-msgstr "Ferramenta Usada"
+msgstr "사용된 도구"
 
 #: src/hooks/useChat.ts:183
 msgid "User stopped chat"
-msgstr "Chat interrompido pelo usuário"
+msgstr "사용자가 채팅을 중단함"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:760
 msgid "Waiting..."
-msgstr "Aguardando..."
+msgstr "기다리는 중..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:509
 msgid "What can I help you?"
-msgstr "Em que posso ajudar?"
+msgstr "무엇을 도와드릴까요?"
 
 #: src/features/provider-management.tsx:354
 msgid "You're adding new provider"
-msgstr "Você está adicionando um novo provedor"
+msgstr "새로운 제공자를 추가하는 중입니다."
 
 #: src/features/translator.tsx:123
 msgid "You're translating"
-msgstr "Você está traduzindo"
+msgstr "번역 중입니다."
 
 #: src/features/translator.tsx:188
 msgid "You're using reasoning model in translation which is not recommended"
-msgstr "Você está usando o modelo de raciocínio na tradução, o que não é recomendado"
+msgstr "추론 모델을 번역에 사용하고 있습니다. 권장하지 않습니다."
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:757
 msgid "You're using reasoning model!"
-msgstr "Você está usando o modelo de raciocínio!"
+msgstr "추론 모델을 사용하고 있습니다!"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:507
 msgid "Your search api is not set"
-msgstr "Sua API de pesquisa não está definida"
+msgstr "검색 API가 설정되지 않았습니다."

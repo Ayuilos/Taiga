@@ -5,316 +5,320 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: vi\n"
+"Language: ja\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #: src/features/provider-management.tsx:358
 msgid "Add"
-msgstr "Thêm"
+msgstr "追加"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Add models"
-msgstr "Thêm mô hình"
+msgstr "モデルを追加"
 
 #: src/features/provider-management.tsx:164
 #: src/features/provider-management.tsx:668
 msgid "Added models"
-msgstr "Đã thêm các mô hình"
+msgstr "追加されたモデル"
 
 #: src/features/provider-management.tsx:356
 msgid "API Key"
-msgstr "Khóa API"
+msgstr "APIキー"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:504
 msgid "Are you sure to delete this chat?"
-msgstr "Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?"
+msgstr "このチャットを削除してもよろしいですか？"
 
 #: src/components/ChatHistory.tsx:71
 msgid "Are you sure you want to delete all chat history?"
-msgstr "Bạn có chắc chắn muốn xóa toàn bộ lịch sử trò chuyện không?"
+msgstr "すべてのチャット履歴を削除してもよろしいですか？"
 
 #: src/features/provider-management.tsx:363
 msgid "Are you sure you want to delete this provider?"
-msgstr "Bạn có chắc chắn muốn xóa nhà cung cấp này không?"
+msgstr "このプロバイダーを削除してもよろしいですか？"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Args Input by Model"
-msgstr "Tham số Đầu vào bởi Mô hình"
+msgstr "モデルによる引数入力"
 
 #: src/features/provider-management.tsx:669
 msgid "Available models"
-msgstr "Các mô hình có sẵn"
+msgstr "利用可能なモデル"
 
 #: src/features/provider-management.tsx:357
 msgid "Base URL"
-msgstr "URL cơ sở"
+msgstr "ベースURL"
 
 #: src/features/provider-management.tsx:359
 #: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:506
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
-msgstr "Hủy"
+msgstr "キャンセル"
 
-#: src/routes/__root.tsx:57
+#: src/routes/__root.tsx:61
 msgid "Chat"
-msgstr "Trò chuyện"
+msgstr "チャット"
 
 #: src/components/ChatHistory.tsx:69
 msgid "Chat History"
-msgstr "Lịch sử trò chuyện"
+msgstr "チャット履歴"
 
 #: src/features/chat.tsx:153
 msgid "Chat stopped by user"
-msgstr "Trò chuyện bị dừng bởi người dùng"
+msgstr "ユーザーによってチャットが停止されました"
 
 #: src/features/translator.tsx:182
 msgid "Check reasoning process"
-msgstr "Kiểm tra quá trình suy luận"
+msgstr "推論プロセスを確認する"
 
 #: src/features/provider-management.tsx:667
 msgid "Choose models"
-msgstr "Chọn mô hình"
+msgstr "モデルを選択"
 
 #: src/features/provider-management.tsx:358
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
-msgstr "Xác nhận"
+msgstr "確認"
 
-#: src/features/chat.tsx:771
+#: src/features/chat.tsx:770
 msgid "Copy"
-msgstr "Sao chép"
+msgstr "コピー"
 
 #: src/features/provider-management.tsx:315
 msgid "Custom"
-msgstr "Tùy chỉnh"
+msgstr "カスタム"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
-msgstr "Mô hình trò chuyện mặc định"
+msgstr "デフォルトチャットモデル"
 
 #: src/features/default-model-management.tsx:68
 msgid "Default Chat Summarize Model"
-msgstr "Mô hình tóm tắt trò chuyện mặc định"
+msgstr "デフォルトチャット要約モデル"
 
 #: src/components/SettingsFeatureToggle.tsx:18
 msgid "Default Models"
-msgstr "Các mô hình mặc định"
+msgstr "デフォルトモデル"
 
 #: src/features/default-model-management.tsx:66
 msgid "Default Translate Model"
-msgstr "Mô hình dịch mặc định"
+msgstr "デフォルト翻訳モデル"
 
 #: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:505
 msgid "Delete"
-msgstr "Xóa"
+msgstr "削除"
 
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
-msgstr "Xóa toàn bộ lịch sử trò chuyện"
+msgstr "すべてのチャット履歴を削除"
 
 #: src/features/provider-management.tsx:362
 msgid "Delete Provider"
-msgstr "Xóa nhà cung cấp"
+msgstr "プロバイダーを削除"
 
-#: src/features/chat.tsx:767
+#: src/features/chat.tsx:766
 msgid "Edit message"
-msgstr "Sửa tin nhắn"
+msgstr "メッセージを編集"
 
-#: src/features/chat.tsx:764
+#: src/features/chat.tsx:763
 msgid "Error Happen"
-msgstr "Có lỗi xảy ra"
+msgstr "エラーが発生しました"
 
-#: src/features/chat.tsx:737
+#: src/features/chat.tsx:736
 msgid "Failed to copy to clipboard"
-msgstr "Không thể sao chép vào clipboard"
+msgstr "クリップボードへのコピーに失敗しました"
 
 #: src/features/chat.tsx:247
 msgid "Failed to summarize"
-msgstr "Không thể tóm tắt"
+msgstr "要約に失敗しました"
 
 #: src/features/provider-management.tsx:667
 msgid "Getting models..."
-msgstr "Đang tải các mô hình..."
+msgstr "モデルを取得中..."
 
 #: src/features/translator.tsx:141
 msgid "Into"
-msgstr "Sang"
+msgstr "へ"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Is calling tool..."
-msgstr "Đang gọi công cụ..."
+msgstr "ツールを呼び出し中..."
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Is reasoning..."
-msgstr "Đang suy luận..."
+msgstr "推論中..."
 
 #: src/features/provider-management.tsx:361
 msgid "Manage Models"
-msgstr "Quản lý mô hình"
+msgstr "モデルを管理"
 
 #: src/features/provider-management.tsx:360
 msgid "Model Management"
-msgstr "Quản lý mô hình"
+msgstr "モデル管理"
 
 #: src/features/provider-management.tsx:355
 msgid "Name"
-msgstr "Tên"
+msgstr "名前"
 
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
-msgstr "Không tìm thấy cuộc trò chuyện nào"
+msgstr "チャットが見つかりません"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:137
 msgid "No models found"
-msgstr "Không tìm thấy mô hình nào"
+msgstr "モデルが見つかりません"
 
 #: src/features/provider-management.tsx:353
 msgid "No provider found"
-msgstr "Không tìm thấy nhà cung cấp nào"
+msgstr "プロバイダーが見つかりません"
 
 #: src/features/provider-management.tsx:314
 msgid "Preset"
-msgstr "Cài đặt sẵn"
+msgstr "プリセット"
 
 #: src/features/provider-management.tsx:131
 msgid "Provider name already exists"
-msgstr "Tên nhà cung cấp đã tồn tại"
+msgstr "プロバイダー名がすでに存在します"
 
 #: src/components/SettingsFeatureToggle.tsx:17
 msgid "Providers"
-msgstr "Nhà cung cấp"
+msgstr "プロバイダー"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Reasoning process"
-msgstr "Quá trình suy luận"
+msgstr "推論プロセス"
 
 #: src/features/translator.tsx:186
 msgid "Reasoning Process"
-msgstr "Quá trình suy luận"
+msgstr "推論プロセス"
 
 #: src/features/translator.tsx:180
 msgid "Reasoning..."
-msgstr "Đang suy luận..."
+msgstr "推論..."
 
-#: src/features/chat.tsx:769
+#: src/features/chat.tsx:768
 msgid "Regenerate reply"
-msgstr "Tạo lại phản hồi"
+msgstr "返信を再生成"
 
 #: src/features/provider-management.tsx:165
 msgid "Removed models"
-msgstr "Đã xóa các mô hình"
+msgstr "削除されたモデル"
 
 #: src/hooks/useChat.ts:237
 #: src/features/provider-management.tsx:644
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
-msgstr "Yêu cầu hết thời gian chờ"
+msgstr "リクエストタイムアウト"
 
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
-msgstr "Tìm kiếm API"
+msgstr "検索API"
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."
-msgstr "Tìm kiếm mô hình..."
+msgstr "モデルを検索..."
 
 #: src/features/provider-management.tsx:352
 msgid "Search provider..."
-msgstr "Tìm kiếm nhà cung cấp..."
+msgstr "プロバイダーを検索..."
 
 #: src/components/ModelSelectorContext.tsx:134
 msgid "Select a model"
-msgstr "Chọn một mô hình"
+msgstr "モデルを選択"
 
 #: src/features/translator.tsx:165
 msgid "Select model"
-msgstr "Chọn mô hình"
+msgstr "モデルを選択"
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:508
 msgid "Set now"
-msgstr "Thiết lập ngay"
+msgstr "今すぐ設定"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Settings"
-msgstr "Cài đặt"
-
-#: src/features/chat.tsx:763
-msgid "Spend Time"
-msgstr "Thời gian sử dụng"
+msgstr "設定"
 
 #: src/features/chat.tsx:762
+msgid "Spend Time"
+msgstr "経過時間"
+
+#: src/features/chat.tsx:761
 msgid "Step End"
-msgstr "Kết thúc bước"
+msgstr "ステップ終了"
+
+#: src/features/chat.tsx:762
+#~ msgid "Step Over"
+#~ msgstr ""
 
 #: src/features/translator.tsx:161
 msgid "Stop"
-msgstr "Dừng"
+msgstr "停止"
 
 #: src/features/translator.tsx:85
 msgid "Text copied to clipboard"
-msgstr "Đã sao chép văn bản vào clipboard"
+msgstr "テキストがクリップボードにコピーされました"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Tool-Call Result"
-msgstr "Kết quả Gọi công cụ"
+msgstr "ツール呼び出し結果"
 
-#: src/routes/__root.tsx:58
+#: src/routes/__root.tsx:62
 #: src/features/translator.tsx:163
 msgid "Translate"
-msgstr "Dịch"
+msgstr "翻訳"
 
 #: src/features/translator.tsx:59
 msgid "Translation cancelled"
-msgstr "Đã hủy bản dịch"
+msgstr "翻訳がキャンセルされました"
 
 #: src/features/translator.tsx:55
 msgid "Translation completed"
-msgstr "Đã hoàn thành bản dịch"
+msgstr "翻訳が完了しました"
 
 #: src/components/ErrorsToastText.ts:5
 msgid "Unknown error"
-msgstr "Lỗi không xác định"
+msgstr "不明なエラー"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Used Tool"
-msgstr "Công cụ đã sử dụng"
+msgstr "使用されたツール"
 
 #: src/hooks/useChat.ts:183
 msgid "User stopped chat"
-msgstr "Người dùng đã dừng trò chuyện"
+msgstr "ユーザーがチャットを停止しました"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:760
 msgid "Waiting..."
-msgstr "Đang chờ..."
+msgstr "待機中..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:509
 msgid "What can I help you?"
-msgstr "Tôi có thể giúp gì cho bạn?"
+msgstr "何かお手伝いできることはありますか？"
 
-#: src/features/provider-management.tsx:307
+#: src/features/provider-management.tsx:354
 msgid "You're adding new provider"
-msgstr "Bạn đang thêm nhà cung cấp mới"
+msgstr "新しいプロバイダーを追加しています"
 
 #: src/features/translator.tsx:123
 msgid "You're translating"
-msgstr "Bạn đang dịch"
+msgstr "翻訳中"
 
 #: src/features/translator.tsx:188
 msgid "You're using reasoning model in translation which is not recommended"
-msgstr "Bạn đang sử dụng mô hình suy luận trong bản dịch, điều này không được khuyến khích"
+msgstr "推論モデルを使用していますが、翻訳には推奨されません"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:757
 msgid "You're using reasoning model!"
-msgstr "Bạn đang sử dụng mô hình suy luận!"
+msgstr "推論モデルを使用しています！"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:507
 msgid "Your search api is not set"
-msgstr "API tìm kiếm của bạn chưa được thiết lập"
+msgstr "検索APIが設定されていません"

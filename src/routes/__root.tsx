@@ -25,7 +25,12 @@ import "../App.css"
 
 // import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 
-dynamicActivate(navigator.language)
+try {
+  dynamicActivate(navigator.language)
+} catch(e) {
+  console.error(e)
+  dynamicActivate("en")
+}
 
 export const Route = createRootRoute({
   component: function Root() {

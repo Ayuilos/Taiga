@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-02-28 18:18+0800\n"
+"POT-Creation-Date: 2025-02-13 18:14+0800\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: zh-CN\n"
+"Language: en\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -15,306 +15,310 @@ msgstr ""
 
 #: src/features/provider-management.tsx:358
 msgid "Add"
-msgstr "添加"
+msgstr "Add"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Add models"
-msgstr "添加模型"
+msgstr "Add models"
 
 #: src/features/provider-management.tsx:164
 #: src/features/provider-management.tsx:668
 msgid "Added models"
-msgstr "已添加模型"
+msgstr "Added models"
 
 #: src/features/provider-management.tsx:356
 msgid "API Key"
-msgstr "API 密钥"
+msgstr "API Key"
 
 #: src/features/chat.tsx:504
 msgid "Are you sure to delete this chat?"
-msgstr "确定要删除此聊天吗？"
+msgstr "Are you sure to delete this chat?"
 
 #: src/components/ChatHistory.tsx:71
 msgid "Are you sure you want to delete all chat history?"
-msgstr "确定要删除所有聊天记录吗？"
+msgstr "Are you sure you want to delete all chat history?"
 
 #: src/features/provider-management.tsx:363
 msgid "Are you sure you want to delete this provider?"
-msgstr "确定要删除此提供商吗？"
+msgstr "Are you sure you want to delete this provider?"
 
 #: src/features/chat.tsx:759
 msgid "Args Input by Model"
-msgstr "模型参数输入"
+msgstr "Args Input by Model"
 
 #: src/features/provider-management.tsx:669
 msgid "Available models"
-msgstr "可用模型"
+msgstr "Available models"
 
 #: src/features/provider-management.tsx:357
 msgid "Base URL"
-msgstr "基础 URL"
+msgstr "Base URL"
 
 #: src/features/provider-management.tsx:359
 #: src/features/provider-management.tsx:364
 #: src/features/chat.tsx:506
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
-msgstr "取消"
+msgstr "Cancel"
 
 #: src/routes/__root.tsx:61
 msgid "Chat"
-msgstr "聊天"
+msgstr "Chat"
 
 #: src/components/ChatHistory.tsx:69
 msgid "Chat History"
-msgstr "聊天历史"
+msgstr "Chat History"
 
 #: src/features/chat.tsx:153
 msgid "Chat stopped by user"
-msgstr "用户停止了聊天"
+msgstr "Chat stopped by user"
 
 #: src/features/translator.tsx:182
 msgid "Check reasoning process"
-msgstr "检查推理过程"
+msgstr "Check reasoning process"
 
 #: src/features/provider-management.tsx:667
 msgid "Choose models"
-msgstr "选择模型"
+msgstr "Choose models"
 
 #: src/features/provider-management.tsx:358
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
-msgstr "确认"
+msgstr "Confirm"
 
 #: src/features/chat.tsx:770
 msgid "Copy"
-msgstr "复制"
+msgstr "Copy"
 
 #: src/features/provider-management.tsx:315
 msgid "Custom"
-msgstr "自定义"
+msgstr "Custom"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
-msgstr "默认聊天模型"
+msgstr "Default Chat Model"
 
 #: src/features/default-model-management.tsx:68
 msgid "Default Chat Summarize Model"
-msgstr "默认聊天总结模型"
+msgstr "Default Chat Summarize Model"
 
 #: src/components/SettingsFeatureToggle.tsx:18
 msgid "Default Models"
-msgstr "默认模型"
+msgstr "Default Models"
 
 #: src/features/default-model-management.tsx:66
 msgid "Default Translate Model"
-msgstr "默认翻译模型"
+msgstr "Default Translate Model"
 
 #: src/features/provider-management.tsx:365
 #: src/features/chat.tsx:505
 msgid "Delete"
-msgstr "删除"
+msgstr "Delete"
 
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
-msgstr "删除所有聊天历史"
+msgstr "Delete all chat history"
 
 #: src/features/provider-management.tsx:362
 msgid "Delete Provider"
-msgstr "删除提供商"
+msgstr "Delete Provider"
 
 #: src/features/chat.tsx:766
 msgid "Edit message"
-msgstr "编辑消息"
+msgstr "Edit message"
 
 #: src/features/chat.tsx:763
 msgid "Error Happen"
-msgstr "发生错误"
+msgstr "Error Happen"
 
 #: src/features/chat.tsx:736
 msgid "Failed to copy to clipboard"
-msgstr "复制到剪贴板失败"
+msgstr "Failed to copy to clipboard"
 
 #: src/features/chat.tsx:247
 msgid "Failed to summarize"
-msgstr "总结失败"
+msgstr "Failed to summarize"
 
 #: src/features/provider-management.tsx:667
 msgid "Getting models..."
-msgstr "正在获取模型..."
+msgstr "Getting models..."
 
 #: src/features/translator.tsx:141
 msgid "Into"
-msgstr "翻译为"
+msgstr "Into"
 
 #: src/features/chat.tsx:758
 msgid "Is calling tool..."
-msgstr "正在调用工具..."
+msgstr "Is calling tool..."
 
 #: src/features/chat.tsx:756
 msgid "Is reasoning..."
-msgstr "正在推理..."
+msgstr "Is reasoning..."
 
 #: src/features/provider-management.tsx:361
 msgid "Manage Models"
-msgstr "管理模型"
+msgstr "Manage Models"
 
 #: src/features/provider-management.tsx:360
 msgid "Model Management"
-msgstr "模型管理"
+msgstr "Model Management"
 
 #: src/features/provider-management.tsx:355
 msgid "Name"
-msgstr "名称"
+msgstr "Name"
 
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
-msgstr "未找到聊天记录"
+msgstr "No chats found"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:137
 msgid "No models found"
-msgstr "未找到模型"
+msgstr "No models found"
 
 #: src/features/provider-management.tsx:353
 msgid "No provider found"
-msgstr "未找到提供商"
+msgstr "No provider found"
 
 #: src/features/provider-management.tsx:314
 msgid "Preset"
-msgstr "预设"
+msgstr "Preset"
 
 #: src/features/provider-management.tsx:131
 msgid "Provider name already exists"
-msgstr "提供商名称已存在"
+msgstr "Provider name already exists"
 
 #: src/components/SettingsFeatureToggle.tsx:17
 msgid "Providers"
-msgstr "提供商"
+msgstr "Providers"
 
 #: src/features/chat.tsx:756
 msgid "Reasoning process"
-msgstr "推理过程"
+msgstr "Reasoning process"
 
 #: src/features/translator.tsx:186
 msgid "Reasoning Process"
-msgstr "推理过程"
+msgstr "Reasoning Process"
 
 #: src/features/translator.tsx:180
 msgid "Reasoning..."
-msgstr "正在推理..."
+msgstr "Reasoning..."
 
 #: src/features/chat.tsx:768
 msgid "Regenerate reply"
-msgstr "重新生成回复"
+msgstr "Regenerate reply"
 
 #: src/features/provider-management.tsx:165
 msgid "Removed models"
-msgstr "已移除模型"
+msgstr "Removed models"
 
 #: src/hooks/useChat.ts:237
 #: src/features/provider-management.tsx:644
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
-msgstr "请求超时"
+msgstr "Request timeout"
 
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
-msgstr "搜索 API"
+msgstr "Search APIs"
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."
-msgstr "搜索模型..."
+msgstr "Search models..."
 
 #: src/features/provider-management.tsx:352
 msgid "Search provider..."
-msgstr "搜索提供商..."
+msgstr "Search provider..."
 
 #: src/components/ModelSelectorContext.tsx:134
 msgid "Select a model"
-msgstr "选择模型"
+msgstr "Select a model"
 
 #: src/features/translator.tsx:165
 msgid "Select model"
-msgstr "选择模型"
+msgstr "Select model"
 
 #: src/features/chat.tsx:508
 msgid "Set now"
-msgstr "立即设置"
+msgstr "Set now"
 
 #: src/routes/__root.tsx:63
 msgid "Settings"
-msgstr "设置"
+msgstr "Settings"
 
 #: src/features/chat.tsx:762
 msgid "Spend Time"
-msgstr "花费时间"
+msgstr "Spend Time"
 
 #: src/features/chat.tsx:761
 msgid "Step End"
-msgstr "步骤结束"
+msgstr "Step End"
+
+#: src/features/chat.tsx:762
+#~ msgid "Step Over"
+#~ msgstr "Step Over"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
-msgstr "停止"
+msgstr "Stop"
 
 #: src/features/translator.tsx:85
 msgid "Text copied to clipboard"
-msgstr "文本已复制到剪贴板"
+msgstr "Text copied to clipboard"
 
 #: src/features/chat.tsx:758
 msgid "Tool-Call Result"
-msgstr "工具调用结果"
+msgstr "Tool-Call Result"
 
 #: src/routes/__root.tsx:62
 #: src/features/translator.tsx:163
 msgid "Translate"
-msgstr "翻译"
+msgstr "Translate"
 
 #: src/features/translator.tsx:59
 msgid "Translation cancelled"
-msgstr "翻译已取消"
+msgstr "Translation cancelled"
 
 #: src/features/translator.tsx:55
 msgid "Translation completed"
-msgstr "翻译完成"
+msgstr "Translation completed"
 
 #: src/components/ErrorsToastText.ts:5
 msgid "Unknown error"
-msgstr "未知错误"
+msgstr "Unknown error"
 
 #: src/features/chat.tsx:759
 msgid "Used Tool"
-msgstr "使用的工具"
+msgstr "Used Tool"
 
 #: src/hooks/useChat.ts:183
 msgid "User stopped chat"
-msgstr "用户停止了聊天"
+msgstr "User stopped chat"
 
 #: src/features/chat.tsx:760
 msgid "Waiting..."
-msgstr "等待中..."
+msgstr "Waiting..."
 
 #: src/features/chat.tsx:509
 msgid "What can I help you?"
-msgstr "有什么我能帮你的？"
+msgstr "What can I help you?"
 
 #: src/features/provider-management.tsx:354
 msgid "You're adding new provider"
-msgstr "您正在添加新提供商"
+msgstr "You're adding new provider"
 
 #: src/features/translator.tsx:123
 msgid "You're translating"
-msgstr "您正在翻译"
+msgstr "You're translating"
 
 #: src/features/translator.tsx:188
 msgid "You're using reasoning model in translation which is not recommended"
-msgstr "您正在使用推理模型进行翻译，不推荐这样做"
+msgstr "You're using reasoning model in translation which is not recommended"
 
 #: src/features/chat.tsx:757
 msgid "You're using reasoning model!"
-msgstr "您正在使用推理模型！"
+msgstr "You're using reasoning model!"
 
 #: src/features/chat.tsx:507
 msgid "Your search api is not set"
-msgstr "您的搜索 API 未设置"
+msgstr "Your search api is not set"

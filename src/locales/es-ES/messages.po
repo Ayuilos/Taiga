@@ -5,7 +5,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: ur\n"
+"Language: es\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -15,310 +15,306 @@ msgstr ""
 
 #: src/features/provider-management.tsx:358
 msgid "Add"
-msgstr "شامل کریں"
+msgstr "Añadir"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Add models"
-msgstr "ماڈل شامل کریں"
+msgstr "Añadir modelos"
 
 #: src/features/provider-management.tsx:164
 #: src/features/provider-management.tsx:668
 msgid "Added models"
-msgstr "ماڈل شامل کردیے گئے"
+msgstr "Modelos añadidos"
 
 #: src/features/provider-management.tsx:356
 msgid "API Key"
-msgstr "API کی"
+msgstr "Clave API"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:504
 msgid "Are you sure to delete this chat?"
-msgstr "کیا آپ اس چیٹ کو حذف کرنے کے لئے یقین رکھتے ہیں؟"
+msgstr "¿Estás seguro de que quieres eliminar este chat?"
 
 #: src/components/ChatHistory.tsx:71
 msgid "Are you sure you want to delete all chat history?"
-msgstr "کیا آپ تمام چیٹ کی تاریخ کو حذف کرنے کے لئے یقین رکھتے ہیں؟"
+msgstr "¿Estás seguro de que quieres eliminar todo el historial del chat?"
 
 #: src/features/provider-management.tsx:363
 msgid "Are you sure you want to delete this provider?"
-msgstr "کیا آپ اس فراہم کنندہ کو حذف کرنے کے لئے یقین رکھتے ہیں؟"
+msgstr "¿Estás seguro de que quieres eliminar este proveedor?"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Args Input by Model"
-msgstr "ماڈل کے ذریعے ان پٹ آرگ"
+msgstr "Argumentos introducidos por el modelo"
 
 #: src/features/provider-management.tsx:669
 msgid "Available models"
-msgstr "دستیاب ماڈل"
+msgstr "Modelos disponibles"
 
 #: src/features/provider-management.tsx:357
 msgid "Base URL"
-msgstr "بیس یو آر ایل"
+msgstr "URL base"
 
 #: src/features/provider-management.tsx:359
 #: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:506
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
-msgstr "منسوخ کریں"
+msgstr "Cancelar"
 
-#: src/routes/__root.tsx:57
+#: src/routes/__root.tsx:61
 msgid "Chat"
-msgstr "چیٹ"
+msgstr "Chat"
 
 #: src/components/ChatHistory.tsx:69
 msgid "Chat History"
-msgstr "چیٹ کی تاریخ"
+msgstr "Historial del chat"
 
 #: src/features/chat.tsx:153
 msgid "Chat stopped by user"
-msgstr "صارف کی جانب سے چیٹ روک دی گئی"
+msgstr "Chat detenido por el usuario"
 
 #: src/features/translator.tsx:182
 msgid "Check reasoning process"
-msgstr "استدلال کے عمل کی جانچ کریں"
+msgstr "Verificar el proceso de razonamiento"
 
 #: src/features/provider-management.tsx:667
 msgid "Choose models"
-msgstr "ماڈل منتخب کریں"
+msgstr "Elegir modelos"
 
 #: src/features/provider-management.tsx:358
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
-msgstr "تصدیق کریں"
+msgstr "Confirmar"
 
-#: src/features/chat.tsx:771
+#: src/features/chat.tsx:770
 msgid "Copy"
-msgstr "کاپی کریں"
+msgstr "Copiar"
 
 #: src/features/provider-management.tsx:315
 msgid "Custom"
-msgstr "اپنی مرضی کے مطابق"
+msgstr "Personalizado"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
-msgstr "ڈیفالٹ چیٹ ماڈل"
+msgstr "Modelo de chat predeterminado"
 
 #: src/features/default-model-management.tsx:68
 msgid "Default Chat Summarize Model"
-msgstr "ڈیفالٹ چیٹ کا خلاصہ ماڈل"
+msgstr "Modelo de resumen de chat predeterminado"
 
 #: src/components/SettingsFeatureToggle.tsx:18
 msgid "Default Models"
-msgstr "ڈیفالٹ ماڈل"
+msgstr "Modelos predeterminados"
 
 #: src/features/default-model-management.tsx:66
 msgid "Default Translate Model"
-msgstr "ڈیفالٹ ترجمہ ماڈل"
+msgstr "Modelo de traducción predeterminado"
 
 #: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:505
 msgid "Delete"
-msgstr "حذف کریں"
+msgstr "Eliminar"
 
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
-msgstr "تمام چیٹ کی تاریخ حذف کریں"
+msgstr "Eliminar todo el historial del chat"
 
 #: src/features/provider-management.tsx:362
 msgid "Delete Provider"
-msgstr "فراہم کنندہ حذف کریں"
+msgstr "Eliminar proveedor"
 
-#: src/features/chat.tsx:767
+#: src/features/chat.tsx:766
 msgid "Edit message"
-msgstr "پیغام میں ترمیم کریں"
+msgstr "Editar mensaje"
 
-#: src/features/chat.tsx:764
+#: src/features/chat.tsx:763
 msgid "Error Happen"
-msgstr "غلطی ہو گئی"
+msgstr "Ocurrió un error"
 
-#: src/features/chat.tsx:737
+#: src/features/chat.tsx:736
 msgid "Failed to copy to clipboard"
-msgstr "کلپ بورڈ پر کاپی کرنے میں ناکام"
+msgstr "Error al copiar al portapapeles"
 
 #: src/features/chat.tsx:247
 msgid "Failed to summarize"
-msgstr "خلاصہ کرنے میں ناکام"
+msgstr "Error al resumir"
 
 #: src/features/provider-management.tsx:667
 msgid "Getting models..."
-msgstr "ماڈل حاصل کیے جا رہے ہیں..."
+msgstr "Obteniendo modelos..."
 
 #: src/features/translator.tsx:141
 msgid "Into"
-msgstr "میں"
+msgstr "A"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Is calling tool..."
-msgstr "ٹول کو کال کر رہا ہے..."
+msgstr "Llamando a la herramienta..."
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Is reasoning..."
-msgstr "استدلال کر رہا ہے..."
+msgstr "Razonando..."
 
 #: src/features/provider-management.tsx:361
 msgid "Manage Models"
-msgstr "ماڈل کا انتظام کریں"
+msgstr "Administrar modelos"
 
 #: src/features/provider-management.tsx:360
 msgid "Model Management"
-msgstr "ماڈل کا انتظام"
+msgstr "Administración de modelos"
 
 #: src/features/provider-management.tsx:355
 msgid "Name"
-msgstr "نام"
+msgstr "Nombre"
 
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
-msgstr "کوئی چیٹ نہیں ملی"
+msgstr "No se encontraron chats"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:137
 msgid "No models found"
-msgstr "کوئی ماڈل نہیں ملا"
+msgstr "No se encontraron modelos"
 
 #: src/features/provider-management.tsx:353
 msgid "No provider found"
-msgstr "کوئی فراہم کنندہ نہیں ملا"
+msgstr "No se encontró ningún proveedor"
 
 #: src/features/provider-management.tsx:314
 msgid "Preset"
-msgstr "پہلے سے طے شدہ"
+msgstr "Preestablecido"
 
 #: src/features/provider-management.tsx:131
 msgid "Provider name already exists"
-msgstr "فراہم کنندہ کا نام پہلے سے موجود ہے"
+msgstr "El nombre del proveedor ya existe"
 
 #: src/components/SettingsFeatureToggle.tsx:17
 msgid "Providers"
-msgstr "فراہم کنندگان"
+msgstr "Proveedores"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:756
 msgid "Reasoning process"
-msgstr "استدلال کا عمل"
+msgstr "Proceso de razonamiento"
 
 #: src/features/translator.tsx:186
 msgid "Reasoning Process"
-msgstr "استدلال کا عمل"
+msgstr "Proceso de razonamiento"
 
 #: src/features/translator.tsx:180
 msgid "Reasoning..."
-msgstr "استدلال..."
+msgstr "Razonando..."
 
-#: src/features/chat.tsx:769
+#: src/features/chat.tsx:768
 msgid "Regenerate reply"
-msgstr "جواب دوبارہ بنائیں"
+msgstr "Regenerar respuesta"
 
 #: src/features/provider-management.tsx:165
 msgid "Removed models"
-msgstr "ماڈل ہٹا دیئے گئے"
+msgstr "Modelos eliminados"
 
 #: src/hooks/useChat.ts:237
 #: src/features/provider-management.tsx:644
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
-msgstr "درخواست کا وقت ختم"
+msgstr "Tiempo de espera agotado"
 
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
-msgstr "تلاش APIs"
+msgstr "Buscar APIs"
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."
-msgstr "ماڈل تلاش کریں..."
+msgstr "Buscar modelos..."
 
 #: src/features/provider-management.tsx:352
 msgid "Search provider..."
-msgstr "فراہم کنندہ تلاش کریں..."
+msgstr "Buscar proveedor..."
 
 #: src/components/ModelSelectorContext.tsx:134
 msgid "Select a model"
-msgstr "ایک ماڈل منتخب کریں"
+msgstr "Seleccionar un modelo"
 
 #: src/features/translator.tsx:165
 msgid "Select model"
-msgstr "ماڈل منتخب کریں"
+msgstr "Seleccionar modelo"
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:508
 msgid "Set now"
-msgstr "اب سیٹ کریں"
+msgstr "Establecer ahora"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Settings"
-msgstr "ترتیبات"
+msgstr "Ajustes"
 
-#: src/features/chat.tsx:763
+#: src/features/chat.tsx:762
 msgid "Spend Time"
-msgstr "وقت گزاریں"
+msgstr "Tiempo transcurrido"
 
-#: src/features/chat.tsx:762
+#: src/features/chat.tsx:761
 msgid "Step End"
-msgstr "مرحلہ اختتام"
-
-#: src/features/chat.tsx:762
-#~ msgid "Step Over"
-#~ msgstr ""
+msgstr "Fin del paso"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
-msgstr "روکیں"
+msgstr "Detener"
 
 #: src/features/translator.tsx:85
 msgid "Text copied to clipboard"
-msgstr "متن کلپ بورڈ پر کاپی کیا گیا"
+msgstr "Texto copiado al portapapeles"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:758
 msgid "Tool-Call Result"
-msgstr "ٹول کال کا نتیجہ"
+msgstr "Resultado de la llamada a la herramienta"
 
-#: src/routes/__root.tsx:58
+#: src/routes/__root.tsx:62
 #: src/features/translator.tsx:163
 msgid "Translate"
-msgstr "ترجمہ کریں"
+msgstr "Traducir"
 
 #: src/features/translator.tsx:59
 msgid "Translation cancelled"
-msgstr "ترجمہ منسوخ کردیا گیا"
+msgstr "Traducción cancelada"
 
 #: src/features/translator.tsx:55
 msgid "Translation completed"
-msgstr "ترجمہ مکمل ہوگیا"
+msgstr "Traducción completada"
 
 #: src/components/ErrorsToastText.ts:5
 msgid "Unknown error"
-msgstr "نامعلوم غلطی"
+msgstr "Error desconocido"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:759
 msgid "Used Tool"
-msgstr "استعمال شدہ ٹول"
+msgstr "Herramienta utilizada"
 
 #: src/hooks/useChat.ts:183
 msgid "User stopped chat"
-msgstr "صارف نے چیٹ روک دی"
+msgstr "El usuario detuvo el chat"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:760
 msgid "Waiting..."
-msgstr "انتظار کر رہا ہے..."
+msgstr "Esperando..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:509
 msgid "What can I help you?"
-msgstr "میں آپ کی کیا مدد کرسکتا ہوں؟"
+msgstr "¿En qué puedo ayudarte?"
 
 #: src/features/provider-management.tsx:354
 msgid "You're adding new provider"
-msgstr "آپ نیا فراہم کنندہ شامل کر رہے ہیں"
+msgstr "Estás agregando un nuevo proveedor"
 
 #: src/features/translator.tsx:123
 msgid "You're translating"
-msgstr "آپ ترجمہ کر رہے ہیں"
+msgstr "Estás traduciendo"
 
 #: src/features/translator.tsx:188
 msgid "You're using reasoning model in translation which is not recommended"
-msgstr "آپ ترجمہ میں استدلال ماڈل استعمال کر رہے ہیں جس کی سفارش نہیں کی جاتی ہے"
+msgstr "Estás utilizando un modelo de razonamiento en la traducción, lo cual no es recomendable"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:757
 msgid "You're using reasoning model!"
-msgstr "آپ استدلال ماڈل استعمال کر رہے ہیں!"
+msgstr "¡Estás utilizando un modelo de razonamiento!"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:507
 msgid "Your search api is not set"
-msgstr "آپ کی تلاش API سیٹ نہیں ہے"
+msgstr "Tu API de búsqueda no está configurada"
