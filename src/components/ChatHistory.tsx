@@ -125,11 +125,11 @@ export function ChatHistory({
           {summaries.map((summary) => {
             return (
               <CommandItem
-                className="truncate"
+                className="data-[selected=false]:before:content-['○'] data-[selected=true]:before:content-['●']"
                 key={summary.id}
                 value={summary.id}
               >
-                {summary.summary}
+                <span className="truncate">{summary.summary}</span>
               </CommandItem>
             )
           })}
