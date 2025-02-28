@@ -8,12 +8,7 @@ import {
   useState,
 } from "react"
 import { TExpandedMessage, useChat } from "@/hooks/useChat"
-import { createDeepSeek } from "@ai-sdk/deepseek"
-import { createGoogleGenerativeAI } from "@ai-sdk/google"
-import { createOpenAI } from "@ai-sdk/openai"
-import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 import { t } from "@lingui/core/macro"
-import { createOpenRouter } from "@openrouter/ai-sdk-provider"
 import { useRouter } from "@tanstack/react-router"
 import { CoreMessage, generateText, LanguageModelV1 } from "ai"
 import dayjs from "dayjs"
@@ -34,6 +29,7 @@ import {
 } from "lucide-react"
 import { toast } from "sonner"
 
+import { getModelProvider } from "@/lib/ai-providers"
 import {
   ChatStore,
   ChatSummaryStore,
@@ -275,7 +271,12 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
       let summary: string
       summary = (await _createChatSummary())!
 
-      await ChatStore.createOrUpdateChat({ id, nodes: chatNodes, editTime: Date.now(), summary })
+      await ChatStore.createOrUpdateChat({
+        id,
+        nodes: chatNodes,
+        editTime: Date.now(),
+        summary,
+      })
     }
   }, [id, chatNodes, newMessageCreated, _createChatSummary])
 
@@ -966,37 +967,7 @@ export default function Chat() {
     const provider = providers.find((p) => p.name === providerName)
 
     if (provider) {
-      let modelProvider: any
-
-      switch (providerName) {
-        case "OpenAI[Preset]":
-          modelProvider = createOpenAI({
-            apiKey: provider.apiKey,
-          })
-          break
-        case "Google[Preset]":
-          modelProvider = createGoogleGenerativeAI({
-            baseURL: provider.baseURL,
-            apiKey: provider.apiKey,
-          })
-          break
-        case "OpenRouter[Preset]":
-          modelProvider = createOpenRouter({
-            apiKey: provider.apiKey,
-          })
-          break
-        case "DeepSeek[Preset]":
-          modelProvider = createDeepSeek({
-            apiKey: provider.apiKey,
-          })
-          break
-        default:
-          modelProvider = createOpenAICompatible({
-            name: providerName,
-            baseURL: provider.baseURL,
-            apiKey: provider.apiKey,
-          })
-      }
+      const modelProvider: any = getModelProvider(provider)
 
       return modelProvider(modelName)
     }

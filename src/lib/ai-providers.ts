@@ -1,3 +1,8 @@
+import { createDeepSeek } from "@ai-sdk/deepseek"
+import { createGoogleGenerativeAI } from "@ai-sdk/google"
+import { createOpenAI } from "@ai-sdk/openai"
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
+import { createOpenRouter } from "@openrouter/ai-sdk-provider"
 import { fetch as tFetch } from "@tauri-apps/plugin-http"
 import { load } from "@tauri-apps/plugin-store"
 import { z } from "zod"
@@ -9,7 +14,7 @@ export const zAIProvider = z.object({
   baseURL: z.string().url(),
   apiKey: z.string(),
   models: z.array(z.string().min(1)),
-  preset: z.boolean().optional()
+  preset: z.boolean().optional(),
 })
 
 export type IAIProvider = z.infer<typeof zAIProvider>
@@ -106,7 +111,7 @@ export class AIProviderManager {
 
 /** Refer to https://platform.openai.com/docs/api-reference/models/list
  * for more details on the response structure. */
-const returnTypeOfListModels = z.object({
+const openAIReturnTypeOfListModels = z.object({
   object: z.string(),
   data: z.array(
     z.object({
@@ -117,22 +122,60 @@ const returnTypeOfListModels = z.object({
     })
   ),
 })
-type TReturnTypeOfListModels = z.infer<typeof returnTypeOfListModels>
+type TOpenAIReturnTypeOfListModels = z.infer<
+  typeof openAIReturnTypeOfListModels
+>
+
+// https://ai.google.dev/api/models?hl=en#Model
+const googleGenerativeAIReturnTypeOfListModels = z.object({
+  models: z.array(
+    z.object({
+      name: z.string(),
+      // `baseModelId` does not exist in real response
+      baseModelId: z.string(),
+      version: z.string(),
+      displayName: z.string(),
+      description: z.string(),
+      inputTokenLimit: z.number(),
+      outputTokenLimit: z.number(),
+      supportedGenerationMethods: z.array(z.string()),
+      temprature: z.number(),
+      maxTemprature: z.number(),
+      topP: z.number(),
+      topK: z.number(),
+    })
+  ),
+})
+type TGoogleGenerativeAIReturnTypeOfListModels = z.infer<
+  typeof googleGenerativeAIReturnTypeOfListModels
+>
 
 export async function listModels({
+  name,
   baseURL,
   apiKey,
-}: Pick<IAIProvider, "baseURL" | "apiKey">): Promise<TReturnTypeOfListModels> {
+}: Pick<IAIProvider, "name" | "baseURL" | "apiKey">): Promise<
+  TOpenAIReturnTypeOfListModels | TGoogleGenerativeAIReturnTypeOfListModels
+> {
   const url = `${baseURL}/models`
 
   console.log("Will call API to list models: ", url)
 
   try {
+    const headers = new Headers()
+
+    switch (name) {
+      case "Google[Preset]":
+        headers.set("x-goog-api-key", apiKey)
+        break
+      default:
+        headers.set("Authorization", `Bearer ${apiKey}`)
+        break
+    }
+
     // Use https://v2.tauri.app/plugin/http-client/ tauri fetch to avoid broswer `fetch` CORS issues.
     const response = await tFetch(url, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
+      headers,
       // AbortSignal didn't work as native `fetch`, -> https://github.com/tauri-apps/plugins-workspace/pull/1395/files
       signal: AbortSignal.timeout(10_000),
     })
@@ -156,5 +199,37 @@ export async function listModels({
     }
 
     return Promise.reject(error)
+  }
+}
+
+export function getModelProvider(provider: IAIProvider) {
+  switch (provider.name) {
+    case "OpenAI[Preset]":
+      return createOpenAI({
+        apiKey: provider.apiKey,
+      })
+
+    case "Google[Preset]":
+      return createGoogleGenerativeAI({
+        baseURL: provider.baseURL,
+        apiKey: provider.apiKey,
+      })
+
+    case "OpenRouter[Preset]":
+      return createOpenRouter({
+        apiKey: provider.apiKey,
+      })
+
+    case "DeepSeek[Preset]":
+      return createDeepSeek({
+        apiKey: provider.apiKey,
+      })
+
+    default:
+      return createOpenAICompatible({
+        name: provider.name,
+        baseURL: provider.baseURL,
+        apiKey: provider.apiKey,
+      })
   }
 }

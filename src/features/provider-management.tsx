@@ -131,7 +131,11 @@ function InternalProviderManagement({
   const providerNameDuplicatedString = t`Provider name already exists`
   const form = useForm<z.infer<typeof formSchema>>({
     context: { providers, currentProvider },
-    resolver: async (data, context: { providers: IAIProvider[], currentProvider: IAIProvider }, options) =>
+    resolver: async (
+      data,
+      context: { providers: IAIProvider[]; currentProvider: IAIProvider },
+      options
+    ) =>
       zodResolver(
         // Finish all validations here, refer to https://zod.dev/?id=refine
         formSchema.refine(
@@ -142,7 +146,8 @@ function InternalProviderManagement({
               const _providers = context.providers
 
               return _providers.every(
-                (p) => context.currentProvider.name === p.name || name !== p.name
+                (p) =>
+                  context.currentProvider.name === p.name || name !== p.name
               )
             },
           {
@@ -633,12 +638,17 @@ export function ModelManagement({
       setIsGettingModels(true)
 
       try {
-        const { data } = await listModels({
+        const response = await listModels({
+          name: provider.name,
           baseURL: provider.baseURL,
           apiKey: provider.apiKey,
         })
 
-        setAvailableModelIDs(data.map((model) => model.id))
+        if ("data" in response) {
+          setAvailableModelIDs(response.data.map((model) => model.id))
+        } else if ("models" in response) {
+          setAvailableModelIDs(response.models.map((model) => model.name))
+        }
       } catch (e: any) {
         if (e.name === "TimeoutError") {
           toast.error(t`Request timeout`)
@@ -650,7 +660,7 @@ export function ModelManagement({
 
       setIsGettingModels(false)
     }
-  }, [provider?.baseURL, provider?.apiKey])
+  }, [provider?.name, provider?.baseURL, provider?.apiKey])
 
   useEffect(() => {
     if (open) {

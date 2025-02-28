@@ -35,7 +35,7 @@ const updaters: TUpdater[] = [
         },
         {
           name: "Google[Preset]",
-          baseURL: "https://generativelanguage.googleapis.com",
+          baseURL: "https://generativelanguage.googleapis.com/v1beta",
           apiKey: "",
           models: [],
           preset: true,
