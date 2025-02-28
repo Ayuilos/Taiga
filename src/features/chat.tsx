@@ -895,7 +895,7 @@ function Message({
                   const { error } = p
 
                   return (
-                    <Alert className="bg-red-200 text-red-500 border-none">
+                    <Alert className="bg-red-200 text-red-500 border-none order-2">
                       <AlertTitle>{errorMessageString}</AlertTitle>
                       <AlertDescription className="overflow-auto">{`(${error.name}) / ${error.message}`}</AlertDescription>
                     </Alert>
