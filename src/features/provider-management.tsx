@@ -292,7 +292,11 @@ function InternalProviderManagement({
   const providerItems = useMemo(() => {
     const { preset, custom } = produce(providers, (draft) =>
       draft.sort((a, b) =>
-        a.name === currentProvider?.name ? -1 : a.name.localeCompare(b.name)
+        a.name === currentProvider?.name
+          ? -1
+          : b.name === currentProvider?.name
+            ? 1
+            : a.name.localeCompare(b.name)
       )
     ).reduce<{
       preset: IAIProvider[]
