@@ -1,5 +1,6 @@
 import { TExpandedMessage } from "@/hooks/useChat"
 import { load } from "@tauri-apps/plugin-store"
+
 import { stringifyObject } from "./utils"
 
 const chatStoreKey = "chats.json"
@@ -9,6 +10,8 @@ export type TChatID = ReturnType<typeof crypto.randomUUID>
 export type TChat = {
   id: TChatID
   summary: string
+  createdAt: number
+  modifiedAt: number
   nodes: TChatNode[]
 }
 export type TChatNode = {
@@ -17,11 +20,36 @@ export type TChatNode = {
 }
 
 export class ChatStore {
-  static async createOrUpdateChat({ id, summary, nodes }: TChat) {
+  static async createOrUpdateChat({
+    id,
+    summary,
+    editTime,
+    nodes,
+  }: Pick<TChat, "id" | "summary" | "nodes"> & { editTime: number }) {
     const store = await load(chatStoreKey)
-    
-    await ChatSummaryStore.createOrUpdateSummary({ id, summary })
-    await store.set(id, { id, summary, nodes })
+
+    await ChatSummaryStore.createOrUpdateSummary({
+      id,
+      editTime,
+      summary,
+    })
+    const chatIns = await store.get<TChat>(id)
+    if (chatIns) {
+      await store.set(id, {
+        ...chatIns,
+        summary,
+        modifiedAt: editTime,
+        nodes,
+      })
+    } else {
+      await store.set(id, {
+        id,
+        createdAt: editTime,
+        modifiedAt: editTime,
+        summary,
+        nodes,
+      })
+    }
   }
 
   static async getChat(id: string) {
@@ -54,11 +82,32 @@ export class ChatStore {
 export type TChatSummary = {
   id: TChatID
   summary: string
+  createdAt: number
+  modifiedAt: number
 }
 export class ChatSummaryStore {
-  static async createOrUpdateSummary({ id, summary }: TChatSummary) {
+  static async createOrUpdateSummary({
+    id,
+    editTime,
+    summary,
+  }: Pick<TChatSummary, "id" | "summary"> & { editTime: number }) {
     const store = await load(chatSummaryStoreKey)
-    await store.set(id, { id, summary })
+
+    const summaryIns = await store.get(id)
+    if (summaryIns) {
+      await store.set(id, {
+        ...summaryIns,
+        summary,
+        modifiedAt: editTime,
+      })
+    } else {
+      await store.set(id, {
+        id,
+        createdAt: editTime,
+        modifiedAt: editTime,
+        summary,
+      })
+    }
   }
 
   static async getSummary(id: string) {

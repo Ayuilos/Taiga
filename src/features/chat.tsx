@@ -262,6 +262,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
 
       await ChatSummaryStore.createOrUpdateSummary({
         id,
+        editTime: Date.now(),
         summary: summaryText,
       })
 
@@ -274,7 +275,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
       let summary: string
       summary = (await _createChatSummary())!
 
-      await ChatStore.createOrUpdateChat({ id, nodes: chatNodes, summary })
+      await ChatStore.createOrUpdateChat({ id, nodes: chatNodes, editTime: Date.now(), summary })
     }
   }, [id, chatNodes, newMessageCreated, _createChatSummary])
 

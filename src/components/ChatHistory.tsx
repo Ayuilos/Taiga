@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { t } from "@lingui/core/macro"
 import { AlertDialogTrigger } from "@radix-ui/react-alert-dialog"
+import { produce } from "immer"
 
 import {
   ChatStore,
@@ -8,6 +9,7 @@ import {
   TChatID,
   TChatSummary,
 } from "@/lib/chat-store"
+import { getRelativeTime } from "@/lib/relative-time"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,7 +19,13 @@ import {
   AlertDialogHeader,
 } from "./ui/alert-dialog"
 import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "./ui/command"
 import {
   Drawer,
   DrawerContent,
@@ -85,6 +93,59 @@ export function ChatHistory({
     </AlertDialog>
   )
 
+  const summaryItems = useMemo(() => {
+    const sortedSummaries = produce(chatSummaries, (draft) =>
+      draft.sort((a, b) => b.modifiedAt - a.modifiedAt)
+    )
+
+    const categoriedSummaries = sortedSummaries.reduce<
+      [string, TChatSummary[]][]
+    >(
+      produce((summaryCategores, currSummary) => {
+        const category = summaryCategores[summaryCategores.length - 1]
+
+        const currSummaryModifiedRelativeTime = getRelativeTime(
+          new Date(currSummary.modifiedAt)
+        )
+        if (category && category[0] === currSummaryModifiedRelativeTime) {
+          category[1].push(currSummary)
+        } else {
+          summaryCategores.push([
+            currSummaryModifiedRelativeTime,
+            [currSummary],
+          ])
+        }
+      }),
+      []
+    )
+
+    return categoriedSummaries.map(([category, summaries]) => {
+      return (
+        <CommandGroup key={category} heading={category}>
+          {summaries.map((summary) => {
+            return (
+              <CommandItem
+                className="truncate"
+                key={summary.id}
+                value={summary.id}
+              >
+                {summary.summary}
+              </CommandItem>
+            )
+          })}
+        </CommandGroup>
+      )
+    })
+  }, [chatSummaries])
+
+  const onValueChange = useCallback(
+    (value: string) => {
+      onSelect(value as TChatID)
+      onOpen(false)
+    },
+    [onSelect, onOpen]
+  )
+
   return (
     <Drawer open={open} onOpenChange={onOpen}>
       <DrawerContent className="flex flex-col min-h-[72vh] overflow-hidden">
@@ -96,22 +157,16 @@ export function ChatHistory({
           <DrawerDescription></DrawerDescription>
         </DrawerHeader>
         <div className="flex-auto flex flex-col gap-2 px-4 w-full overflow-auto-y">
-          {chatSummaries.length ? (
-            chatSummaries.map((chatSummary) => (
-              <Button
-                variant="outline"
-                className={`${selectedChatId === chatSummary.id ? " border-accent-foreground order-1" : "order-2"}`}
-                key={chatSummary.id}
-                onClick={() => {
-                  onSelect(chatSummary.id)
-                  onOpen(false)
-                }}
-              >
-                <span className="truncate px-2 overflow-hidden">
-                  {chatSummary.summary}
-                </span>
-              </Button>
-            ))
+          {summaryItems.length > 0 ? (
+            <Command
+              value={selectedChatId || undefined}
+              onValueChange={onValueChange}
+            >
+              <CommandList>
+                <CommandEmpty>{emptyString}</CommandEmpty>
+                {summaryItems}
+              </CommandList>
+            </Command>
           ) : (
             <div className="flex-auto flex items-center justify-center text-gray-500 text-sm">
               {emptyString}
