@@ -757,6 +757,7 @@ function Message({
   const reasoningDialogDescString = t`You're using reasoning model!`
   const callingToolButtonStrings = [t`Is calling tool...`, t`Tool-Call Result`]
   const callingToolDescStrings = [t`Used Tool`, t`Args Input by Model`]
+  const callingToolWaitingString = t`Waiting...`
   const stepOverString = t`Step Over`
   const stepSpendTimeString = t`Spend Time`
   const errorMessageString = t`Error Happen`
@@ -863,7 +864,7 @@ function Message({
                         toolCallResult={
                           p.toolInvocation.state === "result"
                             ? p.toolInvocation.result
-                            : "Waiting..."
+                            : callingToolWaitingString
                         }
                         title={toolCallingButtonString}
                         description={description}
