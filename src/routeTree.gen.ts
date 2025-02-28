@@ -12,10 +12,11 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TranslateImport } from './routes/translate'
+import { Route as SettingsLayoutImport } from './routes/_settingsLayout'
 import { Route as IndexImport } from './routes/index'
-import { Route as SettingsIndexImport } from './routes/settings.index'
-import { Route as SettingsManageSearchApisImport } from './routes/settings.manage-search-apis'
-import { Route as SettingsManageDefaultModelsImport } from './routes/settings.manage-default-models'
+import { Route as SettingsLayoutSettingsIndexImport } from './routes/_settingsLayout.settings.index'
+import { Route as SettingsLayoutSettingsManageSearchApisImport } from './routes/_settingsLayout.settings.manage-search-apis'
+import { Route as SettingsLayoutSettingsManageDefaultModelsImport } from './routes/_settingsLayout.settings.manage-default-models'
 
 // Create/Update Routes
 
@@ -25,29 +26,36 @@ const TranslateRoute = TranslateImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SettingsLayoutRoute = SettingsLayoutImport.update({
+  id: '/_settingsLayout',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const SettingsIndexRoute = SettingsIndexImport.update({
-  id: '/settings/',
-  path: '/settings/',
-  getParentRoute: () => rootRoute,
-} as any)
+const SettingsLayoutSettingsIndexRoute =
+  SettingsLayoutSettingsIndexImport.update({
+    id: '/settings/',
+    path: '/settings/',
+    getParentRoute: () => SettingsLayoutRoute,
+  } as any)
 
-const SettingsManageSearchApisRoute = SettingsManageSearchApisImport.update({
-  id: '/settings/manage-search-apis',
-  path: '/settings/manage-search-apis',
-  getParentRoute: () => rootRoute,
-} as any)
+const SettingsLayoutSettingsManageSearchApisRoute =
+  SettingsLayoutSettingsManageSearchApisImport.update({
+    id: '/settings/manage-search-apis',
+    path: '/settings/manage-search-apis',
+    getParentRoute: () => SettingsLayoutRoute,
+  } as any)
 
-const SettingsManageDefaultModelsRoute =
-  SettingsManageDefaultModelsImport.update({
+const SettingsLayoutSettingsManageDefaultModelsRoute =
+  SettingsLayoutSettingsManageDefaultModelsImport.update({
     id: '/settings/manage-default-models',
     path: '/settings/manage-default-models',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => SettingsLayoutRoute,
   } as any)
 
 // Populate the FileRoutesByPath interface
@@ -61,6 +69,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/_settingsLayout': {
+      id: '/_settingsLayout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof SettingsLayoutImport
+      parentRoute: typeof rootRoute
+    }
     '/translate': {
       id: '/translate'
       path: '/translate'
@@ -68,61 +83,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TranslateImport
       parentRoute: typeof rootRoute
     }
-    '/settings/manage-default-models': {
-      id: '/settings/manage-default-models'
+    '/_settingsLayout/settings/manage-default-models': {
+      id: '/_settingsLayout/settings/manage-default-models'
       path: '/settings/manage-default-models'
       fullPath: '/settings/manage-default-models'
-      preLoaderRoute: typeof SettingsManageDefaultModelsImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof SettingsLayoutSettingsManageDefaultModelsImport
+      parentRoute: typeof SettingsLayoutImport
     }
-    '/settings/manage-search-apis': {
-      id: '/settings/manage-search-apis'
+    '/_settingsLayout/settings/manage-search-apis': {
+      id: '/_settingsLayout/settings/manage-search-apis'
       path: '/settings/manage-search-apis'
       fullPath: '/settings/manage-search-apis'
-      preLoaderRoute: typeof SettingsManageSearchApisImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof SettingsLayoutSettingsManageSearchApisImport
+      parentRoute: typeof SettingsLayoutImport
     }
-    '/settings/': {
-      id: '/settings/'
+    '/_settingsLayout/settings/': {
+      id: '/_settingsLayout/settings/'
       path: '/settings'
       fullPath: '/settings'
-      preLoaderRoute: typeof SettingsIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof SettingsLayoutSettingsIndexImport
+      parentRoute: typeof SettingsLayoutImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface SettingsLayoutRouteChildren {
+  SettingsLayoutSettingsManageDefaultModelsRoute: typeof SettingsLayoutSettingsManageDefaultModelsRoute
+  SettingsLayoutSettingsManageSearchApisRoute: typeof SettingsLayoutSettingsManageSearchApisRoute
+  SettingsLayoutSettingsIndexRoute: typeof SettingsLayoutSettingsIndexRoute
+}
+
+const SettingsLayoutRouteChildren: SettingsLayoutRouteChildren = {
+  SettingsLayoutSettingsManageDefaultModelsRoute:
+    SettingsLayoutSettingsManageDefaultModelsRoute,
+  SettingsLayoutSettingsManageSearchApisRoute:
+    SettingsLayoutSettingsManageSearchApisRoute,
+  SettingsLayoutSettingsIndexRoute: SettingsLayoutSettingsIndexRoute,
+}
+
+const SettingsLayoutRouteWithChildren = SettingsLayoutRoute._addFileChildren(
+  SettingsLayoutRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
-  '/settings/manage-default-models': typeof SettingsManageDefaultModelsRoute
-  '/settings/manage-search-apis': typeof SettingsManageSearchApisRoute
-  '/settings': typeof SettingsIndexRoute
+  '/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
+  '/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
+  '/settings': typeof SettingsLayoutSettingsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
-  '/settings/manage-default-models': typeof SettingsManageDefaultModelsRoute
-  '/settings/manage-search-apis': typeof SettingsManageSearchApisRoute
-  '/settings': typeof SettingsIndexRoute
+  '/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
+  '/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
+  '/settings': typeof SettingsLayoutSettingsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/_settingsLayout': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
-  '/settings/manage-default-models': typeof SettingsManageDefaultModelsRoute
-  '/settings/manage-search-apis': typeof SettingsManageSearchApisRoute
-  '/settings/': typeof SettingsIndexRoute
+  '/_settingsLayout/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
+  '/_settingsLayout/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
+  '/_settingsLayout/settings/': typeof SettingsLayoutSettingsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | ''
     | '/translate'
     | '/settings/manage-default-models'
     | '/settings/manage-search-apis'
@@ -130,6 +167,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | ''
     | '/translate'
     | '/settings/manage-default-models'
     | '/settings/manage-search-apis'
@@ -137,27 +175,24 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_settingsLayout'
     | '/translate'
-    | '/settings/manage-default-models'
-    | '/settings/manage-search-apis'
-    | '/settings/'
+    | '/_settingsLayout/settings/manage-default-models'
+    | '/_settingsLayout/settings/manage-search-apis'
+    | '/_settingsLayout/settings/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SettingsLayoutRoute: typeof SettingsLayoutRouteWithChildren
   TranslateRoute: typeof TranslateRoute
-  SettingsManageDefaultModelsRoute: typeof SettingsManageDefaultModelsRoute
-  SettingsManageSearchApisRoute: typeof SettingsManageSearchApisRoute
-  SettingsIndexRoute: typeof SettingsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SettingsLayoutRoute: SettingsLayoutRouteWithChildren,
   TranslateRoute: TranslateRoute,
-  SettingsManageDefaultModelsRoute: SettingsManageDefaultModelsRoute,
-  SettingsManageSearchApisRoute: SettingsManageSearchApisRoute,
-  SettingsIndexRoute: SettingsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -171,26 +206,35 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/translate",
-        "/settings/manage-default-models",
-        "/settings/manage-search-apis",
-        "/settings/"
+        "/_settingsLayout",
+        "/translate"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/_settingsLayout": {
+      "filePath": "_settingsLayout.tsx",
+      "children": [
+        "/_settingsLayout/settings/manage-default-models",
+        "/_settingsLayout/settings/manage-search-apis",
+        "/_settingsLayout/settings/"
+      ]
+    },
     "/translate": {
       "filePath": "translate.tsx"
     },
-    "/settings/manage-default-models": {
-      "filePath": "settings.manage-default-models.tsx"
+    "/_settingsLayout/settings/manage-default-models": {
+      "filePath": "_settingsLayout.settings.manage-default-models.tsx",
+      "parent": "/_settingsLayout"
     },
-    "/settings/manage-search-apis": {
-      "filePath": "settings.manage-search-apis.tsx"
+    "/_settingsLayout/settings/manage-search-apis": {
+      "filePath": "_settingsLayout.settings.manage-search-apis.tsx",
+      "parent": "/_settingsLayout"
     },
-    "/settings/": {
-      "filePath": "settings.index.tsx"
+    "/_settingsLayout/settings/": {
+      "filePath": "_settingsLayout.settings.index.tsx",
+      "parent": "/_settingsLayout"
     }
   }
 }

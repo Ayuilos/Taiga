@@ -371,7 +371,7 @@ function InternalProviderManagement({
   const loadingIcon = isLoading ? <Loader2 className="animate-spin" /> : null
 
   return (
-    <div className="w-[92%] py-20 self-center flex flex-col gap-4">
+    <div className="w-[92%] flex flex-col gap-4">
       {!isAddingNew ? (
         <div className="flex gap-2 items-center">
           <Popover

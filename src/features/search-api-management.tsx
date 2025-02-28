@@ -26,7 +26,7 @@ function InternalSearchAPIManagement({
   changeApi,
 }: IInternalSearchAPIManagement) {
   return (
-    <div className="w-[94%] pt-20 self-center flex flex-col gap-2">
+    <div className="w-[94%] flex flex-col gap-2">
       {apis.map((api) => {
         return (
           <SingleSearchAPIManagement

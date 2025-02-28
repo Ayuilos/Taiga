@@ -69,7 +69,7 @@ function InternalDefaultModelManagement({
   }
 
   return (
-    <div className="flex flex-col gap-8 py-20 w-[96%] self-center items-center">
+    <div className="flex flex-col gap-8 w-[96%] items-center">
       {Object.entries(defaultModels).map((entry) => {
         const type = entry[0] as keyof TDefaultModels
         const model = entry[1]
