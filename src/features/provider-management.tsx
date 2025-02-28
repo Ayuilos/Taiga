@@ -130,8 +130,8 @@ function InternalProviderManagement({
 
   const providerNameDuplicatedString = t`Provider name already exists`
   const form = useForm<z.infer<typeof formSchema>>({
-    context: { providers },
-    resolver: async (data, context: { providers: IAIProvider[] }, options) =>
+    context: { providers, currentProvider },
+    resolver: async (data, context: { providers: IAIProvider[], currentProvider: IAIProvider }, options) =>
       zodResolver(
         // Finish all validations here, refer to https://zod.dev/?id=refine
         formSchema.refine(
@@ -142,7 +142,7 @@ function InternalProviderManagement({
               const _providers = context.providers
 
               return _providers.every(
-                (p) => currentProvider === p || name !== p.name
+                (p) => context.currentProvider.name === p.name || name !== p.name
               )
             },
           {
