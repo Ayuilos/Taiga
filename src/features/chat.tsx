@@ -465,7 +465,6 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
       setOpenSearch(false)
     } else {
       if (!searchApiIsSet) {
-        console.log("not set")
         setShowSearchApiSetPopover(true)
       } else {
         setOpenSearch(true)

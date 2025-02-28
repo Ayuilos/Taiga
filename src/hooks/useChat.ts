@@ -501,7 +501,7 @@ export function useChat({
 
   // [NOTE] This is a temporary solution
   const searchApiIsSet = useMemo(
-    () => searchApis.some((api) => api.name === "Jina" && api.apiKey !== ""),
+    () => searchApis.some((api) => api.name === JINA_SEARCH_API_NAME && api.apiKey !== ""),
     [searchApis]
   )
 
