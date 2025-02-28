@@ -8,18 +8,26 @@ import {
   useState,
 } from "react"
 import { TExpandedMessage, useChat } from "@/hooks/useChat"
+import { createDeepSeek } from "@ai-sdk/deepseek"
+import { createGoogleGenerativeAI } from "@ai-sdk/google"
+import { createOpenAI } from "@ai-sdk/openai"
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 import { t } from "@lingui/core/macro"
+import { createOpenRouter } from "@openrouter/ai-sdk-provider"
+import { useRouter } from "@tanstack/react-router"
 import { CoreMessage, generateText, LanguageModelV1 } from "ai"
+import dayjs from "dayjs"
 import { produce } from "immer"
 import {
   Check,
   Copy,
+  Globe,
   History,
   MessageSquarePlus,
   Pen,
   RefreshCw,
   SendHorizonal,
+  Sparkle,
   StopCircle,
   Trash,
   X,
@@ -32,7 +40,7 @@ import {
   TChatID,
   TChatNode,
 } from "@/lib/chat-store"
-import { sameArrays, stringifyObject } from "@/lib/utils"
+import { sameArrays } from "@/lib/utils"
 import { AIProviderContext } from "@/components/AIProvidersContext"
 import { ChatHistory } from "@/components/ChatHistory"
 import { ErrorsToastText } from "@/components/ErrorsToastText"
@@ -48,6 +56,8 @@ import {
   SHOULD_RENDER_SCROLL_TO_BOTTOM_HEIGHT,
 } from "@/components/ScrollToBottom"
 import { SimplePagination } from "@/components/SimplePagination"
+import ToolCallDisplay from "@/components/ToolCallDisplay"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -66,6 +76,7 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
+import { Popover, PopoverAnchor, PopoverContent } from "@/components/ui/popover"
 import { Textarea } from "@/components/ui/textarea"
 
 interface IInternalChat {
@@ -79,13 +90,13 @@ const initialChatNodes: TChatNode[] = [
     children: [],
     message: {
       role: "system",
-      content:
-        "You're a friendly assistant, ready to help user solve any of their problem",
+      content: `You're a friendly assistant, ready to help user solve any of their problem. If necessary, you can use the provided tools to help user.`,
     },
   },
 ]
 
 function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
+  const router = useRouter()
   const [chatNodes, setChatNodes] = useState<TChatNode[]>(initialChatNodes)
   // `chatPath` for rendering chat flow
   const [chatPath, setChatPath] = useState<number[]>([0])
@@ -96,6 +107,11 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   const [showChatHistory, setShowChatHistory] = useState(false)
   const [id, setChatId] = useState(crypto.randomUUID())
   const [editedNodePath, setEditedNodePath] = useState<number[] | null>(null)
+
+  const [openSearch, setOpenSearch] = useState(false)
+  const [openCommonTools, setOpenCommonTools] = useState(false)
+
+  const [showSearchApiSetPopover, setShowSearchApiSetPopover] = useState(false)
 
   const prevInputRef = useRef<string>("")
 
@@ -119,25 +135,37 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     return _messages
   }, [chatNodes, chatPath])
 
-  const { isChatting, isReasoning, result, startChat, cancelChat, clearChat } =
-    useChat({
-      model,
-      requireModel,
-      onError: (error) => {
-        switch (error.name) {
-          case "AbortError":
-            toast.info(t`Chat stopped by user`)
-            break
-          case "TimeoutError":
-            toast.error(ErrorsToastText[error.name])
-            break
-          default:
-            console.log(error.name)
-            toast.error(ErrorsToastText["unknown"])
-            break
-        }
-      },
-    })
+  const {
+    isChatting,
+    isReasoning,
+    isCallingTool,
+    result,
+    searchApiIsSet,
+    startChat,
+    cancelChat,
+    clearChat,
+  } = useChat({
+    model,
+    requireModel,
+    onError: (error) => {
+      switch (error.name) {
+        case "AbortError":
+          toast.info(t`Chat stopped by user`)
+          break
+        case "TimeoutError":
+          toast.error(ErrorsToastText[error.name])
+          break
+        default:
+          console.log(`(${error.name}):${error.message}`)
+          toast.error(`${ErrorsToastText["unknown"]}: ${error.message}`)
+          break
+      }
+    },
+    options: {
+      allowCommonTools: openCommonTools,
+      allowSearch: openSearch,
+    },
+  })
 
   const messagesRef = useRef<HTMLDivElement>(null)
 
@@ -431,6 +459,19 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     _startNewChat()
   }, [_startNewChat])
 
+  const onSearchButtonClick = useCallback(async () => {
+    if (openSearch) {
+      setOpenSearch(false)
+    } else {
+      if (!searchApiIsSet) {
+        console.log("not set")
+        setShowSearchApiSetPopover(true)
+      } else {
+        setOpenSearch(true)
+      }
+    }
+  }, [searchApiIsSet, openSearch])
+
   useEffect(() => {
     if (messagesRef.current) {
       const element = messagesRef.current
@@ -463,11 +504,72 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   const deleteChatTitleString = t`Are you sure to delete this chat?`
   const deleteChatConfirmString = t`Delete`
   const deleteChatCancelString = t`Cancel`
+  const jumpToSearchApiSetPageString = t`Your search api is not set`
+  const jumpToSearchApiSetPageButtonString = t`Set now`
+
+  const openSearchButton = (
+    <Popover
+      open={showSearchApiSetPopover}
+      onOpenChange={setShowSearchApiSetPopover}
+    >
+      <PopoverAnchor asChild>
+        <Button
+          className={`flex items-center gap-1 transition-all border-none rounded-full${openSearch ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
+          size="icon"
+          variant={openSearch ? "default" : "outline"}
+          onClick={onSearchButtonClick}
+        >
+          <Globe />
+        </Button>
+      </PopoverAnchor>
+      <PopoverContent
+        className="flex flex-col gap-2 w-64"
+        side="top"
+        sideOffset={12}
+        align="start"
+      >
+        <p>{jumpToSearchApiSetPageString}</p>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            router.navigate({
+              to: "/settings/manage-search-apis",
+            })
+          }}
+        >
+          {jumpToSearchApiSetPageButtonString} →
+        </Button>
+      </PopoverContent>
+    </Popover>
+  )
+
+  const openCommonToolsButton = (
+    <Button
+      className={`flex items-center gap-1 transition-all border-none rounded-full${openCommonTools ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
+      size="icon"
+      variant={openCommonTools ? "default" : "outline"}
+      onClick={() => setOpenCommonTools((o) => !o)}
+    >
+      <Sparkle fill="currentColor" fillOpacity={openCommonTools ? 100 : 0} />
+    </Button>
+  )
+
+  // [TODO] Need a UX, check if jina apiKey is set, if not show a dialog or what to let user redirect to search apiKey set page
+  const toolArea = (
+    <div className="flex items-center gap-1 p-1 bg-blue-100/40 rounded-full">
+      {openSearchButton}
+      {openCommonToolsButton}
+    </div>
+  )
 
   const deleteChatButton = !chatIsFresh ? (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="icon" variant="destructive">
+        <Button
+          className="border-red-500 text-red-500"
+          size="icon"
+          variant="outline"
+        >
           <Trash />
         </Button>
       </AlertDialogTrigger>
@@ -517,6 +619,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
                     key={message.id || index}
                     message={message}
                     isReasoning={isLastReasoning}
+                    isCallingTool={isCallingTool}
                     onEdit={
                       message.role === "user"
                         ? () => {
@@ -558,6 +661,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
                 </Button>
               ) : (
                 <>
+                  {toolArea}
                   <Button size="icon" variant="outline" onClick={startNewChat}>
                     <MessageSquarePlus />
                   </Button>
@@ -613,10 +717,17 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
 interface IMessage {
   message: TExpandedMessage & { currentIndex?: number; all?: number }
   isReasoning: boolean
+  isCallingTool: boolean
   onEdit?: () => void
   onChange: (index: number) => void
 }
-function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
+function Message({
+  message,
+  isReasoning,
+  isCallingTool,
+  onEdit,
+  onChange,
+}: IMessage) {
   const copyToClipboard = useCallback(async () => {
     if (navigator.clipboard) {
       await navigator.clipboard.writeText(message.content!)
@@ -643,6 +754,11 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
   const date = message.endedAt || message.createdAt
   const reasoningButtonStrings = [t`Is reasoning...`, t`Reasoning process`]
   const reasoningDialogDescString = t`You're using reasoning model!`
+  const callingToolButtonStrings = [t`Is calling tool...`, t`Tool-Call Result`]
+  const callingToolDescStrings = [t`Used Tool`, t`Args Input by Model`]
+  const stepOverString = t`Step Over`
+  const stepSpendTimeString = t`Spend Time`
+  const errorMessageString = t`Error Happen`
   const editMessageString =
     message.role === "user"
       ? [<Pen />, t`Edit message`]
@@ -673,13 +789,15 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
           ) : null}
           <div
             className={`${
-              message.role === "user" ? "bg-blue-500" : "bg-gray-500"
-            } flex flex-col gap-2 text-white p-2 whitespace-pre-wrap break-words hyphens-auto rounded-lg max-w-full`}
+              message.role === "user"
+                ? "bg-blue-500 text-white"
+                : "border bg-gray-50 text-black"
+            } flex flex-col gap-2 p-2 whitespace-pre-wrap break-words hyphens-auto rounded-lg max-w-full`}
           >
             {message.parts?.map((p, i) => {
               switch (p.type) {
                 case "reasoning":
-                  const buttonString = isReasoning
+                  const reasoningButtonString = isReasoning
                     ? reasoningButtonStrings[0]
                     : reasoningButtonStrings[1]
 
@@ -687,19 +805,102 @@ function Message({ message, isReasoning, onEdit, onChange }: IMessage) {
                     <div key={i} className="order-1">
                       <ReasoningDisplay
                         isReasoning={isReasoning}
-                        buttonContent={buttonString}
+                        buttonContent={reasoningButtonString}
                         reasoningText={p.reasoning}
-                        title={buttonString}
+                        title={reasoningButtonString}
                         description={reasoningDialogDescString}
                       />
                     </div>
                   )
+
                 case "text":
                   return (
                     <div ref={messageRef} key={i} className="order-2">
                       <Markdown>{p.text || "..."}</Markdown>
                     </div>
                   )
+                case "tool-invocation": {
+                  const isCalling =
+                    isCallingTool && p.toolInvocation.state !== "result"
+                  const toolCallingButtonString = isCalling
+                    ? callingToolButtonStrings[0]
+                    : callingToolButtonStrings[1]
+                  const { toolName, args } = p.toolInvocation
+
+                  const argsDisplay = Object.entries(args).map(
+                    ([key, value]) => (
+                      <Badge className="truncate" key={key} variant="outline">
+                        {key}: {JSON.stringify(value)}
+                      </Badge>
+                    )
+                  )
+
+                  const description = (
+                    <div className="flex flex-col gap-1 border rounded-md p-2">
+                      <div className="flex items-center gap-1">
+                        {callingToolDescStrings[0]}
+                        <Badge variant="secondary">{toolName}</Badge>
+                      </div>
+                      <div className="flex gap-2 items-center flex-wrap">
+                        <div>{callingToolDescStrings[1]}</div>
+                        <div className="flex gap-1 flex-wrap">
+                          {argsDisplay.length > 0 ? (
+                            argsDisplay
+                          ) : (
+                            <Badge variant="outline">None</Badge>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )
+
+                  return (
+                    <div key={i} className="order-2">
+                      <ToolCallDisplay
+                        isCalling={isCalling}
+                        buttonContent={toolCallingButtonString}
+                        toolCallResult={
+                          p.toolInvocation.state === "result"
+                            ? p.toolInvocation.result
+                            : "Waiting..."
+                        }
+                        title={toolCallingButtonString}
+                        description={description}
+                      />
+                    </div>
+                  )
+                }
+                case "flag": {
+                  const spendTime = dayjs(p.endedAt).diff(p.createdAt, "second")
+
+                  return (
+                    <div
+                      key={i}
+                      className="order-2 rounded-md p-1 flex gap-2 items-center justify-between last:hidden bg-gray-200"
+                    >
+                      <Badge>{stepOverString}</Badge>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <span>
+                          {stepSpendTimeString}: {spendTime}s
+                        </span>
+                        <span>
+                          {p.tokenUsage.promptTokens}↑{" "}
+                          {p.tokenUsage.completionTokens}↓
+                        </span>
+                      </div>
+                    </div>
+                  )
+                }
+                case "error": {
+                  const { error } = p
+
+                  return (
+                    <Alert className="bg-red-200 text-red-500 border-none">
+                      <AlertTitle>{errorMessageString}</AlertTitle>
+                      <AlertDescription className="overflow-auto">{`(${error.name}) / ${error.message}`}</AlertDescription>
+                    </Alert>
+                  )
+                }
                 default:
                   return null
               }
@@ -759,34 +960,54 @@ export default function Chat() {
     setModelToDefault()
   }, [setModelToDefault])
 
-  if (selectedModel) {
-    const provider = providers.find((p) => p.name === selectedModel[0])
+  const getModelFrom = ([providerName, modelName]: [string, string]) => {
+    const provider = providers.find((p) => p.name === providerName)
 
     if (provider) {
-      const aiCompaProvider = createOpenAICompatible({
-        name: provider.name,
-        baseURL: provider.baseURL,
-        apiKey: provider.apiKey,
-      })
+      let modelProvider: any
 
-      model = aiCompaProvider(selectedModel[1])
+      switch (providerName) {
+        case "OpenAI":
+          modelProvider = createOpenAI({
+            apiKey: provider.apiKey,
+          })
+          break
+        case "Google":
+          modelProvider = createGoogleGenerativeAI({
+            baseURL: provider.baseURL,
+            apiKey: provider.apiKey,
+          })
+          break
+        case "OpenRouter":
+          modelProvider = createOpenRouter({
+            apiKey: provider.apiKey,
+          })
+          break
+        case "DeepSeek":
+          modelProvider = createDeepSeek({
+            apiKey: provider.apiKey,
+          })
+          break
+        default:
+          modelProvider = createOpenAICompatible({
+            name: providerName,
+            baseURL: provider.baseURL,
+            apiKey: provider.apiKey,
+          })
+      }
+
+      return modelProvider(modelName)
     }
+
+    return null
+  }
+
+  if (selectedModel) {
+    model = getModelFrom(selectedModel)
   }
 
   if (defaultModels.summarize) {
-    const provider = providers.find(
-      (p) => p.name === defaultModels.summarize![0]
-    )
-
-    if (provider) {
-      const aiCompaProvider = createOpenAICompatible({
-        name: provider.name,
-        baseURL: provider.baseURL,
-        apiKey: provider.apiKey,
-      })
-
-      summarizeModel = aiCompaProvider(defaultModels.summarize[1])
-    }
+    summarizeModel = getModelFrom(defaultModels.summarize)
   }
 
   return (

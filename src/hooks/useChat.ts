@@ -1,5 +1,15 @@
-import { useCallback, useMemo, useRef, useState } from "react"
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
+import { createAISDKTools } from "@agentic/ai-sdk"
+import { jina, JinaClient } from "@agentic/jina"
 import { Message } from "@ai-sdk/react"
+import { TextUIPart, ToolInvocationUIPart } from "@ai-sdk/ui-utils"
 import { t } from "@lingui/core/macro"
 import {
   CoreMessage,
@@ -7,9 +17,16 @@ import {
   LanguageModelUsage,
   LanguageModelV1,
   streamText,
+  ToolResult,
 } from "ai"
+import { produce } from "immer"
+import { z } from "zod"
 
+import { commonAITools } from "@/lib/common-ai-tools"
 import { stringifyObject } from "@/lib/utils"
+import { SearchApisContext } from "@/components/SearchApisContext"
+
+const WEB_SEARCH_TIMEOUT = 30_000
 
 interface IUseChat {
   model: LanguageModelV1 | null
@@ -18,15 +35,57 @@ interface IUseChat {
   onFinish?: (reason: FinishReason) => void
   options?: {
     timeout?: number
+    allowSearch?: boolean
+    allowCommonTools?: boolean
   }
 }
-export type TExpandedMessage = Partial<Omit<Message, "createdAt">> & {
+// type WithType<T, U> = T extends (infer A)[] | undefined
+//   ? (A | U)[] | undefined
+//   : never
+type ExtendTupleType<T, U> =
+  | (T extends (infer V)[] ? (V | U)[] : never)
+  | undefined
+type TStepFlag = {
+  type: "flag"
+  tokenUsage: LanguageModelUsage
+  createdAt: number
+  endedAt: number
+}
+type TErrorPart = {
+  type: "error"
+  createdAt: number
+  error: Error
+}
+
+export type TExpandedMessage = Partial<Omit<Message, "createdAt" | "parts">> & {
   createdAt?: number
   endedAt?: number
   tokenUsage?: LanguageModelUsage
   modelName?: string
+  parts?: ExtendTupleType<Message["parts"], TStepFlag | TErrorPart>
 }
-const REQUEST_TIMEOUT = 10_000
+
+export const SearchReturnSchema = z.object({
+  code: z.number(),
+  status: z.number(),
+  data: z.array(
+    z.object({
+      url: z.string().url(),
+      title: z.string(),
+      description: z.string(),
+      content: z.string(),
+      usage: z.object({
+        tokens: z.number(),
+      }),
+    })
+  ),
+})
+export type TSearchReturnType = z.infer<typeof SearchReturnSchema>
+
+const REQUEST_TIMEOUT = 30_000
+const KEEPED_SEARCH_CONTENT_CHARACTOR_COUNT = 3_000
+const DEFAULT_TEMPERATURE = 0.7
+const JINA_SEARCH_API_NAME = "Jina"
 
 /** @notice `system` won't work if you use `messages`, add a `system` role part to `messages` */
 export function useChat({
@@ -36,9 +95,11 @@ export function useChat({
   onError,
   options,
 }: IUseChat) {
+  const { searchApis, fetchSearchApis } = useContext(SearchApisContext)
+
   const userCancelController = useRef<AbortController | null>(null)
   const timer = useRef<number>(undefined)
-  const [reasoningResult, setReasoningResult] = useState<string>("")
+
   const [textResult, setTextResult] = useState<string>("")
   const [messageId, setMessageId] = useState<string>("")
   const [startTimestamp, setStartTimestamp] = useState<number | undefined>(
@@ -47,9 +108,40 @@ export function useChat({
   const [endTimestamp, setEndTimestamp] = useState<number | undefined>(
     undefined
   )
-  const [tokenUsage, setTokenUsage] = useState<LanguageModelUsage>()
+
   const [isReasoning, setIsReasoning] = useState(false)
   const [isChatting, setIsChatting] = useState(false)
+  const [isCallingTool, setIsCallingTool] = useState(false)
+
+  const [parts, setParts] = useState<TExpandedMessage["parts"]>([])
+
+  const tools = useMemo(() => {
+    const jinaSearchApi = searchApis.find(
+      (api) => api.name === JINA_SEARCH_API_NAME
+    )
+    const jinaClient = jinaSearchApi
+      ? new JinaClient({
+          apiKey: jinaSearchApi.apiKey,
+          timeoutMs: WEB_SEARCH_TIMEOUT,
+        })
+      : null
+
+    const _tools = createAISDKTools(
+      ...[
+        options?.allowSearch ? jinaClient : null,
+        options?.allowCommonTools ? commonAITools : null,
+      ].filter((t) => t !== null)
+    )
+    return produce(_tools, (draft) => {
+      const searchTool = draft["search"]
+
+      if (searchTool) {
+        ;(searchTool.parameters as any) = jina.SearchOptionsSchema.extend({
+          json: z.boolean().optional().default(true),
+        })
+      }
+    })
+  }, [options, searchApis])
 
   const result = useMemo(() => {
     const _result: TExpandedMessage = {
@@ -57,14 +149,26 @@ export function useChat({
       role: "assistant",
       createdAt: startTimestamp,
       endedAt: endTimestamp,
-      tokenUsage,
+      tokenUsage: (parts || [])
+        .filter((part) => part.type === "flag")
+        .reduce(
+          (usage, curr) => {
+            return {
+              promptTokens: usage!.promptTokens + curr.tokenUsage.promptTokens,
+              completionTokens:
+                usage!.completionTokens + curr.tokenUsage.completionTokens,
+              totalTokens: usage!.totalTokens + curr.tokenUsage.totalTokens,
+            }
+          },
+          {
+            promptTokens: 0,
+            completionTokens: 0,
+            totalTokens: 0,
+          } as TExpandedMessage["tokenUsage"]
+        ),
       modelName: model?.modelId,
       content: textResult,
-      parts: [{ type: "text", text: textResult }],
-    }
-
-    if (reasoningResult) {
-      _result.parts!.push({ type: "reasoning", reasoning: reasoningResult })
+      parts,
     }
 
     return _result
@@ -73,9 +177,8 @@ export function useChat({
     startTimestamp,
     endTimestamp,
     model?.modelId,
-    tokenUsage,
+    parts,
     textResult,
-    reasoningResult,
   ])
 
   const stopChatString = t`User stopped chat`
@@ -85,17 +188,18 @@ export function useChat({
     setTextResult("")
     setIsChatting(false)
     setIsReasoning(false)
-    setReasoningResult("")
+    setIsCallingTool(false)
+    setParts([])
     setStartTimestamp(undefined)
     setEndTimestamp(undefined)
     setMessageId("")
-    setTokenUsage(undefined)
   }, [stopChatString])
 
   const cancelChat = useCallback(() => {
     userCancelController.current?.abort(stopChatString)
     setIsChatting(false)
     setIsReasoning(false)
+    setIsCallingTool(false)
 
     if (timer.current) window.clearTimeout(timer.current)
   }, [stopChatString])
@@ -120,19 +224,23 @@ export function useChat({
             model,
             system,
             prompt,
+            temperature: DEFAULT_TEMPERATURE,
+            maxSteps: 5,
             messages,
+            tools,
             abortSignal: userCancelController.current.signal,
           })
 
-          let text = ""
-          let reasoningText = ""
+          let requestTimeout = true
+          let newStep = false
           timer.current = window.setTimeout(() => {
-            if (reasoningText === "" && text === "") {
+            if (requestTimeout) {
               const errorReason = t`Request timeout`
               userCancelController.current?.abort(errorReason)
 
               setIsChatting(false)
               setIsReasoning(false)
+              setIsCallingTool(false)
 
               if (onError) {
                 const err = new Error(errorReason)
@@ -152,29 +260,219 @@ export function useChat({
 
             switch (chunk.type) {
               case "step-start":
+                requestTimeout = false
+                newStep = true
                 setMessageId(chunk.messageId)
 
                 break
+              case "reasoning":
+                setIsReasoning(true)
+
+                setParts(
+                  produce((draft) => {
+                    if (newStep) {
+                      draft!.push({
+                        type: "reasoning",
+                        reasoning: chunk.textDelta,
+                        details: [{ type: "text", text: chunk.textDelta }],
+                      })
+                      newStep = false
+                    } else {
+                      const lastPart = draft![draft!.length - 1]
+
+                      if (lastPart) {
+                        if (lastPart.type !== "reasoning") {
+                          draft!.push({
+                            type: "reasoning",
+                            reasoning: chunk.textDelta,
+                            details: [{ type: "text", text: chunk.textDelta }],
+                          })
+                        } else {
+                          lastPart.reasoning += chunk.textDelta
+
+                          const textTypeDetail = lastPart.details.find(
+                            (detail) => detail.type === "text"
+                          )
+                          textTypeDetail!.text += chunk.textDelta
+                        }
+                      } else {
+                        draft!.push({
+                          type: "reasoning",
+                          reasoning: chunk.textDelta,
+                          details: [{ type: "text", text: chunk.textDelta }],
+                        })
+                      }
+                    }
+                  })
+                )
+
+                break
+              case "reasoning-signature":
+                setParts(
+                  produce((draft) => {
+                    const reasoningPart = draft![draft!.length - 1]
+
+                    if (reasoningPart!.type === "reasoning") {
+                      const textTypeDetail = reasoningPart!.details!.find(
+                        (detail) => detail.type === "text"
+                      )
+                      textTypeDetail!.signature = chunk.signature
+                    }
+                  })
+                )
+
+                break
+              case "redacted-reasoning":
+                setParts(
+                  produce((draft) => {
+                    const reasoningPart = draft![draft!.length - 1]
+
+                    if (reasoningPart.type === "reasoning") {
+                      reasoningPart.details.push({
+                        type: "redacted",
+                        data: chunk.data,
+                      })
+                    }
+                  })
+                )
+
+                break
               case "text-delta":
-                text += chunk.textDelta
-                setTextResult(text)
+                setParts(
+                  produce((draft) => {
+                    if (newStep) {
+                      draft!.push({
+                        type: "text",
+                        text: chunk.textDelta,
+                      })
+                    } else {
+                      const lastPart = draft![draft!.length - 1]
+
+                      if (lastPart) {
+                        if (lastPart.type !== "text") {
+                          draft!.push({
+                            type: "text",
+                            text: chunk.textDelta,
+                          })
+                        } else {
+                          ;(lastPart as TextUIPart).text += chunk.textDelta
+                        }
+                      } else {
+                        draft!.push({
+                          type: "text",
+                          text: chunk.textDelta,
+                        })
+                      }
+                    }
+                  })
+                )
+
+                newStep = false
+
+                setTextResult((r) =>
+                  newStep ? chunk.textDelta : r + chunk.textDelta
+                )
 
                 // If text gen start, means reasoning is over
                 setIsReasoning(false)
 
                 break
-              case "reasoning":
-                reasoningText += chunk.textDelta
-                setReasoningResult(reasoningText)
-                setIsReasoning(true)
+              case "tool-call":
+                setIsCallingTool(true)
+
+                setParts(
+                  produce((draft) => {
+                    draft!.push({
+                      type: "tool-invocation",
+                      toolInvocation: {
+                        state: "partial-call",
+                        toolName: chunk.toolName,
+                        toolCallId: chunk.toolCallId,
+                        args: chunk.args,
+                      },
+                    })
+                    newStep = false
+                  })
+                )
+                break
+              case "tool-call-delta":
+                break
+              case "tool-result":
+                setIsCallingTool(false)
+
+                setParts(
+                  produce((draft) => {
+                    const lastPart = draft![
+                      draft!.length - 1
+                    ] as ToolInvocationUIPart
+
+                    lastPart.toolInvocation.state = "result"
+
+                    const isCallingSearchTool = SearchReturnSchema.safeParse(
+                      chunk.result
+                    ).success
+
+                    ;(
+                      lastPart.toolInvocation as ToolResult<string, any, any>
+                    ).result = isCallingSearchTool
+                      ? produce(chunk.result as TSearchReturnType, (draft) => {
+                          draft.data.forEach((item) => {
+                            // Cut down the content to 2000 characters
+                            item.content = item.content.slice(
+                              0,
+                              KEEPED_SEARCH_CONTENT_CHARACTOR_COUNT
+                            )
+                          })
+                        })
+                      : chunk.result
+                  })
+                )
                 break
               case "step-finish":
-                setStartTimestamp(chunk.response.timestamp.getTime())
+                setParts(
+                  produce((draft) => {
+                    draft!.push({
+                      type: "flag",
+                      createdAt: chunk.response.timestamp.getTime(),
+                      endedAt: Date.now(),
+                      tokenUsage: chunk.usage,
+                    })
+                  })
+                )
+                setStartTimestamp(
+                  (prevT) => prevT ?? chunk.response.timestamp.getTime()
+                )
                 setEndTimestamp(Date.now())
-                setTokenUsage(chunk.usage)
+
+                break
+              case "finish":
                 break
               case "error":
+                requestTimeout = false
                 console.log("Error:", stringifyObject(chunk.error))
+
+                let recordedError = new Error()
+                if (typeof chunk.error === "string") {
+                  recordedError.message = chunk.error
+                } else if (chunk.error instanceof Error) {
+                  recordedError.name = chunk.error.name
+                  recordedError.message = chunk.error.message
+                }
+
+                const now = Date.now()
+
+                setParts(
+                  produce((draft) => {
+                    draft!.push({
+                      type: "error",
+                      createdAt: now,
+                      error: recordedError,
+                    })
+                  })
+                )
+                setStartTimestamp(now)
+                setEndTimestamp(now)
+
                 throw chunk.error
               default:
                 break
@@ -186,6 +484,7 @@ export function useChat({
         } catch (e: any) {
           setIsReasoning(false)
           setIsChatting(false)
+          setIsCallingTool(false)
 
           if (onError) onError(e)
           else throw e
@@ -193,17 +492,30 @@ export function useChat({
 
         setIsReasoning(false)
         setIsChatting(false)
+        setIsCallingTool(false)
       } else if (requireModel) {
         requireModel()
       }
     },
-    [model, options?.timeout, onError, onFinish, requireModel, clearChat]
+    [model, options, tools, onError, onFinish, requireModel, clearChat]
   )
+
+  // [NOTE] This is a temporary solution
+  const searchApiIsSet = useMemo(
+    () => searchApis.some((api) => api.name === "Jina" && api.apiKey !== ""),
+    [searchApis]
+  )
+
+  useEffect(() => {
+    fetchSearchApis()
+  }, [fetchSearchApis])
 
   return {
     isChatting,
     isReasoning,
+    isCallingTool,
     result,
+    searchApiIsSet,
     startChat,
     cancelChat,
     clearChat,
