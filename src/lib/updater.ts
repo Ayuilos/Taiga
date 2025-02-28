@@ -27,28 +27,28 @@ const updaters: TUpdater[] = [
     async () => {
       const presetProviders: IAIProvider[] = [
         {
-          name: "OpenAI",
+          name: "OpenAI[Preset]",
           baseURL: "https://api.openai.com/v1",
           apiKey: "",
           models: [],
           preset: true,
         },
         {
-          name: "Google",
+          name: "Google[Preset]",
           baseURL: "https://generativelanguage.googleapis.com",
           apiKey: "",
           models: [],
           preset: true,
         },
         {
-          name: "OpenRouter",
+          name: "OpenRouter[Preset]",
           baseURL: "https://openrouter.ai/api/v1",
           apiKey: "",
           models: [],
           preset: true,
         },
         {
-          name: "DeepSeek",
+          name: "DeepSeek[Preset]",
           baseURL: "https://api.deepseek.com/v1",
           apiKey: "",
           models: [],
@@ -62,7 +62,7 @@ const updaters: TUpdater[] = [
 
       const presetSearchApis: TBaseSearchAPI[] = [
         {
-          name: "Jina",
+          name: "Jina[Preset]",
           searchURL: "https://s.jina.ai",
           apiKey: "",
         },

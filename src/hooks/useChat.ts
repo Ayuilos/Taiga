@@ -26,8 +26,6 @@ import { commonAITools } from "@/lib/common-ai-tools"
 import { stringifyObject } from "@/lib/utils"
 import { SearchApisContext } from "@/components/SearchApisContext"
 
-const WEB_SEARCH_TIMEOUT = 30_000
-
 interface IUseChat {
   model: LanguageModelV1 | null
   requireModel?: () => void
@@ -43,8 +41,8 @@ interface IUseChat {
 //   ? (A | U)[] | undefined
 //   : never
 type ExtendTupleType<T, U> =
-  | (T extends (infer V)[] ? (V | U)[] : never)
-  | undefined
+| (T extends (infer V)[] ? (V | U)[] : never)
+| undefined
 type TStepFlag = {
   type: "flag"
   tokenUsage: LanguageModelUsage
@@ -82,10 +80,11 @@ export const SearchReturnSchema = z.object({
 })
 export type TSearchReturnType = z.infer<typeof SearchReturnSchema>
 
+const WEB_SEARCH_TIMEOUT = 30_000
 const REQUEST_TIMEOUT = 30_000
 const KEEPED_SEARCH_CONTENT_CHARACTOR_COUNT = 3_000
 const DEFAULT_TEMPERATURE = 0.7
-const JINA_SEARCH_API_NAME = "Jina"
+const JINA_SEARCH_API_NAME = "Jina[Preset]"
 
 /** @notice `system` won't work if you use `messages`, add a `system` role part to `messages` */
 export function useChat({

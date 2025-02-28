@@ -970,23 +970,23 @@ export default function Chat() {
       let modelProvider: any
 
       switch (providerName) {
-        case "OpenAI":
+        case "OpenAI[Preset]":
           modelProvider = createOpenAI({
             apiKey: provider.apiKey,
           })
           break
-        case "Google":
+        case "Google[Preset]":
           modelProvider = createGoogleGenerativeAI({
             baseURL: provider.baseURL,
             apiKey: provider.apiKey,
           })
           break
-        case "OpenRouter":
+        case "OpenRouter[Preset]":
           modelProvider = createOpenRouter({
             apiKey: provider.apiKey,
           })
           break
-        case "DeepSeek":
+        case "DeepSeek[Preset]":
           modelProvider = createDeepSeek({
             apiKey: provider.apiKey,
           })
