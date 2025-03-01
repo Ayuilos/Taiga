@@ -1,5 +1,5 @@
 import { t } from "@lingui/core/macro"
-import { Link } from "@tanstack/react-router"
+import { openUrl } from "@tauri-apps/plugin-opener"
 
 import { FormDescription } from "./ui/form"
 
@@ -33,9 +33,15 @@ export function ProviderAPIKeyNavigationDescription({
 
   return (
     <FormDescription>
-      <Link to={url} className="text-blue-500">
+      <a
+        data-url={url}
+        onClick={() => {
+          openUrl(url)
+        }}
+        className="text-blue-500"
+      >
         {getApiKeyString}
-      </Link>
+      </a>
     </FormDescription>
   )
 }
