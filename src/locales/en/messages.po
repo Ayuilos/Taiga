@@ -6,8 +6,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 msgid "Add"
 msgstr "Add"
 
@@ -15,16 +21,16 @@ msgstr "Add"
 msgid "Add models"
 msgstr "Add models"
 
-#: src/features/provider-management.tsx:164
-#: src/features/provider-management.tsx:668
+#: src/features/provider-management.tsx:170
+#: src/features/provider-management.tsx:682
 msgid "Added models"
 msgstr "Added models"
 
-#: src/features/provider-management.tsx:356
+#: src/features/provider-management.tsx:362
 msgid "API Key"
 msgstr "API Key"
 
-#: src/features/chat.tsx:504
+#: src/features/chat.tsx:505
 msgid "Are you sure to delete this chat?"
 msgstr "Are you sure to delete this chat?"
 
@@ -32,30 +38,30 @@ msgstr "Are you sure to delete this chat?"
 msgid "Are you sure you want to delete all chat history?"
 msgstr "Are you sure you want to delete all chat history?"
 
-#: src/features/provider-management.tsx:363
+#: src/features/provider-management.tsx:369
 msgid "Are you sure you want to delete this provider?"
 msgstr "Are you sure you want to delete this provider?"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Args Input by Model"
 msgstr "Args Input by Model"
 
-#: src/features/provider-management.tsx:669
+#: src/features/provider-management.tsx:683
 msgid "Available models"
 msgstr "Available models"
 
-#: src/features/provider-management.tsx:357
+#: src/features/provider-management.tsx:363
 msgid "Base URL"
 msgstr "Base URL"
 
-#: src/features/provider-management.tsx:359
-#: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:506
+#: src/features/provider-management.tsx:365
+#: src/features/provider-management.tsx:370
+#: src/features/chat.tsx:507
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/routes/__root.tsx:61
+#: src/routes/__root.tsx:59
 msgid "Chat"
 msgstr "Chat"
 
@@ -63,7 +69,7 @@ msgstr "Chat"
 msgid "Chat History"
 msgstr "Chat History"
 
-#: src/features/chat.tsx:153
+#: src/features/chat.tsx:149
 msgid "Chat stopped by user"
 msgstr "Chat stopped by user"
 
@@ -71,20 +77,20 @@ msgstr "Chat stopped by user"
 msgid "Check reasoning process"
 msgstr "Check reasoning process"
 
-#: src/features/provider-management.tsx:667
+#: src/features/provider-management.tsx:681
 msgid "Choose models"
 msgstr "Choose models"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "Confirm"
 
-#: src/features/chat.tsx:770
+#: src/features/chat.tsx:771
 msgid "Copy"
 msgstr "Copy"
 
-#: src/features/provider-management.tsx:315
+#: src/features/provider-management.tsx:321
 msgid "Custom"
 msgstr "Custom"
 
@@ -104,8 +110,8 @@ msgstr "Default Models"
 msgid "Default Translate Model"
 msgstr "Default Translate Model"
 
-#: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:505
+#: src/features/provider-management.tsx:371
+#: src/features/chat.tsx:506
 msgid "Delete"
 msgstr "Delete"
 
@@ -113,27 +119,31 @@ msgstr "Delete"
 msgid "Delete all chat history"
 msgstr "Delete all chat history"
 
-#: src/features/provider-management.tsx:362
+#: src/features/provider-management.tsx:368
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
-#: src/features/chat.tsx:766
+#: src/features/chat.tsx:767
 msgid "Edit message"
 msgstr "Edit message"
 
-#: src/features/chat.tsx:763
+#: src/features/chat.tsx:764
 msgid "Error Happen"
 msgstr "Error Happen"
 
-#: src/features/chat.tsx:736
+#: src/features/chat.tsx:737
 msgid "Failed to copy to clipboard"
 msgstr "Failed to copy to clipboard"
 
-#: src/features/chat.tsx:247
+#: src/features/chat.tsx:243
 msgid "Failed to summarize"
 msgstr "Failed to summarize"
 
-#: src/features/provider-management.tsx:667
+#: src/components/ProviderAPIKeyNavigationDescription.tsx:32
+msgid "Get API keys"
+msgstr "Get API keys"
+
+#: src/features/provider-management.tsx:681
 msgid "Getting models..."
 msgstr "Getting models..."
 
@@ -141,23 +151,23 @@ msgstr "Getting models..."
 msgid "Into"
 msgstr "Into"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Is calling tool..."
 msgstr "Is calling tool..."
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Is reasoning..."
 msgstr "Is reasoning..."
 
-#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:367
 msgid "Manage Models"
 msgstr "Manage Models"
 
-#: src/features/provider-management.tsx:360
+#: src/features/provider-management.tsx:366
 msgid "Model Management"
 msgstr "Model Management"
 
-#: src/features/provider-management.tsx:355
+#: src/features/provider-management.tsx:361
 msgid "Name"
 msgstr "Name"
 
@@ -170,15 +180,15 @@ msgstr "No chats found"
 msgid "No models found"
 msgstr "No models found"
 
-#: src/features/provider-management.tsx:353
+#: src/features/provider-management.tsx:359
 msgid "No provider found"
 msgstr "No provider found"
 
-#: src/features/provider-management.tsx:314
+#: src/features/provider-management.tsx:320
 msgid "Preset"
 msgstr "Preset"
 
-#: src/features/provider-management.tsx:131
+#: src/features/provider-management.tsx:132
 msgid "Provider name already exists"
 msgstr "Provider name already exists"
 
@@ -186,7 +196,7 @@ msgstr "Provider name already exists"
 msgid "Providers"
 msgstr "Providers"
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Reasoning process"
 msgstr "Reasoning process"
 
@@ -198,16 +208,16 @@ msgstr "Reasoning Process"
 msgid "Reasoning..."
 msgstr "Reasoning..."
 
-#: src/features/chat.tsx:768
+#: src/features/chat.tsx:769
 msgid "Regenerate reply"
 msgstr "Regenerate reply"
 
-#: src/features/provider-management.tsx:165
+#: src/features/provider-management.tsx:171
 msgid "Removed models"
 msgstr "Removed models"
 
 #: src/hooks/useChat.ts:237
-#: src/features/provider-management.tsx:644
+#: src/features/provider-management.tsx:658
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "Request timeout"
@@ -220,7 +230,7 @@ msgstr "Search APIs"
 msgid "Search models..."
 msgstr "Search models..."
 
-#: src/features/provider-management.tsx:352
+#: src/features/provider-management.tsx:358
 msgid "Search provider..."
 msgstr "Search provider..."
 
@@ -232,19 +242,19 @@ msgstr "Select a model"
 msgid "Select model"
 msgstr "Select model"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:509
 msgid "Set now"
 msgstr "Set now"
 
-#: src/routes/__root.tsx:63
+#: src/routes/__root.tsx:61
 msgid "Settings"
 msgstr "Settings"
 
-#: src/features/chat.tsx:762
+#: src/features/chat.tsx:763
 msgid "Spend Time"
 msgstr "Spend Time"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:762
 msgid "Step End"
 msgstr "Step End"
 
@@ -256,11 +266,11 @@ msgstr "Stop"
 msgid "Text copied to clipboard"
 msgstr "Text copied to clipboard"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Tool-Call Result"
 msgstr "Tool-Call Result"
 
-#: src/routes/__root.tsx:62
+#: src/routes/__root.tsx:60
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "Translate"
@@ -277,7 +287,7 @@ msgstr "Translation completed"
 msgid "Unknown error"
 msgstr "Unknown error"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Used Tool"
 msgstr "Used Tool"
 
@@ -285,15 +295,15 @@ msgstr "Used Tool"
 msgid "User stopped chat"
 msgstr "User stopped chat"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:761
 msgid "Waiting..."
 msgstr "Waiting..."
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:510
 msgid "What can I help you?"
 msgstr "What can I help you?"
 
-#: src/features/provider-management.tsx:354
+#: src/features/provider-management.tsx:360
 msgid "You're adding new provider"
 msgstr "You're adding new provider"
 
@@ -305,10 +315,10 @@ msgstr "You're translating"
 msgid "You're using reasoning model in translation which is not recommended"
 msgstr "You're using reasoning model in translation which is not recommended"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:758
 msgid "You're using reasoning model!"
 msgstr "You're using reasoning model!"
 
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:508
 msgid "Your search api is not set"
 msgstr "Your search api is not set"

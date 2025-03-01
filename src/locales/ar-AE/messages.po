@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 msgid "Add"
 msgstr "أضف"
 
@@ -21,16 +21,16 @@ msgstr "أضف"
 msgid "Add models"
 msgstr "إضافة نماذج"
 
-#: src/features/provider-management.tsx:164
-#: src/features/provider-management.tsx:668
+#: src/features/provider-management.tsx:170
+#: src/features/provider-management.tsx:682
 msgid "Added models"
 msgstr "تمت إضافة النماذج"
 
-#: src/features/provider-management.tsx:356
+#: src/features/provider-management.tsx:362
 msgid "API Key"
 msgstr "مفتاح API"
 
-#: src/features/chat.tsx:504
+#: src/features/chat.tsx:505
 msgid "Are you sure to delete this chat?"
 msgstr "هل أنت متأكد من حذف هذه المحادثة؟"
 
@@ -38,30 +38,30 @@ msgstr "هل أنت متأكد من حذف هذه المحادثة؟"
 msgid "Are you sure you want to delete all chat history?"
 msgstr "هل أنت متأكد من أنك تريد حذف سجل المحادثات بالكامل؟"
 
-#: src/features/provider-management.tsx:363
+#: src/features/provider-management.tsx:369
 msgid "Are you sure you want to delete this provider?"
 msgstr "هل أنت متأكد من أنك تريد حذف هذا الموفر؟"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Args Input by Model"
 msgstr "مدخلات الوسائط بواسطة النموذج"
 
-#: src/features/provider-management.tsx:669
+#: src/features/provider-management.tsx:683
 msgid "Available models"
 msgstr "النماذج المتاحة"
 
-#: src/features/provider-management.tsx:357
+#: src/features/provider-management.tsx:363
 msgid "Base URL"
 msgstr "عنوان URL الأساسي"
 
-#: src/features/provider-management.tsx:359
-#: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:506
+#: src/features/provider-management.tsx:365
+#: src/features/provider-management.tsx:370
+#: src/features/chat.tsx:507
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: src/routes/__root.tsx:61
+#: src/routes/__root.tsx:59
 msgid "Chat"
 msgstr "محادثة"
 
@@ -69,7 +69,7 @@ msgstr "محادثة"
 msgid "Chat History"
 msgstr "سجل المحادثات"
 
-#: src/features/chat.tsx:153
+#: src/features/chat.tsx:149
 msgid "Chat stopped by user"
 msgstr "تم إيقاف المحادثة بواسطة المستخدم"
 
@@ -77,20 +77,20 @@ msgstr "تم إيقاف المحادثة بواسطة المستخدم"
 msgid "Check reasoning process"
 msgstr "تحقق من عملية الاستدلال"
 
-#: src/features/provider-management.tsx:667
+#: src/features/provider-management.tsx:681
 msgid "Choose models"
 msgstr "اختر النماذج"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "تأكيد"
 
-#: src/features/chat.tsx:770
+#: src/features/chat.tsx:771
 msgid "Copy"
 msgstr "نسخ"
 
-#: src/features/provider-management.tsx:315
+#: src/features/provider-management.tsx:321
 msgid "Custom"
 msgstr "مخصص"
 
@@ -110,8 +110,8 @@ msgstr "النماذج الافتراضية"
 msgid "Default Translate Model"
 msgstr "نموذج الترجمة الافتراضي"
 
-#: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:505
+#: src/features/provider-management.tsx:371
+#: src/features/chat.tsx:506
 msgid "Delete"
 msgstr "حذف"
 
@@ -119,27 +119,31 @@ msgstr "حذف"
 msgid "Delete all chat history"
 msgstr "حذف سجل المحادثات بالكامل"
 
-#: src/features/provider-management.tsx:362
+#: src/features/provider-management.tsx:368
 msgid "Delete Provider"
 msgstr "حذف الموفر"
 
-#: src/features/chat.tsx:766
+#: src/features/chat.tsx:767
 msgid "Edit message"
 msgstr "تحرير الرسالة"
 
-#: src/features/chat.tsx:763
+#: src/features/chat.tsx:764
 msgid "Error Happen"
 msgstr "حدث خطأ"
 
-#: src/features/chat.tsx:736
+#: src/features/chat.tsx:737
 msgid "Failed to copy to clipboard"
 msgstr "فشل النسخ إلى الحافظة"
 
-#: src/features/chat.tsx:247
+#: src/features/chat.tsx:243
 msgid "Failed to summarize"
 msgstr "فشل التلخيص"
 
-#: src/features/provider-management.tsx:667
+#: src/components/ProviderAPIKeyNavigationDescription.tsx:32
+msgid "Get API keys"
+msgstr "الحصول على مفاتيح واجهة برمجة التطبيقات"
+
+#: src/features/provider-management.tsx:681
 msgid "Getting models..."
 msgstr "جارٍ الحصول على النماذج..."
 
@@ -147,23 +151,23 @@ msgstr "جارٍ الحصول على النماذج..."
 msgid "Into"
 msgstr "إلى"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Is calling tool..."
 msgstr "جارٍ استدعاء الأداة..."
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Is reasoning..."
 msgstr "جارٍ الاستدلال..."
 
-#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:367
 msgid "Manage Models"
 msgstr "إدارة النماذج"
 
-#: src/features/provider-management.tsx:360
+#: src/features/provider-management.tsx:366
 msgid "Model Management"
 msgstr "إدارة النماذج"
 
-#: src/features/provider-management.tsx:355
+#: src/features/provider-management.tsx:361
 msgid "Name"
 msgstr "اسم"
 
@@ -176,15 +180,15 @@ msgstr "لم يتم العثور على أي محادثات"
 msgid "No models found"
 msgstr "لم يتم العثور على أي نماذج"
 
-#: src/features/provider-management.tsx:353
+#: src/features/provider-management.tsx:359
 msgid "No provider found"
 msgstr "لم يتم العثور على أي موفر"
 
-#: src/features/provider-management.tsx:314
+#: src/features/provider-management.tsx:320
 msgid "Preset"
 msgstr "مسبق"
 
-#: src/features/provider-management.tsx:131
+#: src/features/provider-management.tsx:132
 msgid "Provider name already exists"
 msgstr "اسم الموفر موجود بالفعل"
 
@@ -192,7 +196,7 @@ msgstr "اسم الموفر موجود بالفعل"
 msgid "Providers"
 msgstr "الموفرون"
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Reasoning process"
 msgstr "عملية الاستدلال"
 
@@ -204,16 +208,16 @@ msgstr "عملية الاستدلال"
 msgid "Reasoning..."
 msgstr "الاستدلال..."
 
-#: src/features/chat.tsx:768
+#: src/features/chat.tsx:769
 msgid "Regenerate reply"
 msgstr "إعادة إنشاء الرد"
 
-#: src/features/provider-management.tsx:165
+#: src/features/provider-management.tsx:171
 msgid "Removed models"
 msgstr "تمت إزالة النماذج"
 
 #: src/hooks/useChat.ts:237
-#: src/features/provider-management.tsx:644
+#: src/features/provider-management.tsx:658
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "انتهت مهلة الطلب"
@@ -226,7 +230,7 @@ msgstr "واجهات برمجة تطبيقات البحث"
 msgid "Search models..."
 msgstr "البحث عن النماذج..."
 
-#: src/features/provider-management.tsx:352
+#: src/features/provider-management.tsx:358
 msgid "Search provider..."
 msgstr "البحث عن موفر..."
 
@@ -238,19 +242,19 @@ msgstr "اختر نموذجًا"
 msgid "Select model"
 msgstr "اختر نموذجًا"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:509
 msgid "Set now"
 msgstr "تعيين الآن"
 
-#: src/routes/__root.tsx:63
+#: src/routes/__root.tsx:61
 msgid "Settings"
 msgstr "إعدادات"
 
-#: src/features/chat.tsx:762
+#: src/features/chat.tsx:763
 msgid "Spend Time"
 msgstr "قضاء الوقت"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:762
 msgid "Step End"
 msgstr "نهاية الخطوة"
 
@@ -266,11 +270,11 @@ msgstr "إيقاف"
 msgid "Text copied to clipboard"
 msgstr "تم نسخ النص إلى الحافظة"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Tool-Call Result"
 msgstr "نتيجة استدعاء الأداة"
 
-#: src/routes/__root.tsx:62
+#: src/routes/__root.tsx:60
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "ترجمة"
@@ -287,7 +291,7 @@ msgstr "اكتملت الترجمة"
 msgid "Unknown error"
 msgstr "خطأ غير معروف"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Used Tool"
 msgstr "الأداة المستخدمة"
 
@@ -295,15 +299,15 @@ msgstr "الأداة المستخدمة"
 msgid "User stopped chat"
 msgstr "أوقف المستخدم الدردشة"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:761
 msgid "Waiting..."
 msgstr "انتظار..."
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:510
 msgid "What can I help you?"
 msgstr "بماذا يمكنني مساعدتك؟"
 
-#: src/features/provider-management.tsx:354
+#: src/features/provider-management.tsx:360
 msgid "You're adding new provider"
 msgstr "أنت تضيف موفرًا جديدًا"
 
@@ -315,10 +319,10 @@ msgstr "أنت تترجم"
 msgid "You're using reasoning model in translation which is not recommended"
 msgstr "أنت تستخدم نموذج الاستدلال في الترجمة وهو أمر غير مستحسن"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:758
 msgid "You're using reasoning model!"
 msgstr "أنت تستخدم نموذج الاستدلال!"
 
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:508
 msgid "Your search api is not set"
 msgstr "واجهة برمجة تطبيقات البحث الخاصة بك غير معينة"

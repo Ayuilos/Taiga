@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 msgid "Add"
 msgstr "Добавить"
 
@@ -21,16 +21,16 @@ msgstr "Добавить"
 msgid "Add models"
 msgstr "Добавить модели"
 
-#: src/features/provider-management.tsx:164
-#: src/features/provider-management.tsx:668
+#: src/features/provider-management.tsx:170
+#: src/features/provider-management.tsx:682
 msgid "Added models"
 msgstr "Добавленные модели"
 
-#: src/features/provider-management.tsx:356
+#: src/features/provider-management.tsx:362
 msgid "API Key"
 msgstr "API Ключ"
 
-#: src/features/chat.tsx:504
+#: src/features/chat.tsx:505
 msgid "Are you sure to delete this chat?"
 msgstr "Вы уверены, что хотите удалить этот чат?"
 
@@ -38,30 +38,30 @@ msgstr "Вы уверены, что хотите удалить этот чат?
 msgid "Are you sure you want to delete all chat history?"
 msgstr "Вы уверены, что хотите удалить всю историю чатов?"
 
-#: src/features/provider-management.tsx:363
+#: src/features/provider-management.tsx:369
 msgid "Are you sure you want to delete this provider?"
 msgstr "Вы уверены, что хотите удалить этого провайдера?"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Args Input by Model"
 msgstr "Входные аргументы модели"
 
-#: src/features/provider-management.tsx:669
+#: src/features/provider-management.tsx:683
 msgid "Available models"
 msgstr "Доступные модели"
 
-#: src/features/provider-management.tsx:357
+#: src/features/provider-management.tsx:363
 msgid "Base URL"
 msgstr "Базовый URL"
 
-#: src/features/provider-management.tsx:359
-#: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:506
+#: src/features/provider-management.tsx:365
+#: src/features/provider-management.tsx:370
+#: src/features/chat.tsx:507
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/routes/__root.tsx:61
+#: src/routes/__root.tsx:59
 msgid "Chat"
 msgstr "Чат"
 
@@ -69,7 +69,7 @@ msgstr "Чат"
 msgid "Chat History"
 msgstr "История чатов"
 
-#: src/features/chat.tsx:153
+#: src/features/chat.tsx:149
 msgid "Chat stopped by user"
 msgstr "Чат остановлен пользователем"
 
@@ -77,20 +77,20 @@ msgstr "Чат остановлен пользователем"
 msgid "Check reasoning process"
 msgstr "Проверить процесс рассуждения"
 
-#: src/features/provider-management.tsx:667
+#: src/features/provider-management.tsx:681
 msgid "Choose models"
 msgstr "Выбрать модели"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: src/features/chat.tsx:770
+#: src/features/chat.tsx:771
 msgid "Copy"
 msgstr "Копировать"
 
-#: src/features/provider-management.tsx:315
+#: src/features/provider-management.tsx:321
 msgid "Custom"
 msgstr "Пользовательский"
 
@@ -110,8 +110,8 @@ msgstr "Модели по умолчанию"
 msgid "Default Translate Model"
 msgstr "Модель перевода по умолчанию"
 
-#: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:505
+#: src/features/provider-management.tsx:371
+#: src/features/chat.tsx:506
 msgid "Delete"
 msgstr "Удалить"
 
@@ -119,27 +119,31 @@ msgstr "Удалить"
 msgid "Delete all chat history"
 msgstr "Удалить всю историю чатов"
 
-#: src/features/provider-management.tsx:362
+#: src/features/provider-management.tsx:368
 msgid "Delete Provider"
 msgstr "Удалить провайдера"
 
-#: src/features/chat.tsx:766
+#: src/features/chat.tsx:767
 msgid "Edit message"
 msgstr "Редактировать сообщение"
 
-#: src/features/chat.tsx:763
+#: src/features/chat.tsx:764
 msgid "Error Happen"
 msgstr "Произошла ошибка"
 
-#: src/features/chat.tsx:736
+#: src/features/chat.tsx:737
 msgid "Failed to copy to clipboard"
 msgstr "Не удалось скопировать в буфер обмена"
 
-#: src/features/chat.tsx:247
+#: src/features/chat.tsx:243
 msgid "Failed to summarize"
 msgstr "Не удалось суммировать"
 
-#: src/features/provider-management.tsx:667
+#: src/components/ProviderAPIKeyNavigationDescription.tsx:32
+msgid "Get API keys"
+msgstr "Получить ключи API"
+
+#: src/features/provider-management.tsx:681
 msgid "Getting models..."
 msgstr "Получение моделей..."
 
@@ -147,23 +151,23 @@ msgstr "Получение моделей..."
 msgid "Into"
 msgstr "В"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Is calling tool..."
 msgstr "Вызывается инструмент..."
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Is reasoning..."
 msgstr "Идет рассуждение..."
 
-#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:367
 msgid "Manage Models"
 msgstr "Управление моделями"
 
-#: src/features/provider-management.tsx:360
+#: src/features/provider-management.tsx:366
 msgid "Model Management"
 msgstr "Управление моделями"
 
-#: src/features/provider-management.tsx:355
+#: src/features/provider-management.tsx:361
 msgid "Name"
 msgstr "Имя"
 
@@ -176,15 +180,15 @@ msgstr "Чаты не найдены"
 msgid "No models found"
 msgstr "Модели не найдены"
 
-#: src/features/provider-management.tsx:353
+#: src/features/provider-management.tsx:359
 msgid "No provider found"
 msgstr "Провайдер не найден"
 
-#: src/features/provider-management.tsx:314
+#: src/features/provider-management.tsx:320
 msgid "Preset"
 msgstr "Предустановка"
 
-#: src/features/provider-management.tsx:131
+#: src/features/provider-management.tsx:132
 msgid "Provider name already exists"
 msgstr "Имя провайдера уже существует"
 
@@ -192,7 +196,7 @@ msgstr "Имя провайдера уже существует"
 msgid "Providers"
 msgstr "Провайдеры"
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Reasoning process"
 msgstr "Процесс рассуждения"
 
@@ -204,16 +208,16 @@ msgstr "Процесс рассуждения"
 msgid "Reasoning..."
 msgstr "Рассуждение..."
 
-#: src/features/chat.tsx:768
+#: src/features/chat.tsx:769
 msgid "Regenerate reply"
 msgstr "Перегенерировать ответ"
 
-#: src/features/provider-management.tsx:165
+#: src/features/provider-management.tsx:171
 msgid "Removed models"
 msgstr "Удаленные модели"
 
 #: src/hooks/useChat.ts:237
-#: src/features/provider-management.tsx:644
+#: src/features/provider-management.tsx:658
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "Превышено время ожидания запроса"
@@ -226,7 +230,7 @@ msgstr "Поисковые API"
 msgid "Search models..."
 msgstr "Поиск моделей..."
 
-#: src/features/provider-management.tsx:352
+#: src/features/provider-management.tsx:358
 msgid "Search provider..."
 msgstr "Поиск провайдера..."
 
@@ -238,19 +242,19 @@ msgstr "Выберите модель"
 msgid "Select model"
 msgstr "Выберите модель"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:509
 msgid "Set now"
 msgstr "Установить сейчас"
 
-#: src/routes/__root.tsx:63
+#: src/routes/__root.tsx:61
 msgid "Settings"
 msgstr "Настройки"
 
-#: src/features/chat.tsx:762
+#: src/features/chat.tsx:763
 msgid "Spend Time"
 msgstr "Затраченное время"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:762
 msgid "Step End"
 msgstr "Конец шага"
 
@@ -266,11 +270,11 @@ msgstr "Стоп"
 msgid "Text copied to clipboard"
 msgstr "Текст скопирован в буфер обмена"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Tool-Call Result"
 msgstr "Результат вызова инструмента"
 
-#: src/routes/__root.tsx:62
+#: src/routes/__root.tsx:60
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "Перевести"
@@ -287,7 +291,7 @@ msgstr "Перевод завершен"
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Used Tool"
 msgstr "Использованный инструмент"
 
@@ -295,15 +299,15 @@ msgstr "Использованный инструмент"
 msgid "User stopped chat"
 msgstr "Чат остановлен пользователем"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:761
 msgid "Waiting..."
 msgstr "Ожидание..."
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:510
 msgid "What can I help you?"
 msgstr "Чем я могу вам помочь?"
 
-#: src/features/provider-management.tsx:354
+#: src/features/provider-management.tsx:360
 msgid "You're adding new provider"
 msgstr "Вы добавляете нового провайдера"
 
@@ -315,10 +319,10 @@ msgstr "Вы переводите"
 msgid "You're using reasoning model in translation which is not recommended"
 msgstr "Вы используете модель рассуждения в переводе, что не рекомендуется"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:758
 msgid "You're using reasoning model!"
 msgstr "Вы используете модель рассуждения!"
 
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:508
 msgid "Your search api is not set"
 msgstr "Ваш поисковый API не настроен"

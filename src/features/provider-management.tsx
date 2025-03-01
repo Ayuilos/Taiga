@@ -34,6 +34,7 @@ import {
   AIProviderContext,
   TAIProviderContextType,
 } from "@/components/AIProvidersContext"
+import { ProviderAPIKeyNavigationDescription } from "@/components/ProviderAPIKeyNavigationDescription"
 import { Alert, AlertTitle } from "@/components/ui/alert"
 import {
   AlertDialog,
@@ -446,6 +447,9 @@ function InternalProviderManagement({
                   <Input placeholder={apiKeyLabelString} {...field} />
                 </FormControl>
                 <FormMessage />
+                <ProviderAPIKeyNavigationDescription
+                  providerName={currentProvider?.name}
+                />
               </FormItem>
             )}
           />

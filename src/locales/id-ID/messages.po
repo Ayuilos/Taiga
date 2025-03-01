@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 msgid "Add"
 msgstr "Tambah"
 
@@ -21,16 +21,16 @@ msgstr "Tambah"
 msgid "Add models"
 msgstr "Tambahkan model"
 
-#: src/features/provider-management.tsx:164
-#: src/features/provider-management.tsx:668
+#: src/features/provider-management.tsx:170
+#: src/features/provider-management.tsx:682
 msgid "Added models"
 msgstr "Model ditambahkan"
 
-#: src/features/provider-management.tsx:356
+#: src/features/provider-management.tsx:362
 msgid "API Key"
 msgstr "Kunci API"
 
-#: src/features/chat.tsx:504
+#: src/features/chat.tsx:505
 msgid "Are you sure to delete this chat?"
 msgstr "Apakah Anda yakin ingin menghapus obrolan ini?"
 
@@ -38,30 +38,30 @@ msgstr "Apakah Anda yakin ingin menghapus obrolan ini?"
 msgid "Are you sure you want to delete all chat history?"
 msgstr "Apakah Anda yakin ingin menghapus semua riwayat obrolan?"
 
-#: src/features/provider-management.tsx:363
+#: src/features/provider-management.tsx:369
 msgid "Are you sure you want to delete this provider?"
 msgstr "Apakah Anda yakin ingin menghapus penyedia ini?"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Args Input by Model"
 msgstr "Argumen Input oleh Model"
 
-#: src/features/provider-management.tsx:669
+#: src/features/provider-management.tsx:683
 msgid "Available models"
 msgstr "Model yang tersedia"
 
-#: src/features/provider-management.tsx:357
+#: src/features/provider-management.tsx:363
 msgid "Base URL"
 msgstr "URL Dasar"
 
-#: src/features/provider-management.tsx:359
-#: src/features/provider-management.tsx:364
-#: src/features/chat.tsx:506
+#: src/features/provider-management.tsx:365
+#: src/features/provider-management.tsx:370
+#: src/features/chat.tsx:507
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "Batal"
 
-#: src/routes/__root.tsx:61
+#: src/routes/__root.tsx:59
 msgid "Chat"
 msgstr "Obrolan"
 
@@ -69,7 +69,7 @@ msgstr "Obrolan"
 msgid "Chat History"
 msgstr "Riwayat Obrolan"
 
-#: src/features/chat.tsx:153
+#: src/features/chat.tsx:149
 msgid "Chat stopped by user"
 msgstr "Obrolan dihentikan oleh pengguna"
 
@@ -77,20 +77,20 @@ msgstr "Obrolan dihentikan oleh pengguna"
 msgid "Check reasoning process"
 msgstr "Periksa proses penalaran"
 
-#: src/features/provider-management.tsx:667
+#: src/features/provider-management.tsx:681
 msgid "Choose models"
 msgstr "Pilih model"
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:364
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "Konfirmasi"
 
-#: src/features/chat.tsx:770
+#: src/features/chat.tsx:771
 msgid "Copy"
 msgstr "Salin"
 
-#: src/features/provider-management.tsx:315
+#: src/features/provider-management.tsx:321
 msgid "Custom"
 msgstr "Kustom"
 
@@ -110,8 +110,8 @@ msgstr "Model Default"
 msgid "Default Translate Model"
 msgstr "Model Terjemahan Default"
 
-#: src/features/provider-management.tsx:365
-#: src/features/chat.tsx:505
+#: src/features/provider-management.tsx:371
+#: src/features/chat.tsx:506
 msgid "Delete"
 msgstr "Hapus"
 
@@ -119,27 +119,31 @@ msgstr "Hapus"
 msgid "Delete all chat history"
 msgstr "Hapus semua riwayat obrolan"
 
-#: src/features/provider-management.tsx:362
+#: src/features/provider-management.tsx:368
 msgid "Delete Provider"
 msgstr "Hapus Penyedia"
 
-#: src/features/chat.tsx:766
+#: src/features/chat.tsx:767
 msgid "Edit message"
 msgstr "Edit pesan"
 
-#: src/features/chat.tsx:763
+#: src/features/chat.tsx:764
 msgid "Error Happen"
 msgstr "Terjadi Kesalahan"
 
-#: src/features/chat.tsx:736
+#: src/features/chat.tsx:737
 msgid "Failed to copy to clipboard"
 msgstr "Gagal menyalin ke clipboard"
 
-#: src/features/chat.tsx:247
+#: src/features/chat.tsx:243
 msgid "Failed to summarize"
 msgstr "Gagal meringkas"
 
-#: src/features/provider-management.tsx:667
+#: src/components/ProviderAPIKeyNavigationDescription.tsx:32
+msgid "Get API keys"
+msgstr "Dapatkan kunci API"
+
+#: src/features/provider-management.tsx:681
 msgid "Getting models..."
 msgstr "Mendapatkan model..."
 
@@ -147,23 +151,23 @@ msgstr "Mendapatkan model..."
 msgid "Into"
 msgstr "Ke"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Is calling tool..."
 msgstr "Memanggil alat..."
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Is reasoning..."
 msgstr "Sedang menalar..."
 
-#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:367
 msgid "Manage Models"
 msgstr "Kelola Model"
 
-#: src/features/provider-management.tsx:360
+#: src/features/provider-management.tsx:366
 msgid "Model Management"
 msgstr "Manajemen Model"
 
-#: src/features/provider-management.tsx:355
+#: src/features/provider-management.tsx:361
 msgid "Name"
 msgstr "Nama"
 
@@ -176,15 +180,15 @@ msgstr "Tidak ada obrolan yang ditemukan"
 msgid "No models found"
 msgstr "Tidak ada model yang ditemukan"
 
-#: src/features/provider-management.tsx:353
+#: src/features/provider-management.tsx:359
 msgid "No provider found"
 msgstr "Tidak ada penyedia yang ditemukan"
 
-#: src/features/provider-management.tsx:314
+#: src/features/provider-management.tsx:320
 msgid "Preset"
 msgstr "Preset"
 
-#: src/features/provider-management.tsx:131
+#: src/features/provider-management.tsx:132
 msgid "Provider name already exists"
 msgstr "Nama penyedia sudah ada"
 
@@ -192,7 +196,7 @@ msgstr "Nama penyedia sudah ada"
 msgid "Providers"
 msgstr "Penyedia"
 
-#: src/features/chat.tsx:756
+#: src/features/chat.tsx:757
 msgid "Reasoning process"
 msgstr "Proses penalaran"
 
@@ -204,16 +208,16 @@ msgstr "Proses Penalaran"
 msgid "Reasoning..."
 msgstr "Menalar..."
 
-#: src/features/chat.tsx:768
+#: src/features/chat.tsx:769
 msgid "Regenerate reply"
 msgstr "Hasilkan ulang balasan"
 
-#: src/features/provider-management.tsx:165
+#: src/features/provider-management.tsx:171
 msgid "Removed models"
 msgstr "Model dihapus"
 
 #: src/hooks/useChat.ts:237
-#: src/features/provider-management.tsx:644
+#: src/features/provider-management.tsx:658
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "Waktu permintaan habis"
@@ -226,7 +230,7 @@ msgstr "API Pencarian"
 msgid "Search models..."
 msgstr "Cari model..."
 
-#: src/features/provider-management.tsx:352
+#: src/features/provider-management.tsx:358
 msgid "Search provider..."
 msgstr "Cari penyedia..."
 
@@ -238,19 +242,19 @@ msgstr "Pilih model"
 msgid "Select model"
 msgstr "Pilih model"
 
-#: src/features/chat.tsx:508
+#: src/features/chat.tsx:509
 msgid "Set now"
 msgstr "Atur sekarang"
 
-#: src/routes/__root.tsx:63
+#: src/routes/__root.tsx:61
 msgid "Settings"
 msgstr "Pengaturan"
 
-#: src/features/chat.tsx:762
+#: src/features/chat.tsx:763
 msgid "Spend Time"
 msgstr "Waktu yang Dihabiskan"
 
-#: src/features/chat.tsx:761
+#: src/features/chat.tsx:762
 msgid "Step End"
 msgstr "Langkah Selesai"
 
@@ -266,11 +270,11 @@ msgstr "Berhenti"
 msgid "Text copied to clipboard"
 msgstr "Teks disalin ke clipboard"
 
-#: src/features/chat.tsx:758
+#: src/features/chat.tsx:759
 msgid "Tool-Call Result"
 msgstr "Hasil Panggilan Alat"
 
-#: src/routes/__root.tsx:62
+#: src/routes/__root.tsx:60
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "Terjemahkan"
@@ -287,7 +291,7 @@ msgstr "Terjemahan selesai"
 msgid "Unknown error"
 msgstr "Kesalahan tidak dikenal"
 
-#: src/features/chat.tsx:759
+#: src/features/chat.tsx:760
 msgid "Used Tool"
 msgstr "Alat yang Digunakan"
 
@@ -295,15 +299,15 @@ msgstr "Alat yang Digunakan"
 msgid "User stopped chat"
 msgstr "Pengguna menghentikan obrolan"
 
-#: src/features/chat.tsx:760
+#: src/features/chat.tsx:761
 msgid "Waiting..."
 msgstr "Menunggu..."
 
-#: src/features/chat.tsx:509
+#: src/features/chat.tsx:510
 msgid "What can I help you?"
 msgstr "Ada yang bisa saya bantu?"
 
-#: src/features/provider-management.tsx:354
+#: src/features/provider-management.tsx:360
 msgid "You're adding new provider"
 msgstr "Anda menambahkan penyedia baru"
 
@@ -315,10 +319,10 @@ msgstr "Anda menerjemahkan"
 msgid "You're using reasoning model in translation which is not recommended"
 msgstr "Anda menggunakan model penalaran dalam terjemahan yang tidak disarankan"
 
-#: src/features/chat.tsx:757
+#: src/features/chat.tsx:758
 msgid "You're using reasoning model!"
 msgstr "Anda menggunakan model penalaran!"
 
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:508
 msgid "Your search api is not set"
 msgstr "API pencarian Anda belum diatur"
