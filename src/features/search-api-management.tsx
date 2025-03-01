@@ -4,6 +4,7 @@ import { Check, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 
 import { SearchApiSchema, TBaseSearchAPI } from "@/lib/search-api-store"
+import { APIKeyNavigationDescription } from "@/components/ProviderAPIKeyNavigationDescription"
 import { SearchApisContext } from "@/components/SearchApisContext"
 import { Button } from "@/components/ui/button"
 import {
@@ -100,6 +101,7 @@ function SingleSearchAPIManagement({
                 <Input {...field} />
               </FormControl>
               <FormMessage />
+              <APIKeyNavigationDescription providerName={api.name} />
             </FormItem>
           )}
         />

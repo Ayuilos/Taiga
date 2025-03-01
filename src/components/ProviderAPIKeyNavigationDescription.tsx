@@ -3,13 +3,13 @@ import { openUrl } from "@tauri-apps/plugin-opener"
 
 import { FormDescription } from "./ui/form"
 
-interface IProviderAPIIKNavigationDescription {
+interface IAPIIKNavigationDescription {
   providerName: string | undefined
 }
 
-export function ProviderAPIKeyNavigationDescription({
+export function APIKeyNavigationDescription({
   providerName,
-}: IProviderAPIIKNavigationDescription) {
+}: IAPIIKNavigationDescription) {
   let url: string
 
   switch (providerName) {
@@ -24,6 +24,9 @@ export function ProviderAPIKeyNavigationDescription({
       break
     case "OpenRouter[Preset]":
       url = "https://openrouter.ai/settings/keys"
+      break
+    case "Jina[Preset]":
+      url = "https://jina.ai/api-dashboard/key-manager"
       break
     default:
       return null
