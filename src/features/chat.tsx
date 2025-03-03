@@ -23,6 +23,7 @@ import {
 import { toast } from "sonner"
 
 import { getModelProvider } from "@/lib/ai-providers"
+import { ChatPathStore } from "@/lib/chat-path-store"
 import {
   ChatStore,
   ChatSummaryStore,
@@ -260,6 +261,12 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     }
   }, [id, chatNodes, newMessageCreated, _createChatSummary])
 
+  const saveChatPath = useCallback(async () => {
+    if (chatPath.length) {
+      await ChatPathStore.setChatPath(id, chatPath)
+    }
+  }, [id, chatPath])
+
   const _resetSearchPath = useCallback(
     (nodes: TChatNode[], startPath: number[] = []) => {
       let _chatPath: number[] = []
@@ -287,13 +294,14 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     async (_id: TChatID) => {
       if (_id !== id) {
         const { nodes: newChatNodes } = await ChatStore.getChat(_id)
+        const historyChatPath = await ChatPathStore.getChatPath(_id)
 
         setChatId(_id)
         setInput("")
         setChatNodes(newChatNodes)
         clearChat()
 
-        let _chatPath: number[] = _resetSearchPath(newChatNodes)
+        let _chatPath: number[] = historyChatPath ?? _resetSearchPath(newChatNodes)
 
         setChatPath(_chatPath)
         sessionPath.current = _chatPath
@@ -462,6 +470,10 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   useEffect(() => {
     saveChatHistory()
   }, [saveChatHistory])
+
+  useEffect(() => {
+    saveChatPath()
+  }, [saveChatPath])
 
   useLayoutEffect(() => {
     if (messagesRef.current && shouldAutoScroll) {
