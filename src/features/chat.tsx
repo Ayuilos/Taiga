@@ -832,8 +832,10 @@ function Message({
 
                   const argsDisplay = Object.entries(args).map(
                     ([key, value]) => (
-                      <Badge className="truncate" key={key} variant="outline">
-                        {key}: {JSON.stringify(value)}
+                      <Badge key={key} variant="outline">
+                        <span className="text-left whitespace-pre-wrap">
+                          {key}: {JSON.stringify(value)}
+                        </span>
                       </Badge>
                     )
                   )
