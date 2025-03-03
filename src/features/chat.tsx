@@ -32,6 +32,7 @@ import {
 } from "@/lib/chat-store"
 import { sameArrays } from "@/lib/utils"
 import { AIProviderContext } from "@/components/AIProvidersContext"
+import { Aurora } from "@/components/Aurora"
 import { ChatHistory } from "@/components/ChatHistory"
 import { ChatMessage, IChatMessage } from "@/components/ChatMessage"
 import { ErrorsToastText } from "@/components/ErrorsToastText"
@@ -301,7 +302,8 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
         setChatNodes(newChatNodes)
         clearChat()
 
-        let _chatPath: number[] = historyChatPath ?? _resetSearchPath(newChatNodes)
+        let _chatPath: number[] =
+          historyChatPath ?? _resetSearchPath(newChatNodes)
 
         setChatPath(_chatPath)
         sessionPath.current = _chatPath
@@ -516,6 +518,11 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     <>
       <div className="w-[94%] self-center flex-auto flex flex-col items-center justify-end gap-4 max-h-screen select-none">
         <div className="w-full relative flex-auto flex flex-col overflow-hidden">
+          {isChatting ? (
+            <div className="fixed top-16 left-0 w-screen h-[20vh]">
+              <Aurora speed={2.5} blend={1} amplitude={0.4} />
+            </div>
+          ) : null}
           <div
             ref={messagesRef}
             className="w-full pt-20 flex-auto flex flex-col gap-4 overflow-y-auto"
@@ -531,6 +538,8 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
             )
               .filter((m) => m.role === "user" || m.role === "assistant")
               .map((message, index) => {
+                const isLastChatting =
+                  isChatting && index === messages.length - 1
                 const isLastReasoning =
                   isReasoning && index === messages.length - 1
                 // chatPath [0] -> systemRoleNode, chatPath [0, 0] -> userRoleNode
@@ -543,6 +552,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
                   <ChatMessage
                     key={message.id || index}
                     message={message}
+                    isChatting={isLastChatting}
                     isReasoning={isLastReasoning}
                     isCallingTool={isCallingTool}
                     onEdit={

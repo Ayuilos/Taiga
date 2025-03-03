@@ -21,6 +21,7 @@ import {
 
 export interface IChatMessage {
   message: TExpandedMessage & { currentIndex?: number; all?: number }
+  isChatting: boolean
   isReasoning: boolean
   isCallingTool: boolean
   onEdit?: () => void
@@ -28,6 +29,7 @@ export interface IChatMessage {
 }
 export function ChatMessage({
   message,
+  isChatting,
   isReasoning,
   isCallingTool,
   onEdit,
@@ -73,6 +75,23 @@ export function ChatMessage({
         : null
   const copyString = [<Copy />, t`Copy`]
 
+  const loadingComp = isChatting ? (
+    <div className="flex text-2xl items-center gap-1 order-3">
+      {"...".split("").map((dot, i) => (
+        <span
+          key={i}
+          style={{
+            animationDelay: `${i * 216}ms`,
+            transitionDelay: `${i * 216}ms`,
+          }}
+          className="animate-bounce"
+        >
+          {dot}
+        </span>
+      ))}
+    </div>
+  ) : null
+
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>
@@ -100,6 +119,7 @@ export function ChatMessage({
                 : "border bg-gray-50 text-black"
             } flex flex-col gap-2 p-2 whitespace-pre-wrap break-words hyphens-auto rounded-lg max-w-full`}
           >
+            {loadingComp}
             {message.parts?.map((p, i) => {
               switch (p.type) {
                 case "reasoning":
@@ -122,7 +142,7 @@ export function ChatMessage({
                 case "text":
                   return (
                     <div ref={messageRef} key={i} className="order-2">
-                      <Markdown>{p.text || "..."}</Markdown>
+                      <Markdown>{p.text}</Markdown>
                     </div>
                   )
                 case "tool-invocation": {
