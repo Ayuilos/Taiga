@@ -32,6 +32,14 @@
     type-fest "^4.35.0"
     zod-validation-error "^3.4.0"
 
+"@agentic/exa@^7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@agentic/exa/-/exa-7.3.3.tgz#b579c714c626117713b08a64a947c7108450406b"
+  integrity sha512-Kh5C5VHVZFUIsk/jqei/Tj4Kp7bhrsbS0UyhZnSJoLWMPd1Kg905mrhx2d4GMKKPz91u7HHSlamO71RwQLfOCQ==
+  dependencies:
+    "@agentic/core" "7.3.3"
+    ky "^1.7.5"
+
 "@agentic/jina@^7.3.4":
   version "7.3.4"
   resolved "https://registry.yarnpkg.com/@agentic/jina/-/jina-7.3.4.tgz#0d729a17c6715d711f50c3720c3c9b2d6a2a1af8"
@@ -1366,6 +1374,19 @@
   integrity sha512-YAKxaiGsSQJ38VzKH86/BPRC4rh+b1Jpa+JneA5LRE7skmLPNAyeG8kPJj/oo4STLvlrs8vkf/iYyc3A5stYCQ==
   dependencies:
     "@radix-ui/react-compose-refs" "1.1.1"
+
+"@radix-ui/react-switch@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-switch/-/react-switch-1.1.3.tgz#cb6386909d1d3f65a2b81a3b15da8c91d18f49b0"
+  integrity sha512-1nc+vjEOQkJVsJtWPSiISGT6OKm4SiOdjMo+/icLxo2G4vxz1GntC5MzfL4v8ey9OEfw787QCD1y3mUv0NiFEQ==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.2"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    "@radix-ui/react-use-previous" "1.1.0"
+    "@radix-ui/react-use-size" "1.1.0"
 
 "@radix-ui/react-toggle@^1.1.2":
   version "1.1.2"

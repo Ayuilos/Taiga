@@ -21,6 +21,7 @@ interface IToolCallDisplay {
   description: ReactNode
 }
 
+// [TODO] Support Exa Tool Calling Result Display
 export default function ToolCallDisplay({
   isCalling,
   buttonContent,

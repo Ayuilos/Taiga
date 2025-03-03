@@ -9,20 +9,17 @@ import {
 } from "react"
 import { TExpandedMessage, useChat } from "@/hooks/useChat"
 import { t } from "@lingui/core/macro"
-import { useRouter } from "@tanstack/react-router"
 import { CoreMessage, generateText, LanguageModelV1 } from "ai"
 import dayjs from "dayjs"
 import { produce } from "immer"
 import {
   Check,
   Copy,
-  Globe,
   History,
   MessageSquarePlus,
   Pen,
   RefreshCw,
   SendHorizonal,
-  Sparkle,
   StopCircle,
   Trash,
   X,
@@ -36,7 +33,7 @@ import {
   TChatID,
   TChatNode,
 } from "@/lib/chat-store"
-import { sameArrays } from "@/lib/utils"
+import { sameArrays, stringifyObject } from "@/lib/utils"
 import { AIProviderContext } from "@/components/AIProvidersContext"
 import { ChatHistory } from "@/components/ChatHistory"
 import { ErrorsToastText } from "@/components/ErrorsToastText"
@@ -52,6 +49,7 @@ import {
   SHOULD_RENDER_SCROLL_TO_BOTTOM_HEIGHT,
 } from "@/components/ScrollToBottom"
 import { SimplePagination } from "@/components/SimplePagination"
+import { ToolArea } from "@/components/ToolArea"
 import ToolCallDisplay from "@/components/ToolCallDisplay"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import {
@@ -72,7 +70,6 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
-import { Popover, PopoverAnchor, PopoverContent } from "@/components/ui/popover"
 import { Textarea } from "@/components/ui/textarea"
 
 interface IInternalChat {
@@ -92,7 +89,6 @@ const initialChatNodes: TChatNode[] = [
 ]
 
 function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
-  const router = useRouter()
   const [chatNodes, setChatNodes] = useState<TChatNode[]>(initialChatNodes)
   // `chatPath` for rendering chat flow
   const [chatPath, setChatPath] = useState<number[]>([0])
@@ -104,10 +100,10 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   const [id, setChatId] = useState(crypto.randomUUID())
   const [editedNodePath, setEditedNodePath] = useState<number[] | null>(null)
 
-  const [openSearch, setOpenSearch] = useState(false)
-  const [openCommonTools, setOpenCommonTools] = useState(false)
-
-  const [showSearchApiSetPopover, setShowSearchApiSetPopover] = useState(false)
+  const [selectedSearchApi, setSelectedSearchApi] = useState<
+    string | undefined
+  >(undefined)
+  const [selectedCommonTools, setSelectedCommonTools] = useState<string[]>([])
 
   const prevInputRef = useRef<string>("")
 
@@ -136,7 +132,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     isReasoning,
     isCallingTool,
     result,
-    searchApiIsSet,
+    availableSearchApis,
     startChat,
     cancelChat,
     clearChat,
@@ -158,8 +154,8 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
       }
     },
     options: {
-      allowCommonTools: openCommonTools,
-      allowSearch: openSearch,
+      allowCommonTools: selectedCommonTools,
+      allowSearch: selectedSearchApi ? [selectedSearchApi] : undefined,
     },
   })
 
@@ -461,18 +457,6 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     _startNewChat()
   }, [_startNewChat])
 
-  const onSearchButtonClick = useCallback(async () => {
-    if (openSearch) {
-      setOpenSearch(false)
-    } else {
-      if (!searchApiIsSet) {
-        setShowSearchApiSetPopover(true)
-      } else {
-        setOpenSearch(true)
-      }
-    }
-  }, [searchApiIsSet, openSearch])
-
   useEffect(() => {
     if (messagesRef.current) {
       const element = messagesRef.current
@@ -505,64 +489,7 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   const deleteChatTitleString = t`Are you sure to delete this chat?`
   const deleteChatConfirmString = t`Delete`
   const deleteChatCancelString = t`Cancel`
-  const jumpToSearchApiSetPageString = t`Your search api is not set`
-  const jumpToSearchApiSetPageButtonString = t`Set now`
   const textareaPlaceholder = t`What can I help you?`
-
-  const openSearchButton = (
-    <Popover
-      open={showSearchApiSetPopover}
-      onOpenChange={setShowSearchApiSetPopover}
-    >
-      <PopoverAnchor asChild>
-        <Button
-          className={`flex items-center gap-1 transition-all border-none rounded-full${openSearch ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
-          size="icon"
-          variant={openSearch ? "default" : "outline"}
-          onClick={onSearchButtonClick}
-        >
-          <Globe />
-        </Button>
-      </PopoverAnchor>
-      <PopoverContent
-        className="flex flex-col gap-2 w-64"
-        side="top"
-        sideOffset={12}
-        align="start"
-      >
-        <p>{jumpToSearchApiSetPageString}</p>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            router.navigate({
-              to: "/settings/manage-search-apis",
-            })
-          }}
-        >
-          {jumpToSearchApiSetPageButtonString} →
-        </Button>
-      </PopoverContent>
-    </Popover>
-  )
-
-  const openCommonToolsButton = (
-    <Button
-      className={`flex items-center gap-1 transition-all border-none rounded-full${openCommonTools ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
-      size="icon"
-      variant={openCommonTools ? "default" : "outline"}
-      onClick={() => setOpenCommonTools((o) => !o)}
-    >
-      <Sparkle fill="currentColor" fillOpacity={openCommonTools ? 100 : 0} />
-    </Button>
-  )
-
-  // [TODO] Need a UX, check if jina apiKey is set, if not show a dialog or what to let user redirect to search apiKey set page
-  const toolArea = (
-    <div className="flex items-center gap-1 p-1 bg-blue-100/40 rounded-full">
-      {openSearchButton}
-      {openCommonToolsButton}
-    </div>
-  )
 
   const deleteChatButton = !chatIsFresh ? (
     <AlertDialog>
@@ -663,7 +590,13 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
                 </Button>
               ) : (
                 <>
-                  {toolArea}
+                  <ToolArea
+                    availableSearchApis={availableSearchApis}
+                    selectedSearchApi={selectedSearchApi}
+                    selectedCommonTools={selectedCommonTools}
+                    onSearchAPISelect={setSelectedSearchApi}
+                    onCommonToolsSelect={setSelectedCommonTools}
+                  />
                   <Button size="icon" variant="outline" onClick={startNewChat}>
                     <MessageSquarePlus />
                   </Button>

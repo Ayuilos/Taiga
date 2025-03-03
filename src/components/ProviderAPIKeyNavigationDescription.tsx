@@ -28,6 +28,9 @@ export function APIKeyNavigationDescription({
     case "Jina[Preset]":
       url = "https://jina.ai/api-dashboard/key-manager"
       break
+    case "Exa[Preset]":
+      url = "https://dashboard.exa.ai/api-keys"
+      break
     default:
       return null
   }

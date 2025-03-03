@@ -7,7 +7,7 @@ import {
   useState,
 } from "react"
 import { createAISDKTools } from "@agentic/ai-sdk"
-import { jina, JinaClient } from "@agentic/jina"
+import { jina } from "@agentic/jina"
 import { Message } from "@ai-sdk/react"
 import { TextUIPart, ToolInvocationUIPart } from "@ai-sdk/ui-utils"
 import { t } from "@lingui/core/macro"
@@ -23,6 +23,7 @@ import { produce } from "immer"
 import { z } from "zod"
 
 import { commonAITools } from "@/lib/common-ai-tools"
+import { getSearchAITools } from "@/lib/search-ai-tools"
 import { stringifyObject } from "@/lib/utils"
 import { SearchApisContext } from "@/components/SearchApisContext"
 
@@ -33,16 +34,16 @@ interface IUseChat {
   onFinish?: (reason: FinishReason) => void
   options?: {
     timeout?: number
-    allowSearch?: boolean
-    allowCommonTools?: boolean
+    allowSearch?: boolean | string[]
+    allowCommonTools?: boolean | string[]
   }
 }
 // type WithType<T, U> = T extends (infer A)[] | undefined
 //   ? (A | U)[] | undefined
 //   : never
 type ExtendTupleType<T, U> =
-| (T extends (infer V)[] ? (V | U)[] : never)
-| undefined
+  | (T extends (infer V)[] ? (V | U)[] : never)
+  | undefined
 type TStepFlag = {
   type: "flag"
   tokenUsage: LanguageModelUsage
@@ -80,12 +81,11 @@ export const SearchReturnSchema = z.object({
 })
 export type TSearchReturnType = z.infer<typeof SearchReturnSchema>
 
-const WEB_SEARCH_TIMEOUT = 30_000
 const REQUEST_TIMEOUT = 30_000
 const KEEPED_SEARCH_CONTENT_CHARACTOR_COUNT = 3_000
 const DEFAULT_TEMPERATURE = 0.7
-const JINA_SEARCH_API_NAME = "Jina[Preset]"
 
+export type TUseChatReturnType = ReturnType<typeof useChat>
 /** @notice `system` won't work if you use `messages`, add a `system` role part to `messages` */
 export function useChat({
   model,
@@ -115,20 +115,32 @@ export function useChat({
   const [parts, setParts] = useState<TExpandedMessage["parts"]>([])
 
   const tools = useMemo(() => {
-    const jinaSearchApi = searchApis.find(
-      (api) => api.name === JINA_SEARCH_API_NAME
+    const searchApiKeys: Record<string, string> = Object.fromEntries(
+      searchApis
+        .map((api) => [api.name, api.apiKey])
+        .filter(([_, apiKey]) => !!apiKey)
     )
-    const jinaClient = jinaSearchApi
-      ? new JinaClient({
-          apiKey: jinaSearchApi.apiKey,
-          timeoutMs: WEB_SEARCH_TIMEOUT,
-        })
-      : null
 
     const _tools = createAISDKTools(
       ...[
-        options?.allowSearch ? jinaClient : null,
-        options?.allowCommonTools ? commonAITools : null,
+        options?.allowSearch
+          ? getSearchAITools(
+              typeof options.allowSearch === "boolean"
+                ? searchApiKeys
+                : options.allowSearch.reduce(
+                    (filteredKeys, curr) => {
+                      filteredKeys[curr] = searchApiKeys[curr]
+                      return filteredKeys
+                    },
+                    {} as Record<string, string>
+                  )
+            )
+          : null,
+        options?.allowCommonTools
+          ? typeof options.allowCommonTools === "boolean"
+            ? commonAITools
+            : commonAITools.pick(...options.allowCommonTools)
+          : null,
       ].filter((t) => t !== null)
     )
     return produce(_tools, (draft) => {
@@ -401,18 +413,20 @@ export function useChat({
 
                 setParts(
                   produce((draft) => {
-                    const lastPart = draft![
-                      draft!.length - 1
-                    ] as ToolInvocationUIPart
+                    const targetPart = draft!.find(
+                      (p) =>
+                        p.type === "tool-invocation" &&
+                        p.toolInvocation.toolCallId === chunk.toolCallId
+                    ) as ToolInvocationUIPart
 
-                    lastPart.toolInvocation.state = "result"
+                    targetPart.toolInvocation.state = "result"
 
                     const isCallingSearchTool = SearchReturnSchema.safeParse(
                       chunk.result
                     ).success
 
                     ;(
-                      lastPart.toolInvocation as ToolResult<string, any, any>
+                      targetPart.toolInvocation as ToolResult<string, any, any>
                     ).result = isCallingSearchTool
                       ? produce(chunk.result as TSearchReturnType, (draft) => {
                           draft.data.forEach((item) => {
@@ -499,9 +513,8 @@ export function useChat({
     [model, options, tools, onError, onFinish, requireModel, clearChat]
   )
 
-  // [NOTE] This is a temporary solution
-  const searchApiIsSet = useMemo(
-    () => searchApis.some((api) => api.name === JINA_SEARCH_API_NAME && api.apiKey !== ""),
+  const availableSearchApis = useMemo(
+    () => searchApis.filter((api) => api.apiKey !== ""),
     [searchApis]
   )
 
@@ -514,7 +527,7 @@ export function useChat({
     isReasoning,
     isCallingTool,
     result,
-    searchApiIsSet,
+    availableSearchApis,
     startChat,
     cancelChat,
     clearChat,
