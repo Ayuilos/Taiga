@@ -11,6 +11,7 @@ import { produce } from "immer"
 import { Bot, Check, Cloud } from "lucide-react"
 
 import { AIProviderContext, TAIProviderContextType } from "./AIProvidersContext"
+import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import {
   CommandDialog,
@@ -108,7 +109,10 @@ function InternalModelSelector({
 
     return sortedProviders.map((provider) => {
       return (
-        <CommandGroup key={provider.name} heading={provider.name}>
+        <CommandGroup
+          key={provider.name}
+          heading={<Badge variant="secondary">{`- ${provider.name} -`}</Badge>}
+        >
           {provider.models.map((model) => {
             const selected = selectedModel && selectedModel[1] === model
 
