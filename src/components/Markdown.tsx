@@ -2,7 +2,7 @@
 
 import { memo } from "react"
 import { openUrl } from "@tauri-apps/plugin-opener"
-import ReactMarkdown, { type Components } from "react-markdown"
+import ReactMarkdown, { Options, type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 
 import { CodeBlock } from "./CodeBlock"
@@ -105,7 +105,7 @@ const components: Partial<Components> = {
 
 const remarkPlugins = [remarkGfm]
 
-const NonMemoizedMarkdown = ({ children }: { children: string }) => {
+const NonMemoizedMarkdown = ({ children }: Pick<Options, "children">) => {
   return (
     <ReactMarkdown remarkPlugins={remarkPlugins} components={components}>
       {children}
