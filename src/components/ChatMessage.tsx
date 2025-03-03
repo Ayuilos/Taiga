@@ -116,7 +116,7 @@ export function ChatMessage({
             className={`${
               message.role === "user"
                 ? "bg-blue-500 text-white"
-                : "border bg-gray-50 text-black"
+                : "border dark:bg-accent dark:text-white bg-gray-50 text-black"
             } flex flex-col gap-2 p-2 whitespace-pre-wrap break-words hyphens-auto rounded-lg max-w-full`}
           >
             {loadingComp}
