@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as TranslateImport } from './routes/translate'
 import { Route as SettingsLayoutImport } from './routes/_settingsLayout'
 import { Route as IndexImport } from './routes/index'
+import { Route as ChatChatIdImport } from './routes/chat.$chatId'
 import { Route as SettingsLayoutSettingsIndexImport } from './routes/_settingsLayout.settings.index'
 import { Route as SettingsLayoutSettingsManageSearchApisImport } from './routes/_settingsLayout.settings.manage-search-apis'
 import { Route as SettingsLayoutSettingsManageDefaultModelsImport } from './routes/_settingsLayout.settings.manage-default-models'
@@ -34,6 +35,12 @@ const SettingsLayoutRoute = SettingsLayoutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ChatChatIdRoute = ChatChatIdImport.update({
+  id: '/chat/$chatId',
+  path: '/chat/$chatId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -81,6 +88,13 @@ declare module '@tanstack/react-router' {
       path: '/translate'
       fullPath: '/translate'
       preLoaderRoute: typeof TranslateImport
+      parentRoute: typeof rootRoute
+    }
+    '/chat/$chatId': {
+      id: '/chat/$chatId'
+      path: '/chat/$chatId'
+      fullPath: '/chat/$chatId'
+      preLoaderRoute: typeof ChatChatIdImport
       parentRoute: typeof rootRoute
     }
     '/_settingsLayout/settings/manage-default-models': {
@@ -131,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
+  '/chat/$chatId': typeof ChatChatIdRoute
   '/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
   '/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
   '/settings': typeof SettingsLayoutSettingsIndexRoute
@@ -140,6 +155,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
+  '/chat/$chatId': typeof ChatChatIdRoute
   '/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
   '/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
   '/settings': typeof SettingsLayoutSettingsIndexRoute
@@ -150,6 +166,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_settingsLayout': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
+  '/chat/$chatId': typeof ChatChatIdRoute
   '/_settingsLayout/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
   '/_settingsLayout/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
   '/_settingsLayout/settings/': typeof SettingsLayoutSettingsIndexRoute
@@ -161,6 +178,7 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/translate'
+    | '/chat/$chatId'
     | '/settings/manage-default-models'
     | '/settings/manage-search-apis'
     | '/settings'
@@ -169,6 +187,7 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/translate'
+    | '/chat/$chatId'
     | '/settings/manage-default-models'
     | '/settings/manage-search-apis'
     | '/settings'
@@ -177,6 +196,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_settingsLayout'
     | '/translate'
+    | '/chat/$chatId'
     | '/_settingsLayout/settings/manage-default-models'
     | '/_settingsLayout/settings/manage-search-apis'
     | '/_settingsLayout/settings/'
@@ -187,12 +207,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SettingsLayoutRoute: typeof SettingsLayoutRouteWithChildren
   TranslateRoute: typeof TranslateRoute
+  ChatChatIdRoute: typeof ChatChatIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SettingsLayoutRoute: SettingsLayoutRouteWithChildren,
   TranslateRoute: TranslateRoute,
+  ChatChatIdRoute: ChatChatIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -207,7 +229,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/_settingsLayout",
-        "/translate"
+        "/translate",
+        "/chat/$chatId"
       ]
     },
     "/": {
@@ -223,6 +246,9 @@ export const routeTree = rootRoute
     },
     "/translate": {
       "filePath": "translate.tsx"
+    },
+    "/chat/$chatId": {
+      "filePath": "chat.$chatId.tsx"
     },
     "/_settingsLayout/settings/manage-default-models": {
       "filePath": "_settingsLayout.settings.manage-default-models.tsx",

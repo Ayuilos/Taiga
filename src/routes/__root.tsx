@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router"
 import { ChevronRight, CloudCog, Languages, MessageSquare } from "lucide-react"
 
+import { LastChatIDStore } from "@/lib/chat-store"
 import { update } from "@/lib/updater"
 import { dynamicActivate } from "@/lib/utils"
 import ModelSelector from "@/components/ModelSelectorContext"
@@ -55,20 +56,29 @@ export const Route = createRootRoute({
 })
 
 function Navigation() {
-  const registry: Record<string, [string, React.ReactNode]> = {
-    "/": [t`Chat`, <MessageSquare />],
-    "/translate": [t`Translate`, <Languages />],
-    "/settings": [t`Settings`, <CloudCog />],
-  }
+  // @ts-expect-error
+  const registry: Map<string[] | string, [string, React.ReactNode]> = new Map([
+    [
+      ["/", "/chat"],
+      [t`Chat`, <MessageSquare />],
+    ],
+    ["/translate", [t`Translate`, <Languages />]],
+    ["/settings", [t`Settings`, <CloudCog />]],
+  ])
   const router = useRouter()
   const matchRoute = useMatchRoute()
 
   let matchedLabel = ""
   let matchedIcon = null
 
-  const menuItems = Object.entries(registry)
-    .filter(([path, [label, icon]]) => {
-      const matched = matchRoute({ to: path, fuzzy: true }) !== false
+  const menuItems = Array.from(registry.entries())
+    .filter(([paths, [label, icon]]) => {
+      let matched =
+        typeof paths === "string"
+          ? matchRoute({ to: paths, fuzzy: true }) !== false
+          : paths.some(
+              (path) => matchRoute({ to: path, fuzzy: true }) !== false
+            )
 
       if (matched) {
         matchedLabel = label
@@ -81,8 +91,20 @@ function Navigation() {
     .map(([path, [label, icon]]) => {
       return (
         <DropdownMenuItem
-          key={path}
-          onClick={() => router.navigate({ to: path, replace: true })}
+          key={path.toString()}
+          onClick={async () => {
+            if (typeof path === "string" && path !== "/") {
+              router.navigate({ to: path, replace: true })
+            } else if (Array.isArray(path) && path.includes("/chat")) {
+              const lastChatId = await LastChatIDStore.getLastChatID()
+
+              if (lastChatId) {
+                router.navigate({ to: `/chat/${lastChatId}`, replace: true })
+              } else {
+                router.navigate({ to: "/", replace: true })
+              }
+            }
+          }}
         >
           {icon}
           {label}
@@ -112,7 +134,7 @@ function Navigation() {
 
 function HeaderRegister() {
   const registry = new Map([
-    [["/", "/translate"], <ModelSelector />],
+    [["/", "/chat", "/translate"], <ModelSelector />],
     [["/settings"], <SettingsFeatureToggle />],
   ])
 

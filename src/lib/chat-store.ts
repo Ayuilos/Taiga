@@ -3,6 +3,7 @@ import { load } from "@tauri-apps/plugin-store"
 
 const chatStoreKey = "chats.json"
 const chatSummaryStoreKey = "chat-summaries.json"
+const lastChatIdStoreKey = "last-chat-id.json"
 
 export type TChatID = ReturnType<typeof crypto.randomUUID>
 export type TChat = {
@@ -134,5 +135,19 @@ export class ChatSummaryStore {
   static async clearAllSummaries() {
     const store = await load(chatSummaryStoreKey)
     await store.clear()
+  }
+}
+
+export class LastChatIDStore {
+  static async getLastChatID() {
+    const store = await load(lastChatIdStoreKey)
+    const lastChatID = await store.get("lastChatID")
+
+    return lastChatID as TChatID
+  }
+
+  static async setLastChatID(id: TChatID) {
+    const store = await load(lastChatIdStoreKey)
+    await store.set("lastChatID", id)
   }
 }

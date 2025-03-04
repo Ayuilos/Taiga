@@ -10,6 +10,7 @@ import {
 import { TExpandedMessage, useChat } from "@/hooks/useChat"
 import { useIsDark } from "@/hooks/useIsDark"
 import { t } from "@lingui/core/macro"
+import { useRouter } from "@tanstack/react-router"
 import { CoreMessage, generateText, LanguageModelV1 } from "ai"
 import { produce } from "immer"
 import {
@@ -60,6 +61,7 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 
 interface IInternalChat {
+  chatId?: TChatID
   model: LanguageModelV1 | null
   summarizeModel: LanguageModelV1 | null
   requireModel: TModelSelectorContext["requireModel"]
@@ -75,8 +77,14 @@ const initialChatNodes: TChatNode[] = [
   },
 ]
 
-function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
+function InternalChat({
+  chatId,
+  model,
+  summarizeModel,
+  requireModel,
+}: IInternalChat) {
   const isDark = useIsDark()
+  const router = useRouter()
 
   const [chatNodes, setChatNodes] = useState<TChatNode[]>(initialChatNodes)
   // `chatPath` for rendering chat flow
@@ -262,8 +270,10 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
         editTime: Date.now(),
         summary,
       })
+
+      await router.navigate({ to: `/chat/${id}` })
     }
-  }, [id, chatNodes, newMessageCreated, _createChatSummary])
+  }, [router, id, chatNodes, newMessageCreated, _createChatSummary])
 
   const saveChatPath = useCallback(async () => {
     if (chatPath.length) {
@@ -294,25 +304,53 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     []
   )
 
-  const onHistoryChatSelect = useCallback(
+  const _startNewChat = useCallback(
+    (newChatId: TChatID) => {
+      setChatNodes(initialChatNodes)
+      setChatId(newChatId)
+      setChatPath([0])
+      sessionPath.current = [0]
+      setInput("")
+      prevInputRef.current = ""
+      clearChat()
+    },
+    [clearChat]
+  )
+
+  const onChatIdChanged = useCallback(
     async (_id: TChatID) => {
       if (_id !== id) {
-        const { nodes: newChatNodes } = await ChatStore.getChat(_id)
-        const historyChatPath = await ChatPathStore.getChatPath(_id)
+        const isHistoryChat = Boolean(
+          await ChatStore.getChat(_id).catch(() => false)
+        )
 
-        setChatId(_id)
-        setInput("")
-        setChatNodes(newChatNodes)
-        clearChat()
+        if (!isHistoryChat) {
+          _startNewChat(_id)
+        } else {
+          const { nodes: newChatNodes } = await ChatStore.getChat(_id)
+          const historyChatPath = await ChatPathStore.getChatPath(_id)
 
-        let _chatPath: number[] =
-          historyChatPath ?? _resetSearchPath(newChatNodes)
+          setChatId(_id)
+          setInput("")
+          setChatNodes(newChatNodes)
+          clearChat()
 
-        setChatPath(_chatPath)
-        sessionPath.current = _chatPath
+          let _chatPath: number[] =
+            historyChatPath ?? _resetSearchPath(newChatNodes)
+
+          setChatPath(_chatPath)
+          sessionPath.current = _chatPath
+        }
       }
     },
-    [id, clearChat, _resetSearchPath]
+    [id, clearChat, _startNewChat, _resetSearchPath]
+  )
+
+  const changeChatId = useCallback(
+    async (chatId: TChatID) => {
+      await router.navigate({ to: `/chat/${chatId}`, replace: true })
+    },
+    [router]
   )
 
   const startEditMessage = useCallback(
@@ -427,32 +465,22 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
     }
   }, [model, messages, input, startChat, requireModel, updateChatNodes])
 
-  const _startNewChat = useCallback(() => {
-    setChatNodes(initialChatNodes)
-    setChatId(crypto.randomUUID())
-    setChatPath([0])
-    sessionPath.current = [0]
-    setInput("")
-    prevInputRef.current = ""
-    clearChat()
-  }, [clearChat])
-
   const startNewChat = useCallback(() => {
     if (!chatIsFresh) {
-      _startNewChat()
+      changeChatId(crypto.randomUUID())
     }
-  }, [_startNewChat, chatIsFresh])
+  }, [chatIsFresh, changeChatId])
 
   const deleteChat = useCallback(async () => {
     if (id) {
       await ChatStore.deleteChat(id)
-      _startNewChat()
+      changeChatId(crypto.randomUUID())
     }
-  }, [id, _startNewChat])
+  }, [id, changeChatId])
 
   const onHistoryDelete = useCallback(async () => {
-    _startNewChat()
-  }, [_startNewChat])
+    onChatIdChanged(crypto.randomUUID())
+  }, [onChatIdChanged])
 
   useEffect(() => {
     if (messagesRef.current) {
@@ -479,6 +507,12 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
   useEffect(() => {
     saveChatPath()
   }, [saveChatPath])
+
+  useEffect(() => {
+    if (chatId) {
+      onChatIdChanged(chatId)
+    }
+  }, [chatId, onChatIdChanged])
 
   useLayoutEffect(() => {
     if (messagesRef.current && shouldAutoScroll) {
@@ -655,14 +689,14 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
         selectedChatId={id}
         open={showChatHistory}
         onOpen={setShowChatHistory}
-        onSelect={onHistoryChatSelect}
+        onSelect={changeChatId}
         onHistoryDelete={onHistoryDelete}
       />
     </>
   )
 }
 
-export default function Chat() {
+export default function Chat({ chatId }: { chatId: TChatID }) {
   const {
     providers,
     selectedModel,
@@ -708,6 +742,7 @@ export default function Chat() {
 
   return (
     <InternalChat
+      chatId={chatId}
       model={model}
       summarizeModel={summarizeModel}
       requireModel={requireModel}
