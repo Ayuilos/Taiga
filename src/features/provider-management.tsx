@@ -575,15 +575,15 @@ export function ModelManagement({
   onModelsChange,
   onClose,
 }: IModelManagementProps) {
-  const prevProvider = useRef(provider)
+  const prevProviderBaseURL = useRef(provider?.baseURL)
 
   const [availableModelIDs, setAvailableModelIDs] = useState<string[]>([])
   const [isGettingModels, setIsGettingModels] = useState(false)
   const [showAddedModelsPanel, setShowAddedModelsPanel] = useState(false)
 
-  if (prevProvider.current !== provider) {
+  if (prevProviderBaseURL.current !== provider?.baseURL) {
     setAvailableModelIDs([])
-    prevProvider.current = provider
+    prevProviderBaseURL.current = provider?.baseURL
   }
 
   const categoriedModelRecord = useMemo(() => {
