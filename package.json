@@ -45,7 +45,7 @@
     "@tauri-apps/plugin-http": "~2",
     "@tauri-apps/plugin-opener": "~2",
     "@tauri-apps/plugin-store": "~2",
-    "ai": "^4.1.46",
+    "ai": "^4.1.50",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",

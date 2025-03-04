@@ -66,11 +66,6 @@ const updaters: TUpdater[] = [
           searchURL: "https://s.jina.ai",
           apiKey: "",
         },
-        {
-          name: "Exa[Preset]",
-          searchURL: "https://api.exa.ai/search",
-          apiKey: "",
-        }
       ]
 
       for (let p of presetSearchApis) {
