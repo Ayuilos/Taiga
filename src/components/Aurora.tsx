@@ -118,6 +118,8 @@ interface AuroraProps {
 
 // Refer to https://www.reactbits.dev/backgrounds/aurora
 
+// [TODO] The looking is not good when "light" theme.
+// Waiting for reply: https://github.com/DavidHDev/react-bits/discussions/139
 function UnmemoizedAurora(props: AuroraProps) {
   const isDark = useIsDark()
 
@@ -126,7 +128,7 @@ function UnmemoizedAurora(props: AuroraProps) {
       props.colorStops ??
       (isDark
         ? ["#00d8ff", "#7cff67", "#00d8ff"]
-        : ["#ff2e2e", "#6229ff", "#14ff7a"]),
+        : ["#ffbb00", "#fff2b3", "#ffbb00"]),
     [isDark, props.colorStops]
   )
   const { amplitude = 1.0, blend = 0.5 } = props

@@ -8,6 +8,7 @@ import {
   useState,
 } from "react"
 import { TExpandedMessage, useChat } from "@/hooks/useChat"
+import { useIsDark } from "@/hooks/useIsDark"
 import { t } from "@lingui/core/macro"
 import { CoreMessage, generateText, LanguageModelV1 } from "ai"
 import { produce } from "immer"
@@ -75,6 +76,8 @@ const initialChatNodes: TChatNode[] = [
 ]
 
 function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
+  const isDark = useIsDark()
+
   const [chatNodes, setChatNodes] = useState<TChatNode[]>(initialChatNodes)
   // `chatPath` for rendering chat flow
   const [chatPath, setChatPath] = useState<number[]>([0])
@@ -519,8 +522,12 @@ function InternalChat({ model, summarizeModel, requireModel }: IInternalChat) {
       <div className="w-[94%] self-center flex-auto flex flex-col items-center justify-end gap-4 max-h-screen select-none">
         <div className="w-full relative flex-auto flex flex-col overflow-hidden">
           {isChatting ? (
-            <div className="fixed top-16 left-0 w-screen h-[20vh]">
-              <Aurora speed={2.5} blend={1} amplitude={0.4} />
+            <div className="fixed top-17 left-0 w-screen h-[10vh]">
+              {isDark ? (
+                <Aurora speed={2.5} blend={1} amplitude={0.5} />
+              ) : (
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r/longer from-sky-200/0 via-yellow-300 to-sky-200/0 bg-[size:400%_100%] animate-loading-gradient" />
+              )}
             </div>
           ) : null}
           <div
