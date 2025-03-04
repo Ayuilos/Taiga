@@ -1,8 +1,6 @@
 import { TExpandedMessage } from "@/hooks/useChat"
 import { load } from "@tauri-apps/plugin-store"
 
-import { stringifyObject } from "./utils"
-
 const chatStoreKey = "chats.json"
 const chatSummaryStoreKey = "chat-summaries.json"
 
@@ -58,7 +56,6 @@ export class ChatStore {
     if (!chat) {
       throw new Error(`Chat with id ${id} not found`)
     }
-    console.log(stringifyObject(chat))
     return chat as TChat
   }
 
