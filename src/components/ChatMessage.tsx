@@ -116,7 +116,7 @@ export function ChatMessage({
             className={`${
               message.role === "user"
                 ? "bg-blue-500 text-white"
-                : "border dark:bg-accent dark:text-white bg-gray-50 text-black"
+                : "border bg-background text-foreground"
             } flex flex-col gap-2 p-2 whitespace-pre-wrap break-words hyphens-auto rounded-lg max-w-full`}
           >
             {loadingComp}
@@ -204,7 +204,7 @@ export function ChatMessage({
                   return (
                     <div
                       key={i}
-                      className="order-2 rounded-md p-1 flex gap-2 items-center justify-between last:hidden bg-gray-200"
+                      className="order-2 rounded-md p-1 flex gap-2 items-center justify-between last:hidden bg-accent"
                     >
                       <Badge>{stepOverString}</Badge>
                       <div className="flex items-center gap-1 text-xs text-muted-foreground">

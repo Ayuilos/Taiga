@@ -71,7 +71,7 @@ function UnMemoizedToolArea({
     <>
       <p>{jumpToSearchApiSetPageString}</p>
       <Button
-        variant="secondary"
+        variant="ghost"
         onClick={() => {
           router.navigate({
             to: "/settings/manage-search-apis",
@@ -90,7 +90,7 @@ function UnMemoizedToolArea({
     >
       <PopoverTrigger asChild>
         <Button
-          className={`flex items-center gap-1 transition-all data-[state=open]:border-blue-200 data-[state=open]:border-2 data-[state=closed]:border-none rounded-full${searchIsOpen ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
+          className={`flex items-center gap-1 transition-all data-[state=open]:border-blue-200 data-[state=open]:border-2 data-[state=closed]:border-none rounded-full text-secondary-foreground${searchIsOpen ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
           size="icon"
           variant={searchIsOpen ? "default" : "outline"}
           onClick={onSearchButtonClick}
@@ -136,7 +136,7 @@ function UnMemoizedToolArea({
     >
       <PopoverTrigger asChild>
         <Button
-          className={`flex items-center gap-1 transition-all data-[state=open]:border-blue-200 data-[state=open]:border-2 data-[state=closed]:border-none rounded-full${commonToolsIsOpen ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
+          className={`flex items-center gap-1 transition-all data-[state=open]:border-blue-200 data-[state=open]:border-2 data-[state=closed]:border-none rounded-full text-secondary-foreground${commonToolsIsOpen ? " bg-blue-500 text-white" : " bg-blue-200/60"}`}
           size="icon"
           variant={commonToolsIsOpen ? "default" : "outline"}
           onClick={onCommonToolsButtonClick}

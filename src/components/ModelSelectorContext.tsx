@@ -152,7 +152,7 @@ function InternalModelSelector({
         <Bot />
         <span className="max-w-[38vw] truncate text-left">{selectorName}</span>
         {providerNameOfSelectedModel ? (
-          <span className="flex items-center gap-1 absolute top-[100%] right-2 bg-gray-300/70 p-1 rounded-b-md">
+          <span className="flex items-center gap-1 absolute top-[100%] right-2 bg-accent-foreground text-accent p-1 rounded-b-md">
             <Cloud />
             <span>{providerNameOfSelectedModel}</span>
           </span>

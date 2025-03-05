@@ -6,21 +6,32 @@ import {
   useMatchRoute,
   useRouter,
 } from "@tanstack/react-router"
-import { ChevronRight, CloudCog, Languages, MessageSquare } from "lucide-react"
+import {
+  ChevronRight,
+  CloudCog,
+  Languages,
+  MessageSquare,
+  Moon,
+  Smartphone,
+  Sun,
+} from "lucide-react"
 
 import { LastChatIDStore } from "@/lib/chat-store"
 import { update } from "@/lib/updater"
 import { dynamicActivate } from "@/lib/utils"
 import ModelSelector from "@/components/ModelSelectorContext"
 import { SettingsFeatureToggle } from "@/components/SettingsFeatureToggle"
+import { useTheme } from "@/components/ThemeProvider"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Toaster } from "@/components/ui/sonner"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import "../App.css"
 
@@ -56,6 +67,7 @@ export const Route = createRootRoute({
 })
 
 function Navigation() {
+  const { theme, setTheme } = useTheme()
   // @ts-expect-error
   const registry: Map<string[] | string, [string, React.ReactNode]> = new Map([
     [
@@ -112,6 +124,24 @@ function Navigation() {
       )
     })
 
+  const themeConfig = (
+    <div className="w-full flex justify-center">
+      <Tabs value={theme} onValueChange={setTheme as (t: string) => void}>
+        <TabsList>
+          <TabsTrigger value="light">
+            <Sun />
+          </TabsTrigger>
+          <TabsTrigger value="dark">
+            <Moon />
+          </TabsTrigger>
+          <TabsTrigger value="system">
+            <Smartphone />
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+    </div>
+  )
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -127,7 +157,11 @@ function Navigation() {
           }
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">{menuItems}</DropdownMenuContent>
+      <DropdownMenuContent align="start">
+        {menuItems}
+        <DropdownMenuSeparator />
+        {themeConfig}
+      </DropdownMenuContent>
     </DropdownMenu>
   )
 }
