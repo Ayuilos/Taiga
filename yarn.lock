@@ -49,6 +49,14 @@
     ky "^1.7.5"
     p-throttle "^6.2.0"
 
+"@agentic/searxng@^7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@agentic/searxng/-/searxng-7.3.3.tgz#6a622c31c4f90a042d6732482facdecc3a252642"
+  integrity sha512-5b5YhHe+iLVapaNtZvKGOw7DLhciEciKwUJQ6/tSGil3/HyWbR/vtfl3QkNJlxnisOQDAQo1tIOD6vaMKVteBA==
+  dependencies:
+    "@agentic/core" "7.3.3"
+    ky "^1.7.5"
+
 "@ai-sdk/deepseek@^0.1.12":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@ai-sdk/deepseek/-/deepseek-0.1.12.tgz#40578a4efa0d08b9b47443e43911e932dcef40a5"

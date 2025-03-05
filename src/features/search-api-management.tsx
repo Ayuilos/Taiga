@@ -4,7 +4,7 @@ import { Check, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 
 import { SearchApiSchema, TBaseSearchAPI } from "@/lib/search-api-store"
-import { APIKeyNavigationDescription } from "@/components/ProviderAPIKeyNavigationDescription"
+import { NavigationDescription } from "@/components/NavigationDescription"
 import { SearchApisContext } from "@/components/SearchApisContext"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { PRESET_NAMES } from "@/lib/updater"
 
 interface IInternalSearchAPIManagement {
   apis: TBaseSearchAPI[]
@@ -80,7 +81,7 @@ function SingleSearchAPIManagement({
         <FormField
           control={form.control}
           name="searchURL"
-          disabled
+          disabled={api.name !== PRESET_NAMES.SEARXNG_PRESET}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Search URL</FormLabel>
@@ -88,23 +89,32 @@ function SingleSearchAPIManagement({
                 <Input {...field} />
               </FormControl>
               <FormMessage />
+              <NavigationDescription
+                providerName={api.name}
+                type="search_api_url"
+              />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="apiKey"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>API KEY</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-              <APIKeyNavigationDescription providerName={api.name} />
-            </FormItem>
-          )}
-        />
+        {api.apiKey !== undefined ? (
+          <FormField
+            control={form.control}
+            name="apiKey"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>API KEY</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+                <NavigationDescription
+                  providerName={api.name}
+                  type="search_api_key"
+                />
+              </FormItem>
+            )}
+          />
+        ) : null}
 
         {form.formState.isDirty ? (
           <div className="flex items-center gap-2">

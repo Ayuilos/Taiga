@@ -7,6 +7,7 @@ import { fetch as tFetch } from "@tauri-apps/plugin-http"
 import { load } from "@tauri-apps/plugin-store"
 import { z } from "zod"
 
+import { PRESET_NAMES } from "./updater"
 import { stringifyObject } from "./utils"
 
 export const zAIProvider = z.object({
@@ -165,7 +166,7 @@ export async function listModels({
     const headers = new Headers()
 
     switch (name) {
-      case "Google[Preset]":
+      case PRESET_NAMES.GOOGLE_PRESET:
         headers.set("x-goog-api-key", apiKey)
         break
       default:
@@ -204,23 +205,23 @@ export async function listModels({
 
 export function getModelProvider(provider: IAIProvider) {
   switch (provider.name) {
-    case "OpenAI[Preset]":
+    case PRESET_NAMES.OPENAI_PRESET:
       return createOpenAI({
         apiKey: provider.apiKey,
       })
 
-    case "Google[Preset]":
+    case PRESET_NAMES.GOOGLE_PRESET:
       return createGoogleGenerativeAI({
         baseURL: provider.baseURL,
         apiKey: provider.apiKey,
       })
 
-    case "OpenRouter[Preset]":
+    case PRESET_NAMES.OPENROUTER_PRESET:
       return createOpenRouter({
         apiKey: provider.apiKey,
       })
 
-    case "DeepSeek[Preset]":
+    case PRESET_NAMES.DEEPSEEK_PRESET:
       return createDeepSeek({
         apiKey: provider.apiKey,
       })

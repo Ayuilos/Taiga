@@ -5,7 +5,7 @@ const searchAPIStoreKey = "search-api-store.json"
 
 export const SearchApiSchema = z.object({
   name: z.string().min(1),
-  apiKey: z.string(),
+  apiKey: z.string().optional(),
   searchURL: z.string().url(),
 })
 

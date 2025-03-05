@@ -19,6 +19,7 @@
     "@agentic/calculator": "^7.3.3",
     "@agentic/exa": "^7.3.3",
     "@agentic/jina": "^7.3.4",
+    "@agentic/searxng": "^7.3.3",
     "@ai-sdk/deepseek": "^0.1.12",
     "@ai-sdk/google": "^1.1.17",
     "@ai-sdk/openai": "^1.1.14",

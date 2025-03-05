@@ -24,6 +24,7 @@ import { z } from "zod"
 
 import { commonAITools } from "@/lib/common-ai-tools"
 import { getSearchAITools } from "@/lib/search-ai-tools"
+import { PRESET_NAMES } from "@/lib/updater"
 import { stringifyObject } from "@/lib/utils"
 import { SearchApisContext } from "@/components/SearchApisContext"
 
@@ -118,7 +119,12 @@ export function useChat({
   const tools = useMemo(() => {
     const searchApiKeys: Record<string, string> = Object.fromEntries(
       searchApis
-        .map((api) => [api.name, api.apiKey])
+        .map((api) => {
+          if (api.name === PRESET_NAMES.SEARXNG_PRESET)
+            return [api.name, api.searchURL]
+
+          return [api.name, api.apiKey]
+        })
         .filter(([_, apiKey]) => !!apiKey)
     )
 
