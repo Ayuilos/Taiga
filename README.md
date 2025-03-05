@@ -28,6 +28,15 @@ Taiga is an open-source mobile AI chat app that supports customizing LLM provide
 
 All translations are from LLM. Any questions relating to translation are not intended by author, and you are welcome to provide an correction in the [issue](https://github.com/Ayuilos/taiga/issues).
 
+## Screenshots
+
+<div style="display: flex; gap: 16px; flex-wrap: wrap;">
+<img src="./public/screenshot-1.jpg" width="480" alt="Screenshot-1" />
+<img src="./public/screenshot-2.jpg" width="480" alt="Screenshot-2" />
+</div>
+
+### 🌟🌟 Download to explore more ⬇
+
 ## Download
 
 Go https://github.com/Ayuilos/taiga/releases to find the latest release.
