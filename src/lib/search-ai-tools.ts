@@ -10,7 +10,19 @@ export function getSearchAITools(apiKeys: Record<string, string>) {
   return new AIFunctionSet(
     [
       apiKeys["Jina[Preset]"]
-        ? new JinaClient({ ky: defaultKy, apiKey: apiKeys["Jina[Preset]"] })
+        ? new JinaClient({
+            ky: defaultKy.extend({
+              hooks: {
+                beforeRequest: [
+                  (rq) => {
+                    rq.headers.set("Accept", "application/json")
+                    rq.headers.set("X-With-Favicons", "true")
+                  },
+                ],
+              },
+            }),
+            apiKey: apiKeys["Jina[Preset]"],
+          })
         : null,
       // apiKeys["Exa[Preset]"]
       //   ? new ExaClient({ ky: defaultKy, apiKey: apiKeys["Exa[Preset]"] || "" })

@@ -73,6 +73,7 @@ export const SearchReturnSchema = z.object({
       title: z.string(),
       description: z.string(),
       content: z.string(),
+      favicon: z.string().optional(),
       usage: z.object({
         tokens: z.number(),
       }),

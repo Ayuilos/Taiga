@@ -46,7 +46,7 @@ export default function ToolCallDisplay({
       return toolCallResult
     } else if (SearchReturnSchema.safeParse(toolCallResult).success) {
       return (toolCallResult as TSearchReturnType).data.map(
-        ({ url, title, description, usage: { tokens } }, index) => {
+        ({ url, title, description, favicon, usage: { tokens } }, index) => {
           return (
             <div
               key={`${index}-${url}`}
@@ -55,7 +55,10 @@ export default function ToolCallDisplay({
                 await openUrl(url)
               }}
             >
-              <p className="w-full truncate">{title}</p>
+              <p className="flex items-center gap-1 w-full">
+                {favicon ? <img src={favicon} width={16} height={16} /> : null}
+                <span className="truncate">{title}</span>
+              </p>
               <p className="text-sm w-full truncate">{description}</p>
               <p className="text-xs text-muted-foreground">
                 Used token: {tokens.toString()}
