@@ -770,6 +770,11 @@
     "@babel/types" "^7.26.0"
     semver "^7.5.2"
 
+"@icons-pack/react-simple-icons@^12.1.0":
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/@icons-pack/react-simple-icons/-/react-simple-icons-12.1.0.tgz#6a497621a88fc4bf93af3cd9e24f346b4017878e"
+  integrity sha512-4pj96IXQJ0FpUKouzdC5mnie6bdy5/8fPk8GIGFp6/sPUVF9WcKarQgUCFzT2vb8zkWHudjTHLdjtDoztmNNhQ==
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"

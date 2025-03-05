@@ -17,12 +17,12 @@ msgstr ""
 msgid "Add"
 msgstr "เพิ่ม"
 
-#: src/components/ModelSelectorContext.tsx:138
+#: src/components/ModelSelectorContext.tsx:142
 msgid "Add models"
 msgstr "เพิ่มโมเดล"
 
 #: src/features/provider-management.tsx:170
-#: src/features/provider-management.tsx:682
+#: src/features/provider-management.tsx:690
 msgid "Added models"
 msgstr "เพิ่มโมเดลแล้ว"
 
@@ -30,7 +30,7 @@ msgstr "เพิ่มโมเดลแล้ว"
 msgid "API Key"
 msgstr "คีย์ API"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:524
 msgid "Are you sure to delete this chat?"
 msgstr "คุณแน่ใจหรือไม่ที่จะลบแชทนี้?"
 
@@ -42,11 +42,11 @@ msgstr "คุณแน่ใจหรือไม่ว่าต้องกา
 msgid "Are you sure you want to delete this provider?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบผู้ให้บริการนี้?"
 
-#: src/features/chat.tsx:760
+#: src/components/ChatMessage.tsx:65
 msgid "Args Input by Model"
 msgstr "อาร์กิวเมนต์ที่ป้อนโดยโมเดล"
 
-#: src/features/provider-management.tsx:683
+#: src/features/provider-management.tsx:691
 msgid "Available models"
 msgstr "โมเดลที่มี"
 
@@ -56,12 +56,12 @@ msgstr "URL หลัก"
 
 #: src/features/provider-management.tsx:365
 #: src/features/provider-management.tsx:370
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:526
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Chat"
 msgstr "แชท"
 
@@ -69,7 +69,7 @@ msgstr "แชท"
 msgid "Chat History"
 msgstr "ประวัติการแชท"
 
-#: src/features/chat.tsx:149
+#: src/features/chat.tsx:142
 msgid "Chat stopped by user"
 msgstr "แชทถูกหยุดโดยผู้ใช้"
 
@@ -77,16 +77,20 @@ msgstr "แชทถูกหยุดโดยผู้ใช้"
 msgid "Check reasoning process"
 msgstr "ตรวจสอบกระบวนการให้เหตุผล"
 
-#: src/features/provider-management.tsx:681
+#: src/features/provider-management.tsx:689
 msgid "Choose models"
 msgstr "เลือกโมเดล"
+
+#: src/components/ToolArea.tsx:68
+msgid "Common Tool"
+msgstr ""
 
 #: src/features/provider-management.tsx:364
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "ยืนยัน"
 
-#: src/features/chat.tsx:771
+#: src/components/ChatMessage.tsx:76
 msgid "Copy"
 msgstr "คัดลอก"
 
@@ -111,7 +115,7 @@ msgid "Default Translate Model"
 msgstr "โมเดลแปลเริ่มต้น"
 
 #: src/features/provider-management.tsx:371
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:525
 msgid "Delete"
 msgstr "ลบ"
 
@@ -123,27 +127,31 @@ msgstr "ลบประวัติการแชททั้งหมด"
 msgid "Delete Provider"
 msgstr "ลบผู้ให้บริการ"
 
-#: src/features/chat.tsx:767
+#: src/components/ChatMessage.tsx:72
 msgid "Edit message"
 msgstr "แก้ไขข้อความ"
 
-#: src/features/chat.tsx:764
+#: src/components/ChatMessage.tsx:69
 msgid "Error Happen"
 msgstr "เกิดข้อผิดพลาด"
 
-#: src/features/chat.tsx:737
+#: src/components/ChatMessage.tsx:42
 msgid "Failed to copy to clipboard"
 msgstr "คัดลอกไปยังคลิปบอร์ดล้มเหลว"
 
-#: src/features/chat.tsx:243
+#: src/features/chat.tsx:236
 msgid "Failed to summarize"
 msgstr "สรุปผลล้มเหลว"
 
-#: src/components/ProviderAPIKeyNavigationDescription.tsx:32
+#: src/components/NavigationDescription.tsx:43
+msgid "Find more Searxng instances"
+msgstr ""
+
+#: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
 msgstr "รับคีย์ API"
 
-#: src/features/provider-management.tsx:681
+#: src/features/provider-management.tsx:689
 msgid "Getting models..."
 msgstr "กำลังรับโมเดล..."
 
@@ -151,11 +159,11 @@ msgstr "กำลังรับโมเดล..."
 msgid "Into"
 msgstr "เป็น"
 
-#: src/features/chat.tsx:759
+#: src/components/ChatMessage.tsx:64
 msgid "Is calling tool..."
 msgstr "กำลังเรียกใช้เครื่องมือ..."
 
-#: src/features/chat.tsx:757
+#: src/components/ChatMessage.tsx:62
 msgid "Is reasoning..."
 msgstr "กำลังให้เหตุผล..."
 
@@ -176,7 +184,7 @@ msgid "No chats found"
 msgstr "ไม่พบแชท"
 
 #: src/features/default-model-management.tsx:151
-#: src/components/ModelSelectorContext.tsx:137
+#: src/components/ModelSelectorContext.tsx:141
 msgid "No models found"
 msgstr "ไม่พบโมเดล"
 
@@ -196,7 +204,7 @@ msgstr "มีชื่อผู้ให้บริการอยู่แล
 msgid "Providers"
 msgstr "ผู้ให้บริการ"
 
-#: src/features/chat.tsx:757
+#: src/components/ChatMessage.tsx:62
 msgid "Reasoning process"
 msgstr "กระบวนการให้เหตุผล"
 
@@ -208,7 +216,7 @@ msgstr "กระบวนการให้เหตุผล"
 msgid "Reasoning..."
 msgstr "กำลังให้เหตุผล..."
 
-#: src/features/chat.tsx:769
+#: src/components/ChatMessage.tsx:74
 msgid "Regenerate reply"
 msgstr "สร้างคำตอบใหม่"
 
@@ -216,8 +224,8 @@ msgstr "สร้างคำตอบใหม่"
 msgid "Removed models"
 msgstr "ลบโมเดลแล้ว"
 
-#: src/hooks/useChat.ts:237
-#: src/features/provider-management.tsx:658
+#: src/hooks/useChat.ts:256
+#: src/features/provider-management.tsx:666
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "คำขอหมดเวลา"
@@ -234,7 +242,11 @@ msgstr "ค้นหาโมเดล..."
 msgid "Search provider..."
 msgstr "ค้นหาผู้ให้บริการ..."
 
-#: src/components/ModelSelectorContext.tsx:134
+#: src/components/ToolArea.tsx:67
+msgid "Search Tool"
+msgstr ""
+
+#: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
 msgstr "เลือกโมเดล"
 
@@ -242,19 +254,19 @@ msgstr "เลือกโมเดล"
 msgid "Select model"
 msgstr "เลือกโมเดล"
 
-#: src/features/chat.tsx:509
+#: src/components/ToolArea.tsx:66
 msgid "Set now"
 msgstr "ตั้งค่าทันที"
 
-#: src/routes/__root.tsx:61
+#: src/routes/__root.tsx:66
 msgid "Settings"
 msgstr "การตั้งค่า"
 
-#: src/features/chat.tsx:763
+#: src/components/ChatMessage.tsx:68
 msgid "Spend Time"
 msgstr "ใช้เวลา"
 
-#: src/features/chat.tsx:762
+#: src/components/ChatMessage.tsx:67
 msgid "Step End"
 msgstr "สิ้นสุดขั้นตอน"
 
@@ -270,11 +282,11 @@ msgstr "หยุด"
 msgid "Text copied to clipboard"
 msgstr "คัดลอกข้อความไปยังคลิปบอร์ดแล้ว"
 
-#: src/features/chat.tsx:759
+#: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"
 msgstr "ผลลัพธ์การเรียกใช้เครื่องมือ"
 
-#: src/routes/__root.tsx:60
+#: src/routes/__root.tsx:65
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "แปล"
@@ -291,19 +303,19 @@ msgstr "แปลเสร็จสมบูรณ์"
 msgid "Unknown error"
 msgstr "ข้อผิดพลาดที่ไม่รู้จัก"
 
-#: src/features/chat.tsx:760
+#: src/components/ChatMessage.tsx:65
 msgid "Used Tool"
 msgstr "เครื่องมือที่ใช้"
 
-#: src/hooks/useChat.ts:183
+#: src/hooks/useChat.ts:202
 msgid "User stopped chat"
 msgstr "ผู้ใช้หยุดแชท"
 
-#: src/features/chat.tsx:761
+#: src/components/ChatMessage.tsx:66
 msgid "Waiting..."
 msgstr "กำลังรอ..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:527
 msgid "What can I help you?"
 msgstr "มีอะไรให้ฉันช่วยไหม?"
 
@@ -319,10 +331,10 @@ msgstr "คุณกำลังแปล"
 msgid "You're using reasoning model in translation which is not recommended"
 msgstr "คุณกำลังใช้โมเดลการให้เหตุผลในการแปลซึ่งไม่แนะนำ"
 
-#: src/features/chat.tsx:758
+#: src/components/ChatMessage.tsx:63
 msgid "You're using reasoning model!"
 msgstr "คุณกำลังใช้โมเดลการให้เหตุผล!"
 
-#: src/features/chat.tsx:508
+#: src/components/ToolArea.tsx:65
 msgid "Your search api is not set"
 msgstr "ไม่ได้ตั้งค่า search api ของคุณ"

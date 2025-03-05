@@ -3,6 +3,19 @@
 version = 4
 
 [[package]]
+name = "Taiga"
+version = "0.1.0-rc.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-http",
+ "tauri-plugin-opener",
+ "tauri-plugin-store",
+]
+
+[[package]]
 name = "addr2line"
 version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3775,19 +3788,6 @@ dependencies = [
  "pkg-config",
  "toml 0.8.20",
  "version-compare",
-]
-
-[[package]]
-name = "taiga"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-http",
- "tauri-plugin-opener",
- "tauri-plugin-store",
 ]
 
 [[package]]

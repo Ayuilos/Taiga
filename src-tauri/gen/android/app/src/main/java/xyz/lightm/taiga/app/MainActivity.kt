@@ -1,3 +1,3 @@
-package com.taiga.app
+package xyz.lightm.taiga.app
 
 class MainActivity : TauriActivity()

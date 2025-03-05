@@ -1,7 +1,7 @@
 {
   "name": "taiga",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.0-rc.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -25,6 +25,7 @@
     "@ai-sdk/openai": "^1.1.14",
     "@ai-sdk/openai-compatible": "^0.1.12",
     "@hookform/resolvers": "^4.0.0",
+    "@icons-pack/react-simple-icons": "^12.1.0",
     "@lingui/core": "^5.2.0",
     "@lingui/react": "^5.2.0",
     "@openrouter/ai-sdk-provider": "^0.4.1",

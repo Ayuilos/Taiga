@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "taiga",
-  "version": "0.1.0",
-  "identifier": "com.taiga.app",
+  "productName": "Taiga",
+  "version": "0.1.0-rc.0",
+  "identifier": "xyz.lightm.taiga.app",
   "build": {
     "beforeDevCommand": "yarn dev",
     "devUrl": "http://localhost:1420",

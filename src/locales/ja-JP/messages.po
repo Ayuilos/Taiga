@@ -17,12 +17,12 @@ msgstr ""
 msgid "Add"
 msgstr "追加"
 
-#: src/components/ModelSelectorContext.tsx:138
+#: src/components/ModelSelectorContext.tsx:142
 msgid "Add models"
 msgstr "モデルを追加"
 
 #: src/features/provider-management.tsx:170
-#: src/features/provider-management.tsx:682
+#: src/features/provider-management.tsx:690
 msgid "Added models"
 msgstr "追加されたモデル"
 
@@ -30,7 +30,7 @@ msgstr "追加されたモデル"
 msgid "API Key"
 msgstr "APIキー"
 
-#: src/features/chat.tsx:505
+#: src/features/chat.tsx:524
 msgid "Are you sure to delete this chat?"
 msgstr "このチャットを削除してもよろしいですか？"
 
@@ -42,11 +42,11 @@ msgstr "すべてのチャット履歴を削除してもよろしいですか？
 msgid "Are you sure you want to delete this provider?"
 msgstr "このプロバイダーを削除してもよろしいですか？"
 
-#: src/features/chat.tsx:760
+#: src/components/ChatMessage.tsx:65
 msgid "Args Input by Model"
 msgstr "モデルによる引数入力"
 
-#: src/features/provider-management.tsx:683
+#: src/features/provider-management.tsx:691
 msgid "Available models"
 msgstr "利用可能なモデル"
 
@@ -56,12 +56,12 @@ msgstr "ベースURL"
 
 #: src/features/provider-management.tsx:365
 #: src/features/provider-management.tsx:370
-#: src/features/chat.tsx:507
+#: src/features/chat.tsx:526
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: src/routes/__root.tsx:59
+#: src/routes/__root.tsx:63
 msgid "Chat"
 msgstr "チャット"
 
@@ -69,7 +69,7 @@ msgstr "チャット"
 msgid "Chat History"
 msgstr "チャット履歴"
 
-#: src/features/chat.tsx:149
+#: src/features/chat.tsx:142
 msgid "Chat stopped by user"
 msgstr "ユーザーによってチャットが停止されました"
 
@@ -77,16 +77,20 @@ msgstr "ユーザーによってチャットが停止されました"
 msgid "Check reasoning process"
 msgstr "推論プロセスを確認する"
 
-#: src/features/provider-management.tsx:681
+#: src/features/provider-management.tsx:689
 msgid "Choose models"
 msgstr "モデルを選択"
+
+#: src/components/ToolArea.tsx:68
+msgid "Common Tool"
+msgstr ""
 
 #: src/features/provider-management.tsx:364
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "確認"
 
-#: src/features/chat.tsx:771
+#: src/components/ChatMessage.tsx:76
 msgid "Copy"
 msgstr "コピー"
 
@@ -111,7 +115,7 @@ msgid "Default Translate Model"
 msgstr "デフォルト翻訳モデル"
 
 #: src/features/provider-management.tsx:371
-#: src/features/chat.tsx:506
+#: src/features/chat.tsx:525
 msgid "Delete"
 msgstr "削除"
 
@@ -123,27 +127,31 @@ msgstr "すべてのチャット履歴を削除"
 msgid "Delete Provider"
 msgstr "プロバイダーを削除"
 
-#: src/features/chat.tsx:767
+#: src/components/ChatMessage.tsx:72
 msgid "Edit message"
 msgstr "メッセージを編集"
 
-#: src/features/chat.tsx:764
+#: src/components/ChatMessage.tsx:69
 msgid "Error Happen"
 msgstr "エラーが発生しました"
 
-#: src/features/chat.tsx:737
+#: src/components/ChatMessage.tsx:42
 msgid "Failed to copy to clipboard"
 msgstr "クリップボードへのコピーに失敗しました"
 
-#: src/features/chat.tsx:243
+#: src/features/chat.tsx:236
 msgid "Failed to summarize"
 msgstr "要約に失敗しました"
 
-#: src/components/ProviderAPIKeyNavigationDescription.tsx:32
+#: src/components/NavigationDescription.tsx:43
+msgid "Find more Searxng instances"
+msgstr ""
+
+#: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
 msgstr "APIキーを取得"
 
-#: src/features/provider-management.tsx:681
+#: src/features/provider-management.tsx:689
 msgid "Getting models..."
 msgstr "モデルを取得中..."
 
@@ -151,11 +159,11 @@ msgstr "モデルを取得中..."
 msgid "Into"
 msgstr "へ"
 
-#: src/features/chat.tsx:759
+#: src/components/ChatMessage.tsx:64
 msgid "Is calling tool..."
 msgstr "ツールを呼び出し中..."
 
-#: src/features/chat.tsx:757
+#: src/components/ChatMessage.tsx:62
 msgid "Is reasoning..."
 msgstr "推論中..."
 
@@ -176,7 +184,7 @@ msgid "No chats found"
 msgstr "チャットが見つかりません"
 
 #: src/features/default-model-management.tsx:151
-#: src/components/ModelSelectorContext.tsx:137
+#: src/components/ModelSelectorContext.tsx:141
 msgid "No models found"
 msgstr "モデルが見つかりません"
 
@@ -196,7 +204,7 @@ msgstr "プロバイダー名がすでに存在します"
 msgid "Providers"
 msgstr "プロバイダー"
 
-#: src/features/chat.tsx:757
+#: src/components/ChatMessage.tsx:62
 msgid "Reasoning process"
 msgstr "推論プロセス"
 
@@ -208,7 +216,7 @@ msgstr "推論プロセス"
 msgid "Reasoning..."
 msgstr "推論..."
 
-#: src/features/chat.tsx:769
+#: src/components/ChatMessage.tsx:74
 msgid "Regenerate reply"
 msgstr "返信を再生成"
 
@@ -216,8 +224,8 @@ msgstr "返信を再生成"
 msgid "Removed models"
 msgstr "削除されたモデル"
 
-#: src/hooks/useChat.ts:237
-#: src/features/provider-management.tsx:658
+#: src/hooks/useChat.ts:256
+#: src/features/provider-management.tsx:666
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "リクエストタイムアウト"
@@ -234,7 +242,11 @@ msgstr "モデルを検索..."
 msgid "Search provider..."
 msgstr "プロバイダーを検索..."
 
-#: src/components/ModelSelectorContext.tsx:134
+#: src/components/ToolArea.tsx:67
+msgid "Search Tool"
+msgstr ""
+
+#: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
 msgstr "モデルを選択"
 
@@ -242,19 +254,19 @@ msgstr "モデルを選択"
 msgid "Select model"
 msgstr "モデルを選択"
 
-#: src/features/chat.tsx:509
+#: src/components/ToolArea.tsx:66
 msgid "Set now"
 msgstr "今すぐ設定"
 
-#: src/routes/__root.tsx:61
+#: src/routes/__root.tsx:66
 msgid "Settings"
 msgstr "設定"
 
-#: src/features/chat.tsx:763
+#: src/components/ChatMessage.tsx:68
 msgid "Spend Time"
 msgstr "経過時間"
 
-#: src/features/chat.tsx:762
+#: src/components/ChatMessage.tsx:67
 msgid "Step End"
 msgstr "ステップ終了"
 
@@ -270,11 +282,11 @@ msgstr "停止"
 msgid "Text copied to clipboard"
 msgstr "テキストがクリップボードにコピーされました"
 
-#: src/features/chat.tsx:759
+#: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"
 msgstr "ツール呼び出し結果"
 
-#: src/routes/__root.tsx:60
+#: src/routes/__root.tsx:65
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "翻訳"
@@ -291,19 +303,19 @@ msgstr "翻訳が完了しました"
 msgid "Unknown error"
 msgstr "不明なエラー"
 
-#: src/features/chat.tsx:760
+#: src/components/ChatMessage.tsx:65
 msgid "Used Tool"
 msgstr "使用されたツール"
 
-#: src/hooks/useChat.ts:183
+#: src/hooks/useChat.ts:202
 msgid "User stopped chat"
 msgstr "ユーザーがチャットを停止しました"
 
-#: src/features/chat.tsx:761
+#: src/components/ChatMessage.tsx:66
 msgid "Waiting..."
 msgstr "待機中..."
 
-#: src/features/chat.tsx:510
+#: src/features/chat.tsx:527
 msgid "What can I help you?"
 msgstr "何かお手伝いできることはありますか？"
 
@@ -319,10 +331,10 @@ msgstr "翻訳中"
 msgid "You're using reasoning model in translation which is not recommended"
 msgstr "推論モデルを使用していますが、翻訳には推奨されません"
 
-#: src/features/chat.tsx:758
+#: src/components/ChatMessage.tsx:63
 msgid "You're using reasoning model!"
 msgstr "推論モデルを使用しています！"
 
-#: src/features/chat.tsx:508
+#: src/components/ToolArea.tsx:65
 msgid "Your search api is not set"
 msgstr "検索APIが設定されていません"

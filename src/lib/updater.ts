@@ -30,7 +30,9 @@ export enum PRESET_NAMES {
   SEARXNG_PRESET = "Searxng[Preset]",
 }
 
-const updaters: TUpdater[] = [
+export const TAIGA_GITHUB_URL = "https://github.com/Ayuilos/Taiga"
+
+export const updaters: TUpdater[] = [
   [
     "0.1.0-rc.0",
     async () => {
