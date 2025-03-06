@@ -2,14 +2,14 @@ import { SiGithub } from "@icons-pack/react-simple-icons"
 import { createFileRoute, Outlet } from "@tanstack/react-router"
 import { openUrl } from "@tauri-apps/plugin-opener"
 
-import { TAIGA_GITHUB_URL, updaters } from "@/lib/updater"
+import { getCurrentVersion, TAIGA_GITHUB_URL } from "@/lib/updater"
 
 export const Route = createFileRoute("/_settingsLayout")({
   component: SettingsLayout,
 })
 
 function SettingsLayout() {
-  const currentVersion = updaters[updaters.length - 1][0]
+  const currentVersion = getCurrentVersion()
 
   return (
     <div className="flex flex-col items-center flex-auto w-full pt-20">

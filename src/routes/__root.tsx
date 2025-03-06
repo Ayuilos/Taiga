@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { t } from "@lingui/core/macro"
 import {
   createRootRoute,
@@ -6,24 +6,37 @@ import {
   useMatchRoute,
   useRouter,
 } from "@tanstack/react-router"
+import { openUrl } from "@tauri-apps/plugin-opener"
 import {
   ChevronRight,
   CloudCog,
+  Download,
   Languages,
   MessageSquare,
   Moon,
   Smartphone,
   Sun,
 } from "lucide-react"
+import { toast } from "sonner"
 
 import { LastChatIDStore } from "@/lib/chat-store"
-import { update } from "@/lib/updater"
+import {
+  checkForUpdates,
+  getCurrentVersion,
+  TAIGA_GITHUB_URL,
+  update,
+} from "@/lib/updater"
 import { dynamicActivate } from "@/lib/utils"
 import ModelSelector from "@/components/ModelSelectorContext"
 import { SettingsFeatureToggle } from "@/components/SettingsFeatureToggle"
 import { useTheme } from "@/components/ThemeProvider"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { Toaster } from "@/components/ui/sonner"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -64,6 +77,8 @@ export const Route = createRootRoute({
 function Navigation() {
   const { theme, setTheme } = useTheme()
   const [showNavigationDialog, setShowNavigationDialog] = useState(false)
+  const [isLatest, setIsLatest] = useState<boolean | undefined>(undefined)
+  const [latestTag, setLatestTag] = useState("")
   // @ts-expect-error
   const registry: Map<string[] | string, [string, React.ReactNode]> = new Map([
     [
@@ -75,6 +90,27 @@ function Navigation() {
   ])
   const router = useRouter()
   const matchRoute = useMatchRoute()
+
+  const checkUpdate = useCallback(async () => {
+    if (showNavigationDialog) {
+      setIsLatest(undefined)
+      setLatestTag("")
+
+      const data = await checkForUpdates((e) => {
+        toast.error(typeof e === "string" ? e : e.message)
+        setLatestTag("Error")
+      })
+
+      if (data) {
+        setIsLatest(data.isLatest)
+        setLatestTag(data.tagName)
+      }
+    }
+  }, [showNavigationDialog])
+
+  useEffect(() => {
+    checkUpdate()
+  }, [checkUpdate])
 
   let matchedLabel = ""
   let matchedIcon = null
@@ -140,6 +176,37 @@ function Navigation() {
     </div>
   )
 
+  const updateChecker = (
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <span className="text-sm">{getCurrentVersion()}</span>
+        {!isLatest ? (
+          isLatest === undefined ? (
+            <span className="text-xs text-muted-foreground">
+              Checking Update...
+            </span>
+          ) : (
+            <span className="inline-flex gap-2 text-sm">
+              <span>{">"}</span>
+              <span className="text-green-500">{latestTag}</span>
+            </span>
+          )
+        ) : null}
+      </div>
+      {isLatest === false ? (
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={() => {
+            openUrl(`${TAIGA_GITHUB_URL}/releases/tag/v${latestTag}`)
+          }}
+        >
+          <Download />
+        </Button>
+      ) : null}
+    </div>
+  )
+
   return (
     <Dialog open={showNavigationDialog} onOpenChange={setShowNavigationDialog}>
       <DialogTrigger asChild>
@@ -156,6 +223,7 @@ function Navigation() {
         </Button>
       </DialogTrigger>
       <DialogContent className="gap-2" showClose={false}>
+        <DialogTitle className="sr-only">Navigation Dialog</DialogTitle>
         {menuItems}
         <DropdownMenuSeparator />
         <div className="w-full flex items-center gap-2 justify-between">
@@ -165,6 +233,7 @@ function Navigation() {
           </span>
           {themeConfig}
         </div>
+        {updateChecker}
       </DialogContent>
     </Dialog>
   )
