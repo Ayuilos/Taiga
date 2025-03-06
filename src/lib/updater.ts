@@ -1,6 +1,7 @@
 import { load } from "@tauri-apps/plugin-store"
 
 import { AIProviderManager, IAIProvider } from "./ai-providers"
+import { GithubAPI } from "./github-get-latest-release-response-schema"
 import { SearchApiStore, TBaseSearchAPI } from "./search-api-store"
 
 const VERSION_TAGS_STORE_KEY = "VERSIONs.json"
@@ -90,4 +91,33 @@ export const updaters: TUpdater[] = [
       }
     },
   ],
+  ["0.1.0-rc.1", async () => {}],
 ]
+export const getCurrentVersion = () => updaters[updaters.length - 1][0]
+
+export const checkForUpdates = async (error_fallback: (e: any) => void) => {
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/Ayuilos/Taiga/releases/latest",
+      {
+        headers: {
+          Accept: "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+        signal: AbortSignal.timeout(10_000),
+      }
+    )
+
+    if (response.ok) {
+      const { tag_name }: GithubAPI.Release = await response.json()
+      const tagName = tag_name.replace("v", "")
+
+      const store = await load(VERSION_TAGS_STORE_KEY)
+      const isLatest = await store.has(tagName)
+
+      return { isLatest, tagName }
+    }
+  } catch (e) {
+    error_fallback(e)
+  }
+}
