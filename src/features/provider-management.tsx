@@ -56,6 +56,7 @@ import {
 } from "@/components/ui/collapsible"
 import {
   Command,
+  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
@@ -380,29 +381,26 @@ function InternalProviderManagement({
     <div className="w-[92%] flex flex-col gap-4">
       {!isAddingNew ? (
         <div className="flex gap-2 items-center">
-          <Popover
+          <Button
+            variant="outline"
+            className="w-full flex gap-2 justify-between"
+            onClick={() => setShowProviderSelect(true)}
+          >
+            <span className="flex-auto text-start truncate">
+              {currentProvider?.name}
+            </span>
+            <ChevronDown />
+          </Button>
+          <CommandDialog
             open={showProviderSelect}
             onOpenChange={setShowProviderSelect}
           >
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full flex gap-2 justify-between"
-              >
-                <span className="flex-auto text-start truncate">
-                  {currentProvider?.name}
-                </span>
-                <ChevronDown />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="p-0">
-              <Command value={currentProvider?.name}>
-                <CommandInput placeholder={providerSearchString} />
-                <CommandEmpty>{noProviderEmptyString}</CommandEmpty>
-                {providerItems}
-              </Command>
-            </PopoverContent>
-          </Popover>
+            <Command value={currentProvider?.name}>
+              <CommandInput placeholder={providerSearchString} />
+              <CommandEmpty>{noProviderEmptyString}</CommandEmpty>
+              {providerItems}
+            </Command>
+          </CommandDialog>
           <Button
             className="aspect-square"
             size="icon"

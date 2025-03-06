@@ -146,6 +146,7 @@
 
 @theme {
   --animate-loading-gradient: loading-gradient-keyframe 6s infinite linear;
+  --font-aeche: Aeche, sans-serif;
 
   @keyframes loading-gradient-keyframe {
     0% {
@@ -155,6 +156,14 @@
       background-position: -200% 0%;
     }
   }
+}
+
+@font-face {
+  font-family: Aeche;
+  font-style: normal;
+  font-weight: 200 300 500 700;
+  font-display: auto;
+  src: url("/fonts/Aeche-regular.woff2") format("woff2");
 }
 
 @layer base {

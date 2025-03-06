@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { t } from "@lingui/core/macro"
 import {
   createRootRoute,
@@ -23,13 +23,8 @@ import ModelSelector from "@/components/ModelSelectorContext"
 import { SettingsFeatureToggle } from "@/components/SettingsFeatureToggle"
 import { useTheme } from "@/components/ThemeProvider"
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { Toaster } from "@/components/ui/sonner"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -68,6 +63,7 @@ export const Route = createRootRoute({
 
 function Navigation() {
   const { theme, setTheme } = useTheme()
+  const [showNavigationDialog, setShowNavigationDialog] = useState(false)
   // @ts-expect-error
   const registry: Map<string[] | string, [string, React.ReactNode]> = new Map([
     [
@@ -83,8 +79,8 @@ function Navigation() {
   let matchedLabel = ""
   let matchedIcon = null
 
-  const menuItems = Array.from(registry.entries())
-    .filter(([paths, [label, icon]]) => {
+  const menuItems = Array.from(registry.entries()).map(
+    ([paths, [label, icon]]) => {
       let matched =
         typeof paths === "string"
           ? matchRoute({ to: paths, fuzzy: true }) !== false
@@ -97,35 +93,37 @@ function Navigation() {
         matchedIcon = icon
       }
 
-      // only render unmatched
-      return !matched
-    })
-    .map(([path, [label, icon]]) => {
       return (
-        <DropdownMenuItem
-          key={path.toString()}
+        <Button
+          className={`${matched ? "border-primary" : ""}`}
+          variant={matched ? "outline" : "secondary"}
+          key={paths.toString()}
           onClick={async () => {
-            if (typeof path === "string" && path !== "/") {
-              router.navigate({ to: path, replace: true })
-            } else if (Array.isArray(path) && path.includes("/chat")) {
-              const lastChatId = await LastChatIDStore.getLastChatID()
+            if (!matched) {
+              if (typeof paths === "string" && paths !== "/") {
+                router.navigate({ to: paths, replace: true })
+              } else if (Array.isArray(paths) && paths.includes("/chat")) {
+                const lastChatId = await LastChatIDStore.getLastChatID()
 
-              if (lastChatId) {
-                router.navigate({ to: `/chat/${lastChatId}`, replace: true })
-              } else {
-                router.navigate({ to: "/", replace: true })
+                if (lastChatId) {
+                  router.navigate({ to: `/chat/${lastChatId}`, replace: true })
+                } else {
+                  router.navigate({ to: "/", replace: true })
+                }
               }
+              setShowNavigationDialog(false)
             }
           }}
         >
           {icon}
           {label}
-        </DropdownMenuItem>
+        </Button>
       )
-    })
+    }
+  )
 
   const themeConfig = (
-    <div className="w-full flex justify-center">
+    <div className="flex">
       <Tabs value={theme} onValueChange={setTheme as (t: string) => void}>
         <TabsList>
           <TabsTrigger value="light">
@@ -143,8 +141,8 @@ function Navigation() {
   )
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <Dialog open={showNavigationDialog} onOpenChange={setShowNavigationDialog}>
+      <DialogTrigger asChild>
         <Button variant="outline">
           {matchedIcon}
           <span className="text-lg">{matchedLabel}</span>
@@ -156,13 +154,19 @@ function Navigation() {
             />
           }
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">
+      </DialogTrigger>
+      <DialogContent className="gap-2" showClose={false}>
         {menuItems}
         <DropdownMenuSeparator />
-        {themeConfig}
-      </DropdownMenuContent>
-    </DropdownMenu>
+        <div className="w-full flex items-center gap-2 justify-between">
+          <span className="inline-flex items-center gap-2">
+            <img src="/310x310Logo.png" className="w-12 h-12 rounded-lg" />
+            <span className="font-aeche">Taiga</span>
+          </span>
+          {themeConfig}
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }
 
