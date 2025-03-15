@@ -58,8 +58,8 @@ export const Route = createRootRoute({
 
     return (
       <>
-        <div className="min-h-screen max-h-screen flex flex-col">
-          <header className="fixed top-0 z-20 flex justify-between items-center p-4 border-b w-full bg-background/90 backdrop-blur-xs">
+        <div className="pt-8 min-h-screen max-h-screen flex flex-col">
+          <header className="fixed top-8 z-20 flex justify-between items-center p-4 border-b w-full bg-background/90 backdrop-blur-xs">
             <Navigation />
             <HeaderRegister />
           </header>
