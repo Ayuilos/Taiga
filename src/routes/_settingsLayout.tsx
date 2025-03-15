@@ -12,8 +12,8 @@ function SettingsLayout() {
   const currentVersion = getCurrentVersion()
 
   return (
-    <div className="flex flex-col items-center flex-auto w-full pt-20">
-      <div className="flex flex-col items-center flex-auto w-full">
+    <div className="flex flex-col items-center flex-auto overflow-hidden w-full pt-20">
+      <div className="flex flex-col items-center flex-auto w-full overflow-y-auto">
         <Outlet />
       </div>
       <div className="flex flex-col p-3">

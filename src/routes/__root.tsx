@@ -14,6 +14,7 @@ import {
   Languages,
   MessageSquare,
   Moon,
+  Palette,
   Smartphone,
   Sun,
 } from "lucide-react"
@@ -58,12 +59,12 @@ export const Route = createRootRoute({
 
     return (
       <>
-        <div className="pt-8 min-h-screen max-h-screen flex flex-col">
+        <div className="pt-8 min-h-screen max-h-screen flex flex-col box-border overflow-hidden">
           <header className="fixed top-0 z-20 flex justify-between items-center p-4 pt-12 border-b w-full bg-background/90 backdrop-blur-xs">
             <Navigation />
             <HeaderRegister />
           </header>
-          <main className="flex-auto container flex flex-col">
+          <main className="flex-auto container flex flex-col overflow-hidden">
             <Outlet />
           </main>
         </div>
@@ -87,6 +88,7 @@ function Navigation() {
     ],
     ["/translate", [t`Translate`, <Languages />]],
     ["/settings", [t`Settings`, <CloudCog />]],
+    ["/theme-configure", [t`Theme`, <Palette />]]
   ])
   const router = useRouter()
   const matchRoute = useMatchRoute()
@@ -226,7 +228,7 @@ function Navigation() {
         <DialogTitle className="sr-only">Navigation Dialog</DialogTitle>
         {menuItems}
         <DropdownMenuSeparator />
-        <div className="w-full flex items-center gap-2 justify-between">
+        <div className="w-full flex items-center gap-2 justify-between flex-wrap">
           <span className="inline-flex items-center gap-2">
             <img src="/310x310Logo.png" className="w-12 h-12 rounded-lg" />
             <span className="font-aeche">Taiga</span>

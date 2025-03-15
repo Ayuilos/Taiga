@@ -15,6 +15,7 @@ import { Route as TranslateImport } from './routes/translate'
 import { Route as SettingsLayoutImport } from './routes/_settingsLayout'
 import { Route as IndexImport } from './routes/index'
 import { Route as ChatChatIdImport } from './routes/chat.$chatId'
+import { Route as SettingsLayoutThemeConfigureImport } from './routes/_settingsLayout.theme-configure'
 import { Route as SettingsLayoutSettingsIndexImport } from './routes/_settingsLayout.settings.index'
 import { Route as SettingsLayoutSettingsManageSearchApisImport } from './routes/_settingsLayout.settings.manage-search-apis'
 import { Route as SettingsLayoutSettingsManageDefaultModelsImport } from './routes/_settingsLayout.settings.manage-default-models'
@@ -43,6 +44,13 @@ const ChatChatIdRoute = ChatChatIdImport.update({
   path: '/chat/$chatId',
   getParentRoute: () => rootRoute,
 } as any)
+
+const SettingsLayoutThemeConfigureRoute =
+  SettingsLayoutThemeConfigureImport.update({
+    id: '/theme-configure',
+    path: '/theme-configure',
+    getParentRoute: () => SettingsLayoutRoute,
+  } as any)
 
 const SettingsLayoutSettingsIndexRoute =
   SettingsLayoutSettingsIndexImport.update({
@@ -90,6 +98,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TranslateImport
       parentRoute: typeof rootRoute
     }
+    '/_settingsLayout/theme-configure': {
+      id: '/_settingsLayout/theme-configure'
+      path: '/theme-configure'
+      fullPath: '/theme-configure'
+      preLoaderRoute: typeof SettingsLayoutThemeConfigureImport
+      parentRoute: typeof SettingsLayoutImport
+    }
     '/chat/$chatId': {
       id: '/chat/$chatId'
       path: '/chat/$chatId'
@@ -124,12 +139,14 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface SettingsLayoutRouteChildren {
+  SettingsLayoutThemeConfigureRoute: typeof SettingsLayoutThemeConfigureRoute
   SettingsLayoutSettingsManageDefaultModelsRoute: typeof SettingsLayoutSettingsManageDefaultModelsRoute
   SettingsLayoutSettingsManageSearchApisRoute: typeof SettingsLayoutSettingsManageSearchApisRoute
   SettingsLayoutSettingsIndexRoute: typeof SettingsLayoutSettingsIndexRoute
 }
 
 const SettingsLayoutRouteChildren: SettingsLayoutRouteChildren = {
+  SettingsLayoutThemeConfigureRoute: SettingsLayoutThemeConfigureRoute,
   SettingsLayoutSettingsManageDefaultModelsRoute:
     SettingsLayoutSettingsManageDefaultModelsRoute,
   SettingsLayoutSettingsManageSearchApisRoute:
@@ -145,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
+  '/theme-configure': typeof SettingsLayoutThemeConfigureRoute
   '/chat/$chatId': typeof ChatChatIdRoute
   '/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
   '/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
@@ -155,6 +173,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
+  '/theme-configure': typeof SettingsLayoutThemeConfigureRoute
   '/chat/$chatId': typeof ChatChatIdRoute
   '/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
   '/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
@@ -166,6 +185,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_settingsLayout': typeof SettingsLayoutRouteWithChildren
   '/translate': typeof TranslateRoute
+  '/_settingsLayout/theme-configure': typeof SettingsLayoutThemeConfigureRoute
   '/chat/$chatId': typeof ChatChatIdRoute
   '/_settingsLayout/settings/manage-default-models': typeof SettingsLayoutSettingsManageDefaultModelsRoute
   '/_settingsLayout/settings/manage-search-apis': typeof SettingsLayoutSettingsManageSearchApisRoute
@@ -178,6 +198,7 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/translate'
+    | '/theme-configure'
     | '/chat/$chatId'
     | '/settings/manage-default-models'
     | '/settings/manage-search-apis'
@@ -187,6 +208,7 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/translate'
+    | '/theme-configure'
     | '/chat/$chatId'
     | '/settings/manage-default-models'
     | '/settings/manage-search-apis'
@@ -196,6 +218,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_settingsLayout'
     | '/translate'
+    | '/_settingsLayout/theme-configure'
     | '/chat/$chatId'
     | '/_settingsLayout/settings/manage-default-models'
     | '/_settingsLayout/settings/manage-search-apis'
@@ -239,6 +262,7 @@ export const routeTree = rootRoute
     "/_settingsLayout": {
       "filePath": "_settingsLayout.tsx",
       "children": [
+        "/_settingsLayout/theme-configure",
         "/_settingsLayout/settings/manage-default-models",
         "/_settingsLayout/settings/manage-search-apis",
         "/_settingsLayout/settings/"
@@ -246,6 +270,10 @@ export const routeTree = rootRoute
     },
     "/translate": {
       "filePath": "translate.tsx"
+    },
+    "/_settingsLayout/theme-configure": {
+      "filePath": "_settingsLayout.theme-configure.tsx",
+      "parent": "/_settingsLayout"
     },
     "/chat/$chatId": {
       "filePath": "chat.$chatId.tsx"

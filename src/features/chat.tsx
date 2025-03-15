@@ -530,7 +530,7 @@ function InternalChat({
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className="border-red-500 text-red-500"
+          className="shrink-0 border-red-500 text-red-500"
           size="icon"
           variant="outline"
         >
@@ -553,7 +553,7 @@ function InternalChat({
 
   return (
     <>
-      <div className="w-[94%] self-center flex-auto flex flex-col items-center justify-end gap-4 max-h-screen select-none">
+      <div className="w-[94%] self-center flex-auto flex flex-col items-center justify-end overflow-hidden gap-4 select-none">
         <div className="w-full relative flex-auto flex flex-col overflow-hidden">
           {isChatting ? (
             <div className="fixed top-17 left-0 w-screen h-[10vh]">
@@ -629,8 +629,8 @@ function InternalChat({
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
-          <div className="absolute bottom-4 flex justify-between items-center w-full p-2">
-            <div className="flex-auto flex gap-2 items-center">
+          <div className="absolute bottom-4 flex justify-between items-center w-full p-2 gap-8">
+            <div className="flex-auto flex gap-2 justify-start items-center overflow-x-auto">
               {editedNodePath ? (
                 <Button size="icon" variant="outline" onClick={cancelEdit}>
                   <X />
@@ -644,10 +644,16 @@ function InternalChat({
                     onSearchAPISelect={setSelectedSearchApi}
                     onCommonToolsSelect={setSelectedCommonTools}
                   />
-                  <Button size="icon" variant="outline" onClick={startNewChat}>
+                  <Button
+                    className="shrink-0"
+                    size="icon"
+                    variant="outline"
+                    onClick={startNewChat}
+                  >
                     <MessageSquarePlus />
                   </Button>
                   <Button
+                    className="shrink-0"
                     size="icon"
                     variant="outline"
                     onClick={() => {
