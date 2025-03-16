@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/provider-management.tsx:364
+#: src/features/provider-management.tsx:360
 msgid "Add"
 msgstr "Add"
 
@@ -21,12 +21,12 @@ msgstr "Add"
 msgid "Add models"
 msgstr "Add models"
 
-#: src/features/provider-management.tsx:170
-#: src/features/provider-management.tsx:690
+#: src/features/provider-management.tsx:166
+#: src/features/provider-management.tsx:683
 msgid "Added models"
 msgstr "Added models"
 
-#: src/features/provider-management.tsx:362
+#: src/features/provider-management.tsx:358
 msgid "API Key"
 msgstr "API Key"
 
@@ -38,7 +38,7 @@ msgstr "Are you sure to delete this chat?"
 msgid "Are you sure you want to delete all chat history?"
 msgstr "Are you sure you want to delete all chat history?"
 
-#: src/features/provider-management.tsx:369
+#: src/features/provider-management.tsx:365
 msgid "Are you sure you want to delete this provider?"
 msgstr "Are you sure you want to delete this provider?"
 
@@ -46,22 +46,22 @@ msgstr "Are you sure you want to delete this provider?"
 msgid "Args Input by Model"
 msgstr "Args Input by Model"
 
-#: src/features/provider-management.tsx:691
+#: src/features/provider-management.tsx:684
 msgid "Available models"
 msgstr "Available models"
 
-#: src/features/provider-management.tsx:363
+#: src/features/provider-management.tsx:359
 msgid "Base URL"
 msgstr "Base URL"
 
-#: src/features/provider-management.tsx:365
-#: src/features/provider-management.tsx:370
+#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:366
 #: src/features/chat.tsx:526
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/routes/__root.tsx:63
+#: src/routes/__root.tsx:87
 msgid "Chat"
 msgstr "Chat"
 
@@ -77,7 +77,7 @@ msgstr "Chat stopped by user"
 msgid "Check reasoning process"
 msgstr "Check reasoning process"
 
-#: src/features/provider-management.tsx:689
+#: src/features/provider-management.tsx:682
 msgid "Choose models"
 msgstr "Choose models"
 
@@ -85,7 +85,7 @@ msgstr "Choose models"
 msgid "Common Tool"
 msgstr ""
 
-#: src/features/provider-management.tsx:364
+#: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "Confirm"
@@ -94,7 +94,7 @@ msgstr "Confirm"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/features/provider-management.tsx:321
+#: src/features/provider-management.tsx:317
 msgid "Custom"
 msgstr "Custom"
 
@@ -114,7 +114,7 @@ msgstr "Default Models"
 msgid "Default Translate Model"
 msgstr "Default Translate Model"
 
-#: src/features/provider-management.tsx:371
+#: src/features/provider-management.tsx:367
 #: src/features/chat.tsx:525
 msgid "Delete"
 msgstr "Delete"
@@ -123,7 +123,7 @@ msgstr "Delete"
 msgid "Delete all chat history"
 msgstr "Delete all chat history"
 
-#: src/features/provider-management.tsx:368
+#: src/features/provider-management.tsx:364
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
@@ -151,7 +151,7 @@ msgstr ""
 msgid "Get API keys"
 msgstr "Get API keys"
 
-#: src/features/provider-management.tsx:689
+#: src/features/provider-management.tsx:682
 msgid "Getting models..."
 msgstr "Getting models..."
 
@@ -167,15 +167,15 @@ msgstr "Is calling tool..."
 msgid "Is reasoning..."
 msgstr "Is reasoning..."
 
-#: src/features/provider-management.tsx:367
+#: src/features/provider-management.tsx:363
 msgid "Manage Models"
 msgstr "Manage Models"
 
-#: src/features/provider-management.tsx:366
+#: src/features/provider-management.tsx:362
 msgid "Model Management"
 msgstr "Model Management"
 
-#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:357
 msgid "Name"
 msgstr "Name"
 
@@ -188,15 +188,15 @@ msgstr "No chats found"
 msgid "No models found"
 msgstr "No models found"
 
-#: src/features/provider-management.tsx:359
+#: src/features/provider-management.tsx:355
 msgid "No provider found"
 msgstr "No provider found"
 
-#: src/features/provider-management.tsx:320
+#: src/features/provider-management.tsx:316
 msgid "Preset"
 msgstr "Preset"
 
-#: src/features/provider-management.tsx:132
+#: src/features/provider-management.tsx:128
 msgid "Provider name already exists"
 msgstr "Provider name already exists"
 
@@ -220,12 +220,12 @@ msgstr "Reasoning..."
 msgid "Regenerate reply"
 msgstr "Regenerate reply"
 
-#: src/features/provider-management.tsx:171
+#: src/features/provider-management.tsx:167
 msgid "Removed models"
 msgstr "Removed models"
 
 #: src/hooks/useChat.ts:256
-#: src/features/provider-management.tsx:666
+#: src/features/provider-management.tsx:659
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "Request timeout"
@@ -238,7 +238,7 @@ msgstr "Search APIs"
 msgid "Search models..."
 msgstr "Search models..."
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:354
 msgid "Search provider..."
 msgstr "Search provider..."
 
@@ -258,7 +258,7 @@ msgstr "Select model"
 msgid "Set now"
 msgstr "Set now"
 
-#: src/routes/__root.tsx:66
+#: src/routes/__root.tsx:90
 msgid "Settings"
 msgstr "Settings"
 
@@ -282,11 +282,15 @@ msgstr "Stop"
 msgid "Text copied to clipboard"
 msgstr "Text copied to clipboard"
 
+#: src/routes/__root.tsx:91
+msgid "Theme"
+msgstr ""
+
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"
 msgstr "Tool-Call Result"
 
-#: src/routes/__root.tsx:65
+#: src/routes/__root.tsx:89
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "Translate"
@@ -319,7 +323,7 @@ msgstr "Waiting..."
 msgid "What can I help you?"
 msgstr "What can I help you?"
 
-#: src/features/provider-management.tsx:360
+#: src/features/provider-management.tsx:356
 msgid "You're adding new provider"
 msgstr "You're adding new provider"
 

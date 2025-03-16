@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/provider-management.tsx:364
+#: src/features/provider-management.tsx:360
 msgid "Add"
 msgstr "شامل کریں"
 
@@ -21,12 +21,12 @@ msgstr "شامل کریں"
 msgid "Add models"
 msgstr "ماڈل شامل کریں"
 
-#: src/features/provider-management.tsx:170
-#: src/features/provider-management.tsx:690
+#: src/features/provider-management.tsx:166
+#: src/features/provider-management.tsx:683
 msgid "Added models"
 msgstr "ماڈل شامل کردیے گئے"
 
-#: src/features/provider-management.tsx:362
+#: src/features/provider-management.tsx:358
 msgid "API Key"
 msgstr "API کی"
 
@@ -38,7 +38,7 @@ msgstr "کیا آپ اس چیٹ کو حذف کرنے کے لئے یقین رکھ
 msgid "Are you sure you want to delete all chat history?"
 msgstr "کیا آپ تمام چیٹ کی تاریخ کو حذف کرنے کے لئے یقین رکھتے ہیں؟"
 
-#: src/features/provider-management.tsx:369
+#: src/features/provider-management.tsx:365
 msgid "Are you sure you want to delete this provider?"
 msgstr "کیا آپ اس فراہم کنندہ کو حذف کرنے کے لئے یقین رکھتے ہیں؟"
 
@@ -46,22 +46,22 @@ msgstr "کیا آپ اس فراہم کنندہ کو حذف کرنے کے لئے 
 msgid "Args Input by Model"
 msgstr "ماڈل کے ذریعے ان پٹ آرگ"
 
-#: src/features/provider-management.tsx:691
+#: src/features/provider-management.tsx:684
 msgid "Available models"
 msgstr "دستیاب ماڈل"
 
-#: src/features/provider-management.tsx:363
+#: src/features/provider-management.tsx:359
 msgid "Base URL"
 msgstr "بیس یو آر ایل"
 
-#: src/features/provider-management.tsx:365
-#: src/features/provider-management.tsx:370
+#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:366
 #: src/features/chat.tsx:526
 #: src/components/ChatHistory.tsx:73
 msgid "Cancel"
 msgstr "منسوخ کریں"
 
-#: src/routes/__root.tsx:63
+#: src/routes/__root.tsx:87
 msgid "Chat"
 msgstr "چیٹ"
 
@@ -77,7 +77,7 @@ msgstr "صارف کی جانب سے چیٹ روک دی گئی"
 msgid "Check reasoning process"
 msgstr "استدلال کے عمل کی جانچ کریں"
 
-#: src/features/provider-management.tsx:689
+#: src/features/provider-management.tsx:682
 msgid "Choose models"
 msgstr "ماڈل منتخب کریں"
 
@@ -85,7 +85,7 @@ msgstr "ماڈل منتخب کریں"
 msgid "Common Tool"
 msgstr ""
 
-#: src/features/provider-management.tsx:364
+#: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "تصدیق کریں"
@@ -94,7 +94,7 @@ msgstr "تصدیق کریں"
 msgid "Copy"
 msgstr "کاپی کریں"
 
-#: src/features/provider-management.tsx:321
+#: src/features/provider-management.tsx:317
 msgid "Custom"
 msgstr "اپنی مرضی کے مطابق"
 
@@ -114,7 +114,7 @@ msgstr "ڈیفالٹ ماڈل"
 msgid "Default Translate Model"
 msgstr "ڈیفالٹ ترجمہ ماڈل"
 
-#: src/features/provider-management.tsx:371
+#: src/features/provider-management.tsx:367
 #: src/features/chat.tsx:525
 msgid "Delete"
 msgstr "حذف کریں"
@@ -123,7 +123,7 @@ msgstr "حذف کریں"
 msgid "Delete all chat history"
 msgstr "تمام چیٹ کی تاریخ حذف کریں"
 
-#: src/features/provider-management.tsx:368
+#: src/features/provider-management.tsx:364
 msgid "Delete Provider"
 msgstr "فراہم کنندہ حذف کریں"
 
@@ -151,7 +151,7 @@ msgstr ""
 msgid "Get API keys"
 msgstr "API کیز حاصل کریں"
 
-#: src/features/provider-management.tsx:689
+#: src/features/provider-management.tsx:682
 msgid "Getting models..."
 msgstr "ماڈل حاصل کیے جا رہے ہیں..."
 
@@ -167,15 +167,15 @@ msgstr "ٹول کو کال کر رہا ہے..."
 msgid "Is reasoning..."
 msgstr "استدلال کر رہا ہے..."
 
-#: src/features/provider-management.tsx:367
+#: src/features/provider-management.tsx:363
 msgid "Manage Models"
 msgstr "ماڈل کا انتظام کریں"
 
-#: src/features/provider-management.tsx:366
+#: src/features/provider-management.tsx:362
 msgid "Model Management"
 msgstr "ماڈل کا انتظام"
 
-#: src/features/provider-management.tsx:361
+#: src/features/provider-management.tsx:357
 msgid "Name"
 msgstr "نام"
 
@@ -188,15 +188,15 @@ msgstr "کوئی چیٹ نہیں ملی"
 msgid "No models found"
 msgstr "کوئی ماڈل نہیں ملا"
 
-#: src/features/provider-management.tsx:359
+#: src/features/provider-management.tsx:355
 msgid "No provider found"
 msgstr "کوئی فراہم کنندہ نہیں ملا"
 
-#: src/features/provider-management.tsx:320
+#: src/features/provider-management.tsx:316
 msgid "Preset"
 msgstr "پہلے سے طے شدہ"
 
-#: src/features/provider-management.tsx:132
+#: src/features/provider-management.tsx:128
 msgid "Provider name already exists"
 msgstr "فراہم کنندہ کا نام پہلے سے موجود ہے"
 
@@ -220,12 +220,12 @@ msgstr "استدلال..."
 msgid "Regenerate reply"
 msgstr "جواب دوبارہ بنائیں"
 
-#: src/features/provider-management.tsx:171
+#: src/features/provider-management.tsx:167
 msgid "Removed models"
 msgstr "ماڈل ہٹا دیئے گئے"
 
 #: src/hooks/useChat.ts:256
-#: src/features/provider-management.tsx:666
+#: src/features/provider-management.tsx:659
 #: src/components/ErrorsToastText.ts:4
 msgid "Request timeout"
 msgstr "درخواست کا وقت ختم"
@@ -238,7 +238,7 @@ msgstr "تلاش APIs"
 msgid "Search models..."
 msgstr "ماڈل تلاش کریں..."
 
-#: src/features/provider-management.tsx:358
+#: src/features/provider-management.tsx:354
 msgid "Search provider..."
 msgstr "فراہم کنندہ تلاش کریں..."
 
@@ -258,7 +258,7 @@ msgstr "ماڈل منتخب کریں"
 msgid "Set now"
 msgstr "اب سیٹ کریں"
 
-#: src/routes/__root.tsx:66
+#: src/routes/__root.tsx:90
 msgid "Settings"
 msgstr "ترتیبات"
 
@@ -282,11 +282,15 @@ msgstr "روکیں"
 msgid "Text copied to clipboard"
 msgstr "متن کلپ بورڈ پر کاپی کیا گیا"
 
+#: src/routes/__root.tsx:91
+msgid "Theme"
+msgstr ""
+
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"
 msgstr "ٹول کال کا نتیجہ"
 
-#: src/routes/__root.tsx:65
+#: src/routes/__root.tsx:89
 #: src/features/translator.tsx:163
 msgid "Translate"
 msgstr "ترجمہ کریں"
@@ -319,7 +323,7 @@ msgstr "انتظار کر رہا ہے..."
 msgid "What can I help you?"
 msgstr "میں آپ کی کیا مدد کرسکتا ہوں؟"
 
-#: src/features/provider-management.tsx:360
+#: src/features/provider-management.tsx:356
 msgid "You're adding new provider"
 msgstr "آپ نیا فراہم کنندہ شامل کر رہے ہیں"
 
