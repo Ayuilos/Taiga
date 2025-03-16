@@ -622,14 +622,14 @@ function InternalChat({
           />
         </div>
         {/** Input Section */}
-        <div className="relative shrink-0 pb-4 w-full">
+        <div className="flex flex-col items-center relative shrink-0 pb-4 w-full">
           <Textarea
-            className="w-full resize-none pb-20"
+            className="w-[98%] resize-none pb-20"
             placeholder={textareaPlaceholder}
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
-          <div className="absolute bottom-4 flex justify-between items-center w-full p-2 gap-8">
+          <div className="absolute bottom-4 flex justify-between items-center w-[98%] p-2 gap-8">
             <div className="flex-auto flex gap-2 justify-start items-center overflow-x-auto">
               {editedNodePath ? (
                 <Button size="icon" variant="outline" onClick={cancelEdit}>
