@@ -60,7 +60,7 @@ export const Route = createRootRoute({
     return (
       <>
         <div className="pt-8 min-h-screen max-h-screen flex flex-col box-border overflow-hidden">
-          <header className="fixed top-0 z-20 flex justify-between items-center p-4 pt-12 border-b w-full bg-background/90 backdrop-blur-xs">
+          <header className="fixed top-0 z-20 flex justify-between items-center gap-2 p-4 pt-12 border-b w-full bg-background/90 backdrop-blur-xs">
             <Navigation />
             <HeaderRegister />
           </header>
