@@ -18,6 +18,10 @@ export enum FontWeight {
   black = "900",
 }
 
+export const THEME_STORAGE_KEY = "taiga-ui-theme"
+export const FONT_SIZE_STORAGE_KEY = "taiga-ui-font-size"
+export const FONT_WEIGHT_STORAGE_KEY = "taiga-ui-font-weight"
+
 type ThemeProviderProps = {
   children: React.ReactNode
   defaultTheme?: Theme
@@ -49,9 +53,9 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  themeStorageKey = "taiga-ui-theme",
-  fontSizeStorageKey = "taiga-ui-font-size",
-  fontWeightStorageKey = "taiga-ui-font-weight",
+  themeStorageKey = THEME_STORAGE_KEY,
+  fontSizeStorageKey = FONT_SIZE_STORAGE_KEY,
+  fontWeightStorageKey = FONT_WEIGHT_STORAGE_KEY,
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
