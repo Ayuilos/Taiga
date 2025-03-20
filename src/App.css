@@ -7,7 +7,7 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5em;
   font-weight: 400;
 
   color: #0f0f0f;
@@ -161,9 +161,42 @@
 @font-face {
   font-family: Aeche;
   font-style: normal;
-  font-weight: 200 300 500 700;
+  font-weight: 200;
+  font-display: auto;
+  src: url("/fonts/Aeche-light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Aeche;
+  font-style: normal;
+  font-weight: 400;
   font-display: auto;
   src: url("/fonts/Aeche-regular.woff2") format("woff2");
+}
+
+
+@font-face {
+  font-family: Aeche;
+  font-style: normal;
+  font-weight: 600;
+  font-display: auto;
+  src: url("/fonts/Aeche-bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Aeche;
+  font-style: normal;
+  font-weight: 800;
+  font-display: auto;
+  src: url("/fonts/Aeche-extrabold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Aeche;
+  font-style: normal;
+  font-weight: 900;
+  font-display: auto;
+  src: url("/fonts/Aeche-black.woff2") format("woff2");
 }
 
 @layer base {

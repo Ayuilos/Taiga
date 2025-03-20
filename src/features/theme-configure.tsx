@@ -1,6 +1,6 @@
 import { FontSize, FontWeight, useTheme } from "@/components/ThemeProvider"
 import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
+import { Toggle } from "@/components/ui/toggle"
 
 export function ThemeConfigure() {
   const { fontSize, fontWeight, setFontSize, setFontWeight } = useTheme()
@@ -17,29 +17,33 @@ export function ThemeConfigure() {
       </div>
       <div className="flex flex-col gap-2">
         <Label htmlFor={fontSizeId}>Font Size</Label>
-        <Slider
-          id={fontSizeId}
-          defaultValue={[Number(fontSize)]}
-          max={100}
-          step={25}
-          onValueChange={(value) => {
-            setFontSize(String(value[0]) as FontSize)
-          }}
-          className="w-full"
-        />
+        <div className="flex gap-2 justify-center items-center">
+          {Object.entries(FontSize).map(([key, value]) => (
+            <Toggle
+              key={key}
+              pressed={fontSize === value}
+              style={{ fontSize: value }}
+              onPressedChange={() => setFontSize(value)}
+            >
+              A
+            </Toggle>
+          ))}
+        </div>
       </div>
       <div className="flex flex-col gap-2">
         <Label htmlFor={fontWeightId}>Font Weight</Label>
-        <Slider
-          id={fontWeightId}
-          defaultValue={[Number(fontWeight)]}
-          max={100}
-          step={33}
-          onValueChange={(value) => {
-            setFontWeight(String(value[0]) as FontWeight)
-          }}
-          className="w-full"
-        />
+        <div className="flex gap-2 justify-center items-center">
+          {Object.entries(FontWeight).map(([key, value]) => (
+            <Toggle
+              key={key}
+              pressed={fontWeight === value}
+              style={{ fontWeight: value }}
+              onPressedChange={() => setFontWeight(value)}
+            >
+              B
+            </Toggle>
+          ))}
+        </div>
       </div>
     </div>
   )

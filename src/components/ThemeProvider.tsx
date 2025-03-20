@@ -3,18 +3,19 @@ import { createContext, useContext, useEffect, useState } from "react"
 type Theme = "dark" | "light" | "system"
 
 export enum FontSize {
-  xs = "0",
-  sm = "25",
-  md = "50",
-  lg = "75",
-  xl = "100",
+  xs = "14px",
+  sm = "16px",
+  md = "18px",
+  lg = "20px",
+  xl = "24px",
 }
 
 export enum FontWeight {
-  normal = "1",
-  bold = "34",
-  extrabold = "67",
-  black = "100",
+  light = "200",
+  normal = "400",
+  bold = "600",
+  extrabold = "800",
+  black = "900",
 }
 
 type ThemeProviderProps = {
@@ -105,45 +106,11 @@ export function ThemeProvider({
   }, [theme])
 
   useEffect(() => {
-    switch (fontSize) {
-      case FontSize.xs:
-        document.documentElement.style.fontSize = "0.875rem"
-        document.documentElement.style.lineHeight = "1.2"
-        break
-      case FontSize.sm:
-        document.documentElement.style.fontSize = "1rem"
-        document.documentElement.style.lineHeight = "1.2"
-        break
-      case FontSize.md:
-        document.documentElement.style.fontSize = "1.15rem"
-        document.documentElement.style.lineHeight = "1.35"
-        break
-      case FontSize.lg:
-        document.documentElement.style.fontSize = "1.25rem"
-        document.documentElement.style.lineHeight = "1.5"
-        break
-      case FontSize.xl:
-        document.documentElement.style.fontSize = "1.5rem"
-        document.documentElement.style.lineHeight = "1.5"
-        break
-    }
+    document.documentElement.style.fontSize = fontSize
   }, [fontSize])
 
   useEffect(() => {
-    switch (fontWeight) {
-      case FontWeight.normal:
-        document.documentElement.style.fontWeight = "400"
-        break
-      case FontWeight.bold:
-        document.documentElement.style.fontWeight = "600"
-        break
-      case FontWeight.extrabold:
-        document.documentElement.style.fontWeight = "700"
-        break
-      case FontWeight.black:
-        document.documentElement.style.fontWeight = "800"
-        break
-    }
+    document.documentElement.style.fontWeight = fontWeight
   }, [fontWeight])
 
   const value: ThemeProviderState = {
