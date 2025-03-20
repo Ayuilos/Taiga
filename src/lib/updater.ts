@@ -3,6 +3,7 @@ import { load } from "@tauri-apps/plugin-store"
 import { AIProviderManager, IAIProvider } from "./ai-providers"
 import { GithubAPI } from "./github-get-latest-release-response-schema"
 import { SearchApiStore, TBaseSearchAPI } from "./search-api-store"
+import { FONT_SIZE_STORAGE_KEY, FONT_WEIGHT_STORAGE_KEY, FontSize, FontWeight } from "@/components/ThemeProvider"
 
 const VERSION_TAGS_STORE_KEY = "VERSIONs.json"
 
@@ -94,6 +95,10 @@ export const updaters: TUpdater[] = [
   ["0.1.0-rc.1", async () => {}],
   ["0.1.0-rc.2", async () => {}],
   ["0.1.0-rc.3", async () => {}],
+  ["0.1.0-rc.4", async () => {
+    localStorage.setItem(FONT_SIZE_STORAGE_KEY, FontSize.sm)
+    localStorage.setItem(FONT_WEIGHT_STORAGE_KEY, FontWeight.normal)
+  }],
 ]
 export const getCurrentVersion = () => updaters[updaters.length - 1][0]
 
