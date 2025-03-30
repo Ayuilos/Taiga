@@ -5,11 +5,24 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : TauriActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { view, insets ->
+            val systemBarHeight = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+            val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+
+            view.setPadding(view.paddingLeft, view.paddingTop, view.paddingRight, if (imeHeight > 0) imeHeight else systemBarHeight)
+
+            // Return the insets so other listeners can consume them too
+            insets
+        }
+
         setStatusBarTextColor()
     }
 
