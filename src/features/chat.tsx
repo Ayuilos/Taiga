@@ -556,7 +556,7 @@ function InternalChat({
       <div className="w-[94%] self-center flex-auto flex flex-col items-center justify-end overflow-hidden gap-4 select-none">
         <div className="w-full relative flex-auto flex flex-col overflow-hidden">
           {isChatting ? (
-            <div className="fixed top-17 left-0 w-screen h-[10vh]">
+            <div className="fixed top-25 left-0 w-screen h-[10vh]">
               {isDark ? (
                 <Aurora speed={2.5} blend={1} amplitude={0.5} />
               ) : (
