@@ -100,6 +100,7 @@ export const updaters: TUpdater[] = [
     localStorage.setItem(FONT_WEIGHT_STORAGE_KEY, FontWeight.normal)
   }],
   ["0.1.0-rc.5", async () => {}],
+  ["0.1.0-rc.6", async () => {}],
 ]
 export const getCurrentVersion = () => updaters[updaters.length - 1][0]
 
