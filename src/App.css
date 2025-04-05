@@ -174,7 +174,6 @@
   src: url("/fonts/Aeche-regular.woff2") format("woff2");
 }
 
-
 @font-face {
   font-family: Aeche;
   font-style: normal;
@@ -208,5 +207,12 @@
   }
   button {
     @apply select-none;
+  }
+  th,
+  td {
+    @apply p-2 border;
+  }
+  th {
+    @apply bg-muted;
   }
 }

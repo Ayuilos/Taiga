@@ -5,12 +5,11 @@ import { openUrl } from "@tauri-apps/plugin-opener"
 import ReactMarkdown, { Options, type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 
-import { CodeBlock } from "./CodeBlock"
+import { CodeBlock, PreBlock } from "./CodeBlock"
 
 const components: Partial<Components> = {
-  // @ts-expect-error
   code: CodeBlock,
-  pre: ({ children }) => <>{children}</>,
+  pre: PreBlock,
   ol: ({ node, children, ...props }) => {
     return (
       <ol className="list-decimal ml-4" {...props}>
@@ -21,7 +20,7 @@ const components: Partial<Components> = {
   li: ({ node, children, ...props }) => {
     return (
       <li className="py-1" {...props}>
-        <div className="flex flex-col gap-2">{children}</div>
+        {children}
       </li>
     )
   },
