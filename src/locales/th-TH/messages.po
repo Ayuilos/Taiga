@@ -83,12 +83,16 @@ msgstr "เลือกโมเดล"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "เครื่องมือทั่วไป"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "ยืนยัน"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "สรุปผลล้มเหลว"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "ค้นหา Searxng เพิ่มเติม"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "ขนาดตัวอักษร"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "ความหนาของตัวอักษร"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "ค้นหาผู้ให้บริการ..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "เครื่องมือค้นหา"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -272,7 +284,7 @@ msgstr "สิ้นสุดขั้นตอน"
 
 #: src/features/chat.tsx:762
 #~ msgid "Step Over"
-#~ msgstr ""
+#~ msgstr "ข้ามขั้นตอน"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
@@ -284,7 +296,7 @@ msgstr "คัดลอกข้อความไปยังคลิปบอ
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "ธีม"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

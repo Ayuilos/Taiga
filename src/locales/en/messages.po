@@ -90,6 +90,10 @@ msgstr "Common Tool"
 msgid "Confirm"
 msgstr "Confirm"
 
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "Copied to clipboard"
+
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
 msgstr "Copy"
@@ -146,6 +150,14 @@ msgstr "Failed to summarize"
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
 msgstr "Find more Searxng instances"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "Font Size"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "Font Weight"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"

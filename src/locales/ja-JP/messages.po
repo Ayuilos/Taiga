@@ -83,12 +83,16 @@ msgstr "モデルを選択"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "共通ツール"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "確認"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "クリップボードにコピーしました"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "要約に失敗しました"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "Searxngインスタンスをもっと探す"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "フォントサイズ"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "フォントの太さ"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "プロバイダーを検索..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "検索ツール"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -284,7 +296,7 @@ msgstr "テキストがクリップボードにコピーされました"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "テーマ"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

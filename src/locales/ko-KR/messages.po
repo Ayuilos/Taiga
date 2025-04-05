@@ -83,12 +83,16 @@ msgstr "모델 선택"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "공통 도구"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "확인"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "클립보드에 복사됨"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "요약 실패"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "더 많은 Searxng 인스턴스 찾기"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "글꼴 크기"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "글꼴 두께"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "제공자 검색 중..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "검색 도구"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -284,7 +296,7 @@ msgstr "텍스트가 클립보드에 복사됨"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "테마"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

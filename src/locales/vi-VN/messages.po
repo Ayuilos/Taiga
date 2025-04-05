@@ -83,12 +83,16 @@ msgstr "Chọn mô hình"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "Công cụ thông thường"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "Xác nhận"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "Đã sao chép vào clipboard"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "Không thể tóm tắt"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "Tìm thêm các phiên bản Searxng"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "Kích thước phông chữ"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "Độ đậm phông chữ"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "Tìm kiếm nhà cung cấp..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "Công cụ tìm kiếm"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -280,7 +292,7 @@ msgstr "Đã sao chép văn bản vào clipboard"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "Chủ đề"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

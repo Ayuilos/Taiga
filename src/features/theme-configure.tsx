@@ -1,6 +1,7 @@
 import { FontSize, FontWeight, useTheme } from "@/components/ThemeProvider"
 import { Label } from "@/components/ui/label"
 import { Toggle } from "@/components/ui/toggle"
+import { t } from "@lingui/core/macro"
 
 export function ThemeConfigure() {
   const { fontSize, fontWeight, setFontSize, setFontWeight } = useTheme()
@@ -10,13 +11,16 @@ export function ThemeConfigure() {
   const fontSizeId = "TaigaFontSize"
   const fontWeightId = "TaigaFontWeight"
 
+  const fontSizeString = t`Font Size`
+  const fontWeightString = t`Font Weight`
+
   return (
     <div className="flex flex-col gap-4 w-[80%]">
       <div className="border rounded-lg my-8 p-8 text-center w-full">
         {exampleText}
       </div>
       <div className="flex flex-col gap-2">
-        <Label htmlFor={fontSizeId}>Font Size</Label>
+        <Label htmlFor={fontSizeId}>{fontSizeString}</Label>
         <div className="flex gap-2 justify-center items-center">
           {Object.entries(FontSize).map(([key, value]) => (
             <Toggle
@@ -31,7 +35,7 @@ export function ThemeConfigure() {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <Label htmlFor={fontWeightId}>Font Weight</Label>
+        <Label htmlFor={fontWeightId}>{fontWeightString}</Label>
         <div className="flex gap-2 justify-center items-center">
           {Object.entries(FontWeight).map(([key, value]) => (
             <Toggle

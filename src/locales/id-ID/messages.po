@@ -83,12 +83,16 @@ msgstr "Pilih model"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "Alat Umum"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "Konfirmasi"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "Disalin ke clipboard"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "Gagal meringkas"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "Temukan lebih banyak instans Searxng"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "Ukuran Font"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "Berat Font"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "Cari penyedia..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "Alat Pencarian"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -284,7 +296,7 @@ msgstr "Teks disalin ke clipboard"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

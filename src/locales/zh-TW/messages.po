@@ -83,12 +83,16 @@ msgstr "選擇模型"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "常用工具"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "確認"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "已複製到剪貼簿"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "摘要失敗"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "尋找更多 Searxng 實例"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "字體大小"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "字體粗細"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "搜尋供應商..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "搜尋工具"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -284,7 +296,7 @@ msgstr "文字已複製到剪貼簿"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "主題"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

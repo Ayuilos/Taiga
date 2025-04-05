@@ -83,12 +83,16 @@ msgstr "Choose models"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "Common Tool"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "Confirm"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "Copied to clipboard"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "Failed to summarize"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "Find more Searxng instances"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "Font Size"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "Font Weight"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "Search provider..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "Search Tool"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -284,7 +296,7 @@ msgstr "Text copied to clipboard"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "Theme"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

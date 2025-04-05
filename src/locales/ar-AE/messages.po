@@ -83,12 +83,16 @@ msgstr "اختر النماذج"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "أداة شائعة"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "تأكيد"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "تم النسخ إلى الحافظة"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "فشل التلخيص"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "العثور على المزيد من مثيلات Searxng"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "حجم الخط"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "وزن الخط"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "البحث عن موفر..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "أداة البحث"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -284,7 +296,7 @@ msgstr "تم نسخ النص إلى الحافظة"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "المظهر"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

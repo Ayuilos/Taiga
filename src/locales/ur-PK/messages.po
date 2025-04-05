@@ -83,12 +83,16 @@ msgstr "ماڈل منتخب کریں"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "عام ٹول"
 
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
 msgstr "تصدیق کریں"
+
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr "کلپ بورڈ پر کاپی ہو گیا"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
@@ -145,7 +149,15 @@ msgstr "خلاصہ کرنے میں ناکام"
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "مزید Searxng مثالیں تلاش کریں"
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr "فونٹ کا سائز"
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
+msgstr "فونٹ کا وزن"
 
 #: src/components/NavigationDescription.tsx:62
 msgid "Get API keys"
@@ -244,7 +256,7 @@ msgstr "فراہم کنندہ تلاش کریں..."
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "تلاش ٹول"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -272,7 +284,7 @@ msgstr "مرحلہ اختتام"
 
 #: src/features/chat.tsx:762
 #~ msgid "Step Over"
-#~ msgstr ""
+#~ msgstr "آگے بڑھیں"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
@@ -284,7 +296,7 @@ msgstr "متن کلپ بورڈ پر کاپی کیا گیا"
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "تھیم"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"

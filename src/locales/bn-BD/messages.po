@@ -90,6 +90,10 @@ msgstr ""
 msgid "Confirm"
 msgstr "নিশ্চিত করুন"
 
+#: src/components/CodeBlock.tsx:35
+msgid "Copied to clipboard"
+msgstr ""
+
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
 msgstr "কপি"
@@ -145,6 +149,14 @@ msgstr "সংক্ষিপ্ত করতে ব্যর্থ হয়ে
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
+msgstr ""
+
+#: src/features/theme-configure.tsx:14
+msgid "Font Size"
+msgstr ""
+
+#: src/features/theme-configure.tsx:15
+msgid "Font Weight"
 msgstr ""
 
 #: src/components/NavigationDescription.tsx:62
