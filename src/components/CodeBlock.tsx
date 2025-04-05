@@ -41,7 +41,7 @@ export function PreBlock({
   return (
     <div className="relative">
       <Button
-        className="absolute top-2 right-2"
+        className="absolute top-2 right-2 opacity-60"
         size="icon"
         variant="outline"
         onClick={copyCode}
@@ -64,23 +64,23 @@ export function CodeBlock({
 
   const match = /language-(\w+)/.exec(className || "")
 
-  return match ? (
-    // @ts-ignore
-    <SyntaxHighlighter
-      {...props}
-      PreTag="div"
-      children={String(children).replace(/\n$/, "")}
-      language={match[1]}
-      showLineNumbers
-      wrapLines
-      style={isDark ? dark : light}
-    />
-  ) : (
+  return inline ? (
     <code
       className={`${className} text-sm bg-zinc-100 dark:bg-zinc-800 py-0.5 px-1 rounded-md`}
       {...props}
     >
       {children}
     </code>
+  ) : (
+    // @ts-ignore
+    <SyntaxHighlighter
+      {...props}
+      PreTag="div"
+      children={String(children).replace(/\n$/, "")}
+      language={match ? match[1] : "text"}
+      showLineNumbers
+      wrapLines
+      style={isDark ? dark : light}
+    />
   )
 }
