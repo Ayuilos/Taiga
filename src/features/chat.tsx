@@ -629,64 +629,66 @@ function InternalChat({
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
-          <div className="absolute bottom-4 flex justify-between items-center w-[98%] p-2 gap-8 rounded-xl bg-background">
-            <div className="flex-auto flex gap-2 justify-start items-center overflow-x-auto">
-              {editedNodePath ? (
-                <Button size="icon" variant="outline" onClick={cancelEdit}>
-                  <X />
-                </Button>
-              ) : (
-                <>
-                  <ToolArea
-                    availableSearchApis={availableSearchApis}
-                    selectedSearchApi={selectedSearchApi}
-                    selectedCommonTools={selectedCommonTools}
-                    onSearchAPISelect={setSelectedSearchApi}
-                    onCommonToolsSelect={setSelectedCommonTools}
-                  />
-                  <Button
-                    className="shrink-0"
-                    size="icon"
-                    variant="outline"
-                    onClick={startNewChat}
-                  >
-                    <MessageSquarePlus />
+          <div className="absolute bottom-4 w-[98%] px-2 rounded-xl">
+            <div className="flex justify-between items-center gap-8 py-1 bg-background">
+              <div className="flex-auto flex gap-2 justify-start items-center overflow-x-auto">
+                {editedNodePath ? (
+                  <Button size="icon" variant="outline" onClick={cancelEdit}>
+                    <X />
                   </Button>
-                  <Button
-                    className="shrink-0"
-                    size="icon"
-                    variant="outline"
-                    onClick={() => {
-                      setShowChatHistory(true)
-                    }}
-                  >
-                    <History />
-                  </Button>
-                  {deleteChatButton}
-                </>
-              )}
-            </div>
-            <div>
-              <Button
-                size="icon"
-                variant={isChatting ? "destructive" : "default"}
-                onClick={
-                  isChatting
-                    ? cancelChat
-                    : editedNodePath
-                      ? editMessage
-                      : sendMessage
-                }
-                disabled={!isChatting && input === ""}
-              >
-                {isChatting ? (
-                  <StopCircle />
-                ) : editedNodePath ? (
-                  <Check />
                 ) : (
-                  <SendHorizonal />
+                  <>
+                    <ToolArea
+                      availableSearchApis={availableSearchApis}
+                      selectedSearchApi={selectedSearchApi}
+                      selectedCommonTools={selectedCommonTools}
+                      onSearchAPISelect={setSelectedSearchApi}
+                      onCommonToolsSelect={setSelectedCommonTools}
+                    />
+                    <Button
+                      className="shrink-0"
+                      size="icon"
+                      variant="outline"
+                      onClick={startNewChat}
+                    >
+                      <MessageSquarePlus />
+                    </Button>
+                    <Button
+                      className="shrink-0"
+                      size="icon"
+                      variant="outline"
+                      onClick={() => {
+                        setShowChatHistory(true)
+                      }}
+                    >
+                      <History />
+                    </Button>
+                    {deleteChatButton}
+                  </>
                 )}
-              </Button>
+              </div>
+              <div>
+                <Button
+                  size="icon"
+                  variant={isChatting ? "destructive" : "default"}
+                  onClick={
+                    isChatting
+                      ? cancelChat
+                      : editedNodePath
+                        ? editMessage
+                        : sendMessage
+                  }
+                  disabled={!isChatting && input === ""}
+                >
+                  {isChatting ? (
+                    <StopCircle />
+                  ) : editedNodePath ? (
+                    <Check />
+                  ) : (
+                    <SendHorizonal />
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
