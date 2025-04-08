@@ -526,6 +526,8 @@ function InternalChat({
   const deleteChatCancelString = t`Cancel`
   const textareaPlaceholder = t`What can I help you?`
 
+  const showSendButton = isChatting || input !== ""
+
   const deleteChatButton = !chatIsFresh ? (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -668,26 +670,27 @@ function InternalChat({
                 )}
               </div>
               <div>
-                <Button
-                  size="icon"
-                  variant={isChatting ? "destructive" : "default"}
-                  onClick={
-                    isChatting
-                      ? cancelChat
-                      : editedNodePath
-                        ? editMessage
-                        : sendMessage
-                  }
-                  disabled={!isChatting && input === ""}
-                >
-                  {isChatting ? (
-                    <StopCircle />
-                  ) : editedNodePath ? (
-                    <Check />
-                  ) : (
-                    <SendHorizonal />
-                  )}
-                </Button>
+                {showSendButton ? (
+                  <Button
+                    size="icon"
+                    variant={isChatting ? "destructive" : "default"}
+                    onClick={
+                      isChatting
+                        ? cancelChat
+                        : editedNodePath
+                          ? editMessage
+                          : sendMessage
+                    }
+                  >
+                    {isChatting ? (
+                      <StopCircle />
+                    ) : editedNodePath ? (
+                      <Check />
+                    ) : (
+                      <SendHorizonal />
+                    )}
+                  </Button>
+                ) : null}
               </div>
             </div>
           </div>
