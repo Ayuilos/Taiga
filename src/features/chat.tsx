@@ -631,8 +631,8 @@ function InternalChat({
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
-          <div className="absolute bottom-4 w-[98%] px-2 rounded-xl">
-            <div className="flex justify-between items-center gap-8 py-1 bg-background">
+          <div className="absolute bottom-5 w-[98%] px-2 rounded-xl">
+            <div className="flex justify-between items-center gap-8 rounded-xl bg-background/70 backdrop-blur-xs">
               <div className="flex-auto flex gap-2 justify-start items-center overflow-x-auto">
                 {editedNodePath ? (
                   <Button size="icon" variant="outline" onClick={cancelEdit}>
