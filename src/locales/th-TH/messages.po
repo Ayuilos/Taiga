@@ -42,6 +42,10 @@ msgstr "คุณแน่ใจหรือไม่ว่าต้องกา
 msgid "Are you sure you want to delete this provider?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบผู้ให้บริการนี้?"
 
+#: src/features/theme-configure.tsx:273
+msgid "Are you sure you want to delete this theme CSS?"
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบ CSS ธีมนี้?"
+
 #: src/components/ChatMessage.tsx:65
 msgid "Args Input by Model"
 msgstr "อาร์กิวเมนต์ที่ป้อนโดยโมเดล"
@@ -54,6 +58,8 @@ msgstr "โมเดลที่มี"
 msgid "Base URL"
 msgstr "URL หลัก"
 
+#: src/features/theme-configure.tsx:271
+#: src/features/theme-configure.tsx:274
 #: src/features/provider-management.tsx:361
 #: src/features/provider-management.tsx:366
 #: src/features/chat.tsx:526
@@ -85,6 +91,7 @@ msgstr "เลือกโมเดล"
 msgid "Common Tool"
 msgstr "เครื่องมือทั่วไป"
 
+#: src/features/theme-configure.tsx:270
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
@@ -98,9 +105,26 @@ msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว
 msgid "Copy"
 msgstr "คัดลอก"
 
+#: src/features/theme-configure.tsx:268
+msgid "CSS"
+msgstr "CSS"
+
+#: src/features/theme-configure.tsx:228
 #: src/features/provider-management.tsx:317
 msgid "Custom"
 msgstr "กำหนดเอง"
+
+#: src/features/theme-configure.tsx:71
+msgid "Custom Theme"
+msgstr "ธีมที่กำหนดเอง"
+
+#: src/features/theme-configure.tsx:145
+msgid "Custom theme name already exists"
+msgstr "มีชื่อธีมที่กำหนดเองอยู่แล้ว"
+
+#: src/components/NavigationDescription.tsx:62
+msgid "Customize your own theme from tweakcn"
+msgstr "ปรับแต่งธีมของคุณเองจาก tweakcn"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
@@ -118,6 +142,7 @@ msgstr "โมเดลเริ่มต้น"
 msgid "Default Translate Model"
 msgstr "โมเดลแปลเริ่มต้น"
 
+#: src/features/theme-configure.tsx:275
 #: src/features/provider-management.tsx:367
 #: src/features/chat.tsx:525
 msgid "Delete"
@@ -126,6 +151,10 @@ msgstr "ลบ"
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
 msgstr "ลบประวัติการแชททั้งหมด"
+
+#: src/features/theme-configure.tsx:272
+msgid "Delete Custom Theme CSS"
+msgstr "ลบ CSS ธีมที่กำหนดเอง"
 
 #: src/features/provider-management.tsx:364
 msgid "Delete Provider"
@@ -151,15 +180,15 @@ msgstr "สรุปผลล้มเหลว"
 msgid "Find more Searxng instances"
 msgstr "ค้นหา Searxng เพิ่มเติม"
 
-#: src/features/theme-configure.tsx:14
+#: src/features/theme-configure.tsx:69
 msgid "Font Size"
 msgstr "ขนาดตัวอักษร"
 
-#: src/features/theme-configure.tsx:15
+#: src/features/theme-configure.tsx:70
 msgid "Font Weight"
 msgstr "ความหนาของตัวอักษร"
 
-#: src/components/NavigationDescription.tsx:62
+#: src/components/NavigationDescription.tsx:67
 msgid "Get API keys"
 msgstr "รับคีย์ API"
 
@@ -187,6 +216,7 @@ msgstr "จัดการโมเดล"
 msgid "Model Management"
 msgstr "การจัดการโมเดล"
 
+#: src/features/theme-configure.tsx:267
 #: src/features/provider-management.tsx:357
 msgid "Name"
 msgstr "ชื่อ"
@@ -194,6 +224,10 @@ msgstr "ชื่อ"
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
 msgstr "ไม่พบแชท"
+
+#: src/features/theme-configure.tsx:266
+msgid "No Custom Theme CSS found"
+msgstr "ไม่พบ CSS ธีมที่กำหนดเอง"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:141
@@ -204,6 +238,11 @@ msgstr "ไม่พบโมเดล"
 msgid "No provider found"
 msgstr "ไม่พบผู้ให้บริการ"
 
+#: src/features/theme-configure.tsx:269
+msgid "Paste CSS code from tweakcn at here"
+msgstr "วางโค้ด CSS จาก tweakcn ที่นี่"
+
+#: src/features/theme-configure.tsx:227
 #: src/features/provider-management.tsx:316
 msgid "Preset"
 msgstr "ตั้งค่าล่วงหน้า"
@@ -245,6 +284,10 @@ msgstr "คำขอหมดเวลา"
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
 msgstr "ค้นหา APIs"
+
+#: src/features/theme-configure.tsx:265
+msgid "Search Custom Theme CSS..."
+msgstr "ค้นหา CSS ธีมที่กำหนดเอง..."
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."

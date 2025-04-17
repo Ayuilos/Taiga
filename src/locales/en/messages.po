@@ -42,6 +42,10 @@ msgstr "Are you sure you want to delete all chat history?"
 msgid "Are you sure you want to delete this provider?"
 msgstr "Are you sure you want to delete this provider?"
 
+#: src/features/theme-configure.tsx:273
+msgid "Are you sure you want to delete this theme CSS?"
+msgstr "Are you sure you want to delete this theme CSS?"
+
 #: src/components/ChatMessage.tsx:65
 msgid "Args Input by Model"
 msgstr "Args Input by Model"
@@ -54,6 +58,8 @@ msgstr "Available models"
 msgid "Base URL"
 msgstr "Base URL"
 
+#: src/features/theme-configure.tsx:271
+#: src/features/theme-configure.tsx:274
 #: src/features/provider-management.tsx:361
 #: src/features/provider-management.tsx:366
 #: src/features/chat.tsx:526
@@ -85,6 +91,7 @@ msgstr "Choose models"
 msgid "Common Tool"
 msgstr "Common Tool"
 
+#: src/features/theme-configure.tsx:270
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
@@ -98,9 +105,26 @@ msgstr "Copied to clipboard"
 msgid "Copy"
 msgstr "Copy"
 
+#: src/features/theme-configure.tsx:268
+msgid "CSS"
+msgstr "CSS"
+
+#: src/features/theme-configure.tsx:228
 #: src/features/provider-management.tsx:317
 msgid "Custom"
 msgstr "Custom"
+
+#: src/features/theme-configure.tsx:71
+msgid "Custom Theme"
+msgstr "Custom Theme"
+
+#: src/features/theme-configure.tsx:145
+msgid "Custom theme name already exists"
+msgstr "Custom theme name already exists"
+
+#: src/components/NavigationDescription.tsx:62
+msgid "Customize your own theme from tweakcn"
+msgstr "Customize your own theme from tweakcn"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
@@ -118,6 +142,7 @@ msgstr "Default Models"
 msgid "Default Translate Model"
 msgstr "Default Translate Model"
 
+#: src/features/theme-configure.tsx:275
 #: src/features/provider-management.tsx:367
 #: src/features/chat.tsx:525
 msgid "Delete"
@@ -126,6 +151,10 @@ msgstr "Delete"
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
 msgstr "Delete all chat history"
+
+#: src/features/theme-configure.tsx:272
+msgid "Delete Custom Theme CSS"
+msgstr "Delete Custom Theme CSS"
 
 #: src/features/provider-management.tsx:364
 msgid "Delete Provider"
@@ -151,15 +180,15 @@ msgstr "Failed to summarize"
 msgid "Find more Searxng instances"
 msgstr "Find more Searxng instances"
 
-#: src/features/theme-configure.tsx:14
+#: src/features/theme-configure.tsx:69
 msgid "Font Size"
 msgstr "Font Size"
 
-#: src/features/theme-configure.tsx:15
+#: src/features/theme-configure.tsx:70
 msgid "Font Weight"
 msgstr "Font Weight"
 
-#: src/components/NavigationDescription.tsx:62
+#: src/components/NavigationDescription.tsx:67
 msgid "Get API keys"
 msgstr "Get API keys"
 
@@ -187,6 +216,7 @@ msgstr "Manage Models"
 msgid "Model Management"
 msgstr "Model Management"
 
+#: src/features/theme-configure.tsx:267
 #: src/features/provider-management.tsx:357
 msgid "Name"
 msgstr "Name"
@@ -194,6 +224,10 @@ msgstr "Name"
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
 msgstr "No chats found"
+
+#: src/features/theme-configure.tsx:266
+msgid "No Custom Theme CSS found"
+msgstr "No Custom Theme CSS found"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:141
@@ -204,6 +238,11 @@ msgstr "No models found"
 msgid "No provider found"
 msgstr "No provider found"
 
+#: src/features/theme-configure.tsx:269
+msgid "Paste CSS code from tweakcn at here"
+msgstr "Paste CSS code from tweakcn at here"
+
+#: src/features/theme-configure.tsx:227
 #: src/features/provider-management.tsx:316
 msgid "Preset"
 msgstr "Preset"
@@ -245,6 +284,10 @@ msgstr "Request timeout"
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
 msgstr "Search APIs"
+
+#: src/features/theme-configure.tsx:265
+msgid "Search Custom Theme CSS..."
+msgstr "Search Custom Theme CSS..."
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."

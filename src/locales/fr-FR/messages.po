@@ -42,6 +42,10 @@ msgstr "Êtes-vous sûr de vouloir supprimer tout l'historique des conversations
 msgid "Are you sure you want to delete this provider?"
 msgstr "Êtes-vous sûr de vouloir supprimer ce fournisseur ?"
 
+#: src/features/theme-configure.tsx:273
+msgid "Are you sure you want to delete this theme CSS?"
+msgstr "Êtes-vous sûr de vouloir supprimer ce thème CSS ?"
+
 #: src/components/ChatMessage.tsx:65
 msgid "Args Input by Model"
 msgstr "Arguments saisis par le modèle"
@@ -54,6 +58,8 @@ msgstr "Modèles disponibles"
 msgid "Base URL"
 msgstr "URL de base"
 
+#: src/features/theme-configure.tsx:271
+#: src/features/theme-configure.tsx:274
 #: src/features/provider-management.tsx:361
 #: src/features/provider-management.tsx:366
 #: src/features/chat.tsx:526
@@ -85,6 +91,7 @@ msgstr "Choisir des modèles"
 msgid "Common Tool"
 msgstr "Outil commun"
 
+#: src/features/theme-configure.tsx:270
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
@@ -98,9 +105,26 @@ msgstr "Copié dans le presse-papiers"
 msgid "Copy"
 msgstr "Copier"
 
+#: src/features/theme-configure.tsx:268
+msgid "CSS"
+msgstr "CSS"
+
+#: src/features/theme-configure.tsx:228
 #: src/features/provider-management.tsx:317
 msgid "Custom"
 msgstr "Personnalisé"
+
+#: src/features/theme-configure.tsx:71
+msgid "Custom Theme"
+msgstr "Thème personnalisé"
+
+#: src/features/theme-configure.tsx:145
+msgid "Custom theme name already exists"
+msgstr "Le nom du thème personnalisé existe déjà"
+
+#: src/components/NavigationDescription.tsx:62
+msgid "Customize your own theme from tweakcn"
+msgstr "Personnalisez votre propre thème à partir de tweakcn"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
@@ -118,6 +142,7 @@ msgstr "Modèles par défaut"
 msgid "Default Translate Model"
 msgstr "Modèle de traduction par défaut"
 
+#: src/features/theme-configure.tsx:275
 #: src/features/provider-management.tsx:367
 #: src/features/chat.tsx:525
 msgid "Delete"
@@ -126,6 +151,10 @@ msgstr "Supprimer"
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
 msgstr "Supprimer tout l'historique des conversations"
+
+#: src/features/theme-configure.tsx:272
+msgid "Delete Custom Theme CSS"
+msgstr "Supprimer le CSS du thème personnalisé"
 
 #: src/features/provider-management.tsx:364
 msgid "Delete Provider"
@@ -151,15 +180,15 @@ msgstr "Échec du résumé"
 msgid "Find more Searxng instances"
 msgstr "Trouver plus d'instances Searxng"
 
-#: src/features/theme-configure.tsx:14
+#: src/features/theme-configure.tsx:69
 msgid "Font Size"
 msgstr "Taille de la police"
 
-#: src/features/theme-configure.tsx:15
+#: src/features/theme-configure.tsx:70
 msgid "Font Weight"
 msgstr "Graisse de la police"
 
-#: src/components/NavigationDescription.tsx:62
+#: src/components/NavigationDescription.tsx:67
 msgid "Get API keys"
 msgstr "Obtenir des clés API"
 
@@ -187,6 +216,7 @@ msgstr "Gérer les modèles"
 msgid "Model Management"
 msgstr "Gestion des modèles"
 
+#: src/features/theme-configure.tsx:267
 #: src/features/provider-management.tsx:357
 msgid "Name"
 msgstr "Nom"
@@ -194,6 +224,10 @@ msgstr "Nom"
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
 msgstr "Aucune conversation trouvée"
+
+#: src/features/theme-configure.tsx:266
+msgid "No Custom Theme CSS found"
+msgstr "Aucun CSS de thème personnalisé trouvé"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:141
@@ -204,6 +238,11 @@ msgstr "Aucun modèle trouvé"
 msgid "No provider found"
 msgstr "Aucun fournisseur trouvé"
 
+#: src/features/theme-configure.tsx:269
+msgid "Paste CSS code from tweakcn at here"
+msgstr "Collez le code CSS de tweakcn ici"
+
+#: src/features/theme-configure.tsx:227
 #: src/features/provider-management.tsx:316
 msgid "Preset"
 msgstr "Prédéfini"
@@ -245,6 +284,10 @@ msgstr "Délai d'attente de la requête dépassé"
 #: src/components/SettingsFeatureToggle.tsx:19
 msgid "Search APIs"
 msgstr "API de recherche"
+
+#: src/features/theme-configure.tsx:265
+msgid "Search Custom Theme CSS..."
+msgstr "Rechercher un CSS de thème personnalisé..."
 
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."

@@ -42,6 +42,10 @@ msgstr "আপনি কি সমস্ত চ্যাট ইতিহাস �
 msgid "Are you sure you want to delete this provider?"
 msgstr "আপনি কি এই প্রদানকারীকে মুছে ফেলতে চান?"
 
+#: src/features/theme-configure.tsx:273
+msgid "Are you sure you want to delete this theme CSS?"
+msgstr "আপনি কি নিশ্চিত যে আপনি এই থিম CSS মুছে ফেলতে চান?"
+
 #: src/components/ChatMessage.tsx:65
 msgid "Args Input by Model"
 msgstr "মডেল দ্বারা আর্গুমেন্ট ইনপুট"
@@ -54,6 +58,8 @@ msgstr "উপলব্ধ মডেল"
 msgid "Base URL"
 msgstr "বেস URL"
 
+#: src/features/theme-configure.tsx:271
+#: src/features/theme-configure.tsx:274
 #: src/features/provider-management.tsx:361
 #: src/features/provider-management.tsx:366
 #: src/features/chat.tsx:526
@@ -83,8 +89,9 @@ msgstr "মডেল নির্বাচন করুন"
 
 #: src/components/ToolArea.tsx:68
 msgid "Common Tool"
-msgstr ""
+msgstr "সাধারণ সরঞ্জাম"
 
+#: src/features/theme-configure.tsx:270
 #: src/features/provider-management.tsx:360
 #: src/components/ChatHistory.tsx:72
 msgid "Confirm"
@@ -92,15 +99,32 @@ msgstr "নিশ্চিত করুন"
 
 #: src/components/CodeBlock.tsx:35
 msgid "Copied to clipboard"
-msgstr ""
+msgstr "ক্লিপবোর্ডে কপি করা হয়েছে"
 
 #: src/components/ChatMessage.tsx:76
 msgid "Copy"
 msgstr "কপি"
 
+#: src/features/theme-configure.tsx:268
+msgid "CSS"
+msgstr "সিএসএস"
+
+#: src/features/theme-configure.tsx:228
 #: src/features/provider-management.tsx:317
 msgid "Custom"
 msgstr "কাস্টম"
+
+#: src/features/theme-configure.tsx:71
+msgid "Custom Theme"
+msgstr "কাস্টম থিম"
+
+#: src/features/theme-configure.tsx:145
+msgid "Custom theme name already exists"
+msgstr "কাস্টম থিমের নাম ইতিমধ্যে বিদ্যমান"
+
+#: src/components/NavigationDescription.tsx:62
+msgid "Customize your own theme from tweakcn"
+msgstr "tweakcn থেকে আপনার নিজস্ব থিম কাস্টমাইজ করুন"
 
 #: src/features/default-model-management.tsx:67
 msgid "Default Chat Model"
@@ -118,6 +142,7 @@ msgstr "ডিফল্ট মডেল"
 msgid "Default Translate Model"
 msgstr "ডিফল্ট অনুবাদ মডেল"
 
+#: src/features/theme-configure.tsx:275
 #: src/features/provider-management.tsx:367
 #: src/features/chat.tsx:525
 msgid "Delete"
@@ -126,6 +151,10 @@ msgstr "মুছে ফেলুন"
 #: src/components/ChatHistory.tsx:70
 msgid "Delete all chat history"
 msgstr "সমস্ত চ্যাট ইতিহাস মুছে ফেলুন"
+
+#: src/features/theme-configure.tsx:272
+msgid "Delete Custom Theme CSS"
+msgstr "কাস্টম থিম CSS মুছুন"
 
 #: src/features/provider-management.tsx:364
 msgid "Delete Provider"
@@ -149,17 +178,17 @@ msgstr "সংক্ষিপ্ত করতে ব্যর্থ হয়ে
 
 #: src/components/NavigationDescription.tsx:43
 msgid "Find more Searxng instances"
-msgstr ""
+msgstr "আরও Searxng উদাহরণ খুঁজুন"
 
-#: src/features/theme-configure.tsx:14
+#: src/features/theme-configure.tsx:69
 msgid "Font Size"
-msgstr ""
+msgstr "ফন্টের আকার"
 
-#: src/features/theme-configure.tsx:15
+#: src/features/theme-configure.tsx:70
 msgid "Font Weight"
-msgstr ""
+msgstr "ফন্টের ওজন"
 
-#: src/components/NavigationDescription.tsx:62
+#: src/components/NavigationDescription.tsx:67
 msgid "Get API keys"
 msgstr "API কী পান"
 
@@ -187,6 +216,7 @@ msgstr "মডেল পরিচালনা করুন"
 msgid "Model Management"
 msgstr "মডেল ব্যবস্থাপনা"
 
+#: src/features/theme-configure.tsx:267
 #: src/features/provider-management.tsx:357
 msgid "Name"
 msgstr "নাম"
@@ -194,6 +224,10 @@ msgstr "নাম"
 #: src/components/ChatHistory.tsx:74
 msgid "No chats found"
 msgstr "কোনো চ্যাট পাওয়া যায়নি"
+
+#: src/features/theme-configure.tsx:266
+msgid "No Custom Theme CSS found"
+msgstr "কোনো কাস্টম থিম CSS পাওয়া যায়নি"
 
 #: src/features/default-model-management.tsx:151
 #: src/components/ModelSelectorContext.tsx:141
@@ -204,6 +238,11 @@ msgstr "কোনো মডেল পাওয়া যায়নি"
 msgid "No provider found"
 msgstr "কোনো প্রদানকারী পাওয়া যায়নি"
 
+#: src/features/theme-configure.tsx:269
+msgid "Paste CSS code from tweakcn at here"
+msgstr "এখানে tweakcn থেকে CSS কোড পেস্ট করুন"
+
+#: src/features/theme-configure.tsx:227
 #: src/features/provider-management.tsx:316
 msgid "Preset"
 msgstr "প্রিসেট"
@@ -246,6 +285,10 @@ msgstr "অনুরোধের সময়সীমা শেষ"
 msgid "Search APIs"
 msgstr "অনুসন্ধান API"
 
+#: src/features/theme-configure.tsx:265
+msgid "Search Custom Theme CSS..."
+msgstr "কাস্টম থিম CSS অনুসন্ধান করুন..."
+
 #: src/features/default-model-management.tsx:150
 msgid "Search models..."
 msgstr "মডেল অনুসন্ধান করুন..."
@@ -256,7 +299,7 @@ msgstr "প্রদানকারী অনুসন্ধান করুন.
 
 #: src/components/ToolArea.tsx:67
 msgid "Search Tool"
-msgstr ""
+msgstr "অনুসন্ধান সরঞ্জাম"
 
 #: src/components/ModelSelectorContext.tsx:138
 msgid "Select a model"
@@ -285,6 +328,8 @@ msgstr "শেষ ধাপ"
 #: src/features/chat.tsx:762
 #~ msgid "Step Over"
 #~ msgstr ""
+msgid "Step Over"
+msgstr "ধাপ অতিক্রম করুন"
 
 #: src/features/translator.tsx:161
 msgid "Stop"
@@ -296,7 +341,7 @@ msgstr "ক্লিপবোর্ডে লেখা কপি করা হ�
 
 #: src/routes/__root.tsx:91
 msgid "Theme"
-msgstr ""
+msgstr "থিম"
 
 #: src/components/ChatMessage.tsx:64
 msgid "Tool-Call Result"
