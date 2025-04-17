@@ -40,3 +40,15 @@ export function sameArrays(arr1: any[], arr2: any[]) {
 
   return true
 }
+
+export function addCSSLinkTag(url: string, dataset?: Record<string, string>) {
+  const link = document.createElement("link")
+  link.rel = "stylesheet"
+  link.href = url
+  if (dataset) {
+    for (const [key, value] of Object.entries(dataset)) {
+      link.dataset[key] = value
+    }
+  }
+  document.head.appendChild(link)
+}

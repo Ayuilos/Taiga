@@ -6,7 +6,7 @@ import { FormDescription } from "./ui/form"
 
 interface INavigationDescription {
   providerName: string | undefined
-  type: "search_api_key" | "provider_api_key" | "search_api_url"
+  type: "search_api_key" | "provider_api_key" | "search_api_url" | "customize_theme"
 }
 
 export function NavigationDescription({
@@ -55,6 +55,11 @@ export function NavigationDescription({
         default:
           return null
       }
+      break
+    }
+    case "customize_theme": {
+      url = "https://tweakcn.com"
+      customDescription = t`Customize your own theme from tweakcn`
       break
     }
   }

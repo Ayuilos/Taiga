@@ -45,6 +45,7 @@
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-router": "^1.104.1",
     "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-fs": "~2",
     "@tauri-apps/plugin-http": "~2",
     "@tauri-apps/plugin-opener": "~2",
     "@tauri-apps/plugin-store": "~2",

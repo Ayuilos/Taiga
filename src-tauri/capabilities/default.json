@@ -29,6 +29,11 @@
         }
       ]
     },
-    "opener:default"
+    "opener:default",
+    "fs:default",
+    "fs:allow-exists",
+    "fs:allow-app-read-recursive",
+    "fs:allow-app-write-recursive",
+    "fs:allow-watch"
   ]
 }
