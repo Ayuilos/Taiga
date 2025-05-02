@@ -15,13 +15,11 @@ Taiga is an open-source mobile AI chat app that supports customizing LLM provide
 > It is a work in progress project, any problem is possible, please use this premise, the author is not responsible for any form of your loss.
 
 ## Features
-
+- **Customizable LLMs**: Customize the LLM provider you wanna use.
+- **Customizable UI**: Customize the UI with your own design (Thanks tweakcn's job).
 - **Cross-platform**: Build truly cross-platform mobile apps with Tauri, supporting Android, iOS(later).
 - **High Performance**: Tauri uses Rust as the backend, providing higher performance and smaller package sizes than Electron.
 - **Security**: Tauri applications have higher security by default.
-- **Modern Frontend**: Build user interfaces with React and Typescript, enjoying the convenience of modern frontend development.
-- **Fast Build**: Use Vite as the build tool, providing extremely fast development server startup and Hot Module Replacement (HMR).
-- **Easy to Configure**: The template is pre-configured with Tauri, React, Typescript, and Vite, ready to use out of the box.
 - **Internationalization**: Support multiple languages with Lingui.
 
 ### Special note about translation
