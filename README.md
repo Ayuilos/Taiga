@@ -33,6 +33,9 @@ All translations are from LLM. Any questions relating to translation are not int
 <img src="./public/screenshot-2.jpg" width="480" alt="Screenshot-2" />
 </div>
 
+https://github.com/user-attachments/assets/6cc7b182-69b9-4493-aea4-bb73e82cbee7
+
+
 ### 🌟🌟 Download to explore more ⬇
 
 ## Download
