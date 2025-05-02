@@ -3,9 +3,13 @@
 import { memo } from "react"
 import { openUrl } from "@tauri-apps/plugin-opener"
 import ReactMarkdown, { Options, type Components } from "react-markdown"
+import rehypeKatex from "rehype-katex"
 import remarkGfm from "remark-gfm"
+import remarkMath from "remark-math"
 
 import { CodeBlock, PreBlock } from "./CodeBlock"
+
+import "katex/dist/katex.min.css"
 
 const components: Partial<Components> = {
   code: CodeBlock,
@@ -102,11 +106,12 @@ const components: Partial<Components> = {
   },
 }
 
-const remarkPlugins = [remarkGfm]
+const remarkPlugins = [remarkGfm, remarkMath]
+const rehypePlugins = [rehypeKatex]
 
 const NonMemoizedMarkdown = ({ children }: Pick<Options, "children">) => {
   return (
-    <ReactMarkdown remarkPlugins={remarkPlugins} components={components}>
+    <ReactMarkdown remarkPlugins={remarkPlugins} rehypePlugins={rehypePlugins} components={components}>
       {children}
     </ReactMarkdown>
   )
