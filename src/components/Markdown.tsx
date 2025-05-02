@@ -61,35 +61,35 @@ const components: Partial<Components> = {
   },
   h1: ({ node, children, ...props }) => {
     return (
-      <h1 className="text-3xl font-semibold my-1" {...props}>
+      <h1 className="text-3xl font-semibold my-6" {...props}>
         {children}
       </h1>
     )
   },
   h2: ({ node, children, ...props }) => {
     return (
-      <h2 className="text-2xl font-semibold my-1" {...props}>
+      <h2 className="text-2xl font-semibold my-5" {...props}>
         {children}
       </h2>
     )
   },
   h3: ({ node, children, ...props }) => {
     return (
-      <h3 className="text-xl font-semibold my-1" {...props}>
+      <h3 className="text-xl font-semibold my-4" {...props}>
         {children}
       </h3>
     )
   },
   h4: ({ node, children, ...props }) => {
     return (
-      <h4 className="text-lg font-semibold my-1" {...props}>
+      <h4 className="text-lg font-semibold my-3" {...props}>
         {children}
       </h4>
     )
   },
   h5: ({ node, children, ...props }) => {
     return (
-      <h5 className="text-base font-semibold my-1" {...props}>
+      <h5 className="text-base font-semibold my-2" {...props}>
         {children}
       </h5>
     )
@@ -102,7 +102,7 @@ const components: Partial<Components> = {
     )
   },
   hr: ({ node, children, ...props }) => {
-    return <hr className="border-t border-gray-300" {...props} />
+    return <hr className="border-t my-4 border-gray-300" {...props} />
   },
 }
 
