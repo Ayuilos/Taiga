@@ -2,6 +2,7 @@ import { createDeepSeek } from "@ai-sdk/deepseek"
 import { createGoogleGenerativeAI } from "@ai-sdk/google"
 import { createOpenAI } from "@ai-sdk/openai"
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
+import { createPerplexity } from "@ai-sdk/perplexity"
 import { createOpenRouter } from "@openrouter/ai-sdk-provider"
 import { fetch as tFetch } from "@tauri-apps/plugin-http"
 import { load } from "@tauri-apps/plugin-store"
@@ -203,7 +204,16 @@ export async function listModels({
   }
 }
 
-export function getModelProvider(provider: IAIProvider) {
+export function getModelProvider(provider: IAIProvider, modelName?: string) {
+  if (modelName) {
+    if (modelName.includes("perplexity")) {
+      return createPerplexity({
+        baseURL: provider.baseURL,
+        apiKey: provider.apiKey,
+      })
+    }
+  }
+
   switch (provider.name) {
     case PRESET_NAMES.OPENAI_PRESET:
       return createOpenAI({

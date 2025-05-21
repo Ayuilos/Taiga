@@ -735,7 +735,7 @@ export default function Chat({ chatId }: { chatId: TChatID }) {
     const provider = providers.find((p) => p.name === providerName)
 
     if (provider) {
-      const modelProvider: any = getModelProvider(provider)
+      const modelProvider: any = getModelProvider(provider, modelName)
 
       return modelProvider(modelName)
     }

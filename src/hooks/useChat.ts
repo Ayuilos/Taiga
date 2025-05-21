@@ -448,6 +448,17 @@ export function useChat({
                   })
                 )
                 break
+              case "source":
+                setParts(
+                  produce((draft) => {
+                    // @ts-ignore
+                    draft!.push({
+                      type: "source",
+                      source: chunk.source,
+                    })
+                  })
+                )
+                break
               case "step-finish":
                 setParts(
                   produce((draft) => {
