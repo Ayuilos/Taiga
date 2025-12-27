@@ -8,10 +8,9 @@ import {
   useState,
 } from "react"
 import { useChat } from "@/hooks/useChat"
-import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 import { t } from "@lingui/core/macro"
 import { Trans } from "@lingui/react/macro"
-import { LanguageModelV1 } from "ai"
+import { LanguageModel } from "ai"
 import { ClipboardCopy, StopCircle } from "lucide-react"
 import { toast } from "sonner"
 
@@ -33,9 +32,10 @@ import {
 } from "../components/ui/select"
 import { Textarea } from "../components/ui/textarea"
 import { LANG, LANG_CODE } from "../lib/consts"
+import { getModelProvider } from "@/lib/ai-providers"
 
 interface ITranslator {
-  model: LanguageModelV1 | null
+  model: LanguageModel | null
   requireModel: TModelSelectorContext["requireModel"]
 }
 
@@ -66,7 +66,7 @@ function InternalTranslator({ model, requireModel }: ITranslator) {
   const targetText = result.parts?.find((p) => p.type === "text")?.text
   const reasoningText = result.parts?.find(
     (p) => p.type === "reasoning"
-  )?.reasoning
+  )?.text
 
   const langs = useMemo(() => {
     return Object.entries(LANG)
@@ -172,7 +172,7 @@ function InternalTranslator({ model, requireModel }: ITranslator) {
           <ReasoningDisplay
             isReasoning={isReasoning}
             reasoningText={
-              result.parts?.find((p) => p.type === "reasoning")?.reasoning
+              result.parts?.find((p) => p.type === "reasoning")?.text
             }
             buttonContent={
               <span>
@@ -212,13 +212,13 @@ function InternalTranslator({ model, requireModel }: ITranslator) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default function Translator() {
   const { providers, selectedModel, setSelectedModel, fetchDefaultModels } = useContext(AIProviderContext)
   const { requireModel } = useContext(ModelSelectorContext)
-  let model: LanguageModelV1 | null = null
+  let model: LanguageModel | null = null
 
   const setModelToDefault = useCallback(async () => {
     const defaultModels = await fetchDefaultModels()
@@ -232,18 +232,20 @@ export default function Translator() {
     setModelToDefault()
   }, [setModelToDefault])
 
-  if (selectedModel) {
-    const provider = providers.find((p) => p.name === selectedModel[0])
+  const getModelFrom = ([providerName, modelName]: [string, string]) => {
+    const provider = providers.find((p) => p.name === providerName)
 
     if (provider) {
-      const aiCompaProvider = createOpenAICompatible({
-        name: provider.name,
-        baseURL: provider.baseURL,
-        apiKey: provider.apiKey,
-      })
+      const modelProvider: any = getModelProvider(provider, modelName)
 
-      model = aiCompaProvider(selectedModel[1])
+      return modelProvider(modelName)
     }
+
+    return null
+  }
+
+  if (selectedModel) {
+    model = getModelFrom(selectedModel)
   }
 
   return <InternalTranslator model={model} requireModel={requireModel} />

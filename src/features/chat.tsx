@@ -11,7 +11,7 @@ import { TExpandedMessage, useChat } from "@/hooks/useChat"
 import { useIsDark } from "@/hooks/useIsDark"
 import { t } from "@lingui/core/macro"
 import { useRouter } from "@tanstack/react-router"
-import { CoreMessage, generateText, LanguageModelV1 } from "ai"
+import { LanguageModel, generateText, convertToModelMessages, UIMessage } from 'ai';
 import { produce } from "immer"
 import {
   Check,
@@ -62,8 +62,8 @@ import { Textarea } from "@/components/ui/textarea"
 
 interface IInternalChat {
   chatId?: TChatID
-  model: LanguageModelV1 | null
-  summarizeModel: LanguageModelV1 | null
+  model: LanguageModel | null
+  summarizeModel: LanguageModel | null
   requireModel: TModelSelectorContext["requireModel"]
 }
 
@@ -72,7 +72,12 @@ const initialChatNodes: TChatNode[] = [
     children: [],
     message: {
       role: "system",
-      content: `You're a friendly assistant, ready to help user solve any of their problem. If necessary, you can use the provided tools to help user.`,
+      parts: [
+        {
+          type: "text",
+          text: `You're a friendly assistant, ready to help user solve any of their problem. If necessary, you can use the provided tools to help user.`,
+        },
+      ],
     },
   },
 ]
@@ -228,9 +233,17 @@ function InternalChat({
   const _createChatSummary = useCallback(async () => {
     const toSummarizeModel = summarizeModel || model
     if (toSummarizeModel) {
+      // v5: 从 parts 中提取文本内容
+      const extractText = (msg: TExpandedMessage) => {
+        return msg.parts
+          ?.filter((p) => p.type === "text")
+          .map((p: any) => p.text)
+          .join(" ") || ""
+      }
+      
       const chatContent = messages
-        .map((message) => `${message.role}: ${message.content}`)
-        .concat([`${result.role}: ${result.content}`])
+        .map((message) => `${message.role}: ${extractText(message)}`)
+        .concat([`${result.role}: ${extractText(result)}`])
         .join("\n")
 
       let summaryText = t`Failed to summarize`
@@ -372,7 +385,12 @@ function InternalChat({
         // this is why we need to slice `messagePath`
         setEditedNodePath(messagePath.slice(0, -1))
         prevInputRef.current = input
-        setInput(targetNode.message.content!)
+        // v5: 从 parts 中提取文本
+        const text = targetNode.message.parts
+          ?.filter((p) => p.type === "text")
+          .map((p: any) => p.text)
+          .join("\n") || ""
+        setInput(text)
       }
     },
     [chatNodes, input]
@@ -390,13 +408,18 @@ function InternalChat({
 
         const keepedMessages = messages.slice(0, regenerateNodePath.length)
 
+        // v5: 使用 convertToModelMessages 将 UIMessage 转换为 ModelMessage
+        // 将 TExpandedMessage 转换为 UIMessage 类型,过滤掉自定义的 part 类型
+        const uiMessages: UIMessage[] = keepedMessages.map(msg => ({
+          id: msg.id || crypto.randomUUID(),
+          role: msg.role!,
+          parts: (msg.parts || []).filter(
+            (p) => p.type !== "flag" && p.type !== "error"
+          ) as UIMessage["parts"],
+        }))
+        
         startChat({
-          messages: keepedMessages.map((message) => {
-            return {
-              role: message.role,
-              content: message.content,
-            } as CoreMessage
-          }),
+          messages: convertToModelMessages(uiMessages),
         })
       } else {
         requireModel()
@@ -420,13 +443,18 @@ function InternalChat({
 
       const keepedMessages = messages.slice(0, editedNodePath!.length)
 
+      // v5: 使用 convertToModelMessages 将 UIMessage 转换为 ModelMessage
+      // 将 TExpandedMessage 转换为 UIMessage 类型,过滤掉自定义的 part 类型
+      const uiMessages: UIMessage[] = [...keepedMessages, newMessage].map(msg => ({
+        id: msg.id || crypto.randomUUID(),
+        role: msg.role!,
+        parts: (msg.parts || []).filter(
+          (p) => p.type !== "flag" && p.type !== "error"
+        ) as UIMessage["parts"],
+      }))
+      
       startChat({
-        messages: [...keepedMessages, newMessage].map((message) => {
-          return {
-            role: message.role,
-            content: message.content,
-          } as CoreMessage
-        }),
+        messages: convertToModelMessages(uiMessages),
       })
     } else {
       requireModel()
@@ -452,13 +480,18 @@ function InternalChat({
       updateChatNodes(newMessage)
       setInput("")
 
+      // v5: 使用 convertToModelMessages 将 UIMessage 转换为 ModelMessage
+      // 将 TExpandedMessage 转换为 UIMessage 类型,过滤掉自定义的 part 类型
+      const uiMessages: UIMessage[] = [...messages, newMessage].map(msg => ({
+        id: msg.id || crypto.randomUUID(),
+        role: msg.role!,
+        parts: (msg.parts || []).filter(
+          (p) => p.type !== "flag" && p.type !== "error"
+        ) as UIMessage["parts"],
+      }))
+      
       startChat({
-        messages: [...messages, newMessage].map((message) => {
-          return {
-            role: message.role,
-            content: message.content,
-          } as CoreMessage
-        }),
+        messages: convertToModelMessages(uiMessages),
       })
     } else {
       requireModel()
@@ -716,8 +749,8 @@ export default function Chat({ chatId }: { chatId: TChatID }) {
     fetchDefaultModels,
   } = useContext(AIProviderContext)
   const { requireModel } = useContext(ModelSelectorContext)
-  let model: LanguageModelV1 | null = null
-  let summarizeModel: LanguageModelV1 | null = null
+  let model: LanguageModel | null = null
+  let summarizeModel: LanguageModel | null = null
 
   const setModelToDefault = useCallback(async () => {
     const defaultModels = await fetchDefaultModels()

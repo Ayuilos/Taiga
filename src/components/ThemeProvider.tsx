@@ -20,7 +20,7 @@ import {
   writeTextFile,
 } from "@tauri-apps/plugin-fs"
 import { uniqBy } from "lodash-es"
-import { z } from "zod"
+import { z } from 'zod';
 
 import { addCSSLinkTag } from "@/lib/utils"
 

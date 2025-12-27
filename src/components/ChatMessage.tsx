@@ -5,6 +5,7 @@ import { openUrl } from "@tauri-apps/plugin-opener"
 import dayjs from "dayjs"
 import { Copy, Pen, RefreshCw } from "lucide-react"
 import { toast } from "sonner"
+import { isToolUIPart, getToolName } from "ai"
 
 import { Markdown } from "./Markdown"
 import ReasoningDisplay from "./ReasoningDisplay"
@@ -38,11 +39,16 @@ export function ChatMessage({
 }: IChatMessage) {
   const copyToClipboard = useCallback(async () => {
     if (navigator.clipboard) {
-      await navigator.clipboard.writeText(message.content!)
+      // v5: UIMessage 不再有 content 属性，需要从 parts 中提取文本
+      const textContent = message.parts
+        ?.filter((p) => p.type === "text")
+        .map((p: any) => p.text)
+        .join("\n") || ""
+      await navigator.clipboard.writeText(textContent)
     } else {
       toast.error(t`Failed to copy to clipboard`)
     }
-  }, [message.content])
+  }, [message.parts])
   const messageRef = useRef<HTMLDivElement>(null)
 
   const [inBox, citations] = useMemo(() => {
@@ -73,7 +79,7 @@ export function ChatMessage({
               <ReasoningDisplay
                 isReasoning={isReasoning}
                 buttonContent={reasoningButtonString}
-                reasoningText={p.reasoning}
+                reasoningText={p.text}
                 title={reasoningButtonString}
                 description={reasoningDialogDescString}
               />
@@ -88,80 +94,34 @@ export function ChatMessage({
             </div>
           )
           break
-        case "tool-invocation": {
-          const isCalling = isCallingTool && p.toolInvocation.state !== "result"
-          const toolCallingButtonString = isCalling
-            ? callingToolButtonStrings[0]
-            : callingToolButtonStrings[1]
-          const { toolName, args } = p.toolInvocation
 
-          const argsDisplay = Object.entries(args).map(([key, value]) => (
-            <Badge key={key} variant="outline">
-              <span className="text-left whitespace-pre-wrap">
-                {key}: {JSON.stringify(value)}
-              </span>
-            </Badge>
-          ))
+        case "flag": {
+          // 类型守卫确保 p 是 TStepFlag 类型
+          if ('endedAt' in p && 'createdAt' in p && 'tokenUsage' in p) {
+            const spendTime = dayjs(p.endedAt).diff(p.createdAt, "second")
 
-          const description = (
-            <div className="flex flex-col gap-1 border rounded-md p-2">
-              <div className="flex items-center gap-1">
-                {callingToolDescStrings[0]}
-                <Badge variant="secondary">{toolName}</Badge>
-              </div>
-              <div className="flex gap-2 items-center flex-wrap">
-                <div>{callingToolDescStrings[1]}</div>
-                <div className="flex gap-1 flex-wrap">
-                  {argsDisplay.length > 0 ? (
-                    argsDisplay
-                  ) : (
-                    <Badge variant="outline">None</Badge>
-                  )}
+            _inBox.push(
+              <div
+                key={i}
+                className="order-2 rounded-md p-1 flex gap-2 items-center justify-between last:hidden bg-accent"
+              >
+                <Badge>{stepOverString}</Badge>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <span>
+                    {stepSpendTimeString}: {spendTime}s
+                  </span>
+                  <span>
+                    {p.tokenUsage.inputTokens}↑ {p.tokenUsage.outputTokens}↓
+                  </span>
                 </div>
               </div>
-            </div>
-          )
-
-          _inBox.push(
-            <div key={i} className="order-2">
-              <ToolCallDisplay
-                isCalling={isCalling}
-                buttonContent={toolCallingButtonString}
-                toolCallResult={
-                  p.toolInvocation.state === "result"
-                    ? p.toolInvocation.result
-                    : callingToolWaitingString
-                }
-                title={toolCallingButtonString}
-                description={description}
-              />
-            </div>
-          )
+            )
+          }
           break
         }
-        case "flag": {
-          const spendTime = dayjs(p.endedAt).diff(p.createdAt, "second")
-
-          _inBox.push(
-            <div
-              key={i}
-              className="order-2 rounded-md p-1 flex gap-2 items-center justify-between last:hidden bg-accent"
-            >
-              <Badge>{stepOverString}</Badge>
-              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                <span>
-                  {stepSpendTimeString}: {spendTime}s
-                </span>
-                <span>
-                  {p.tokenUsage.promptTokens}↑ {p.tokenUsage.completionTokens}↓
-                </span>
-              </div>
-            </div>
-          )
-          break
-        }
-        case "source": {
-          const sourceTitle = p.source.title || new URL(p.source.url).hostname
+        case "source-url": {
+          // v5: source 类型改为 source-url
+          const sourceTitle = (p as any).title || new URL((p as any).url).hostname
           const len = _citations.length
 
           _citations.push(
@@ -169,14 +129,14 @@ export function ChatMessage({
               key={i}
               className="flex flex-col gap-1 min-w-40 max-w-60 border rounded-md p-1 overflow-hidden"
               onClick={() => {
-                openUrl(p.source.url)
+                openUrl((p as any).url)
               }}
             >
               <span className="overflow-ellipsis overflow-hidden">
                 {`[${len + 1}]`}{sourceTitle}
               </span>
               <span className="text-xs max-w-full overflow-ellipsis overflow-hidden">
-                {p.source.url}
+                {(p as any).url}
               </span>
             </div>
           )
@@ -186,15 +146,74 @@ export function ChatMessage({
           const { error } = p
 
           _inBox.push(
-            <Alert className="bg-red-200 text-red-500 border-none order-2">
+            <Alert key={i} className="bg-red-200 text-red-500 border-none order-2">
               <AlertTitle>{errorMessageString}</AlertTitle>
               <AlertDescription className="overflow-auto">{`(${error.name}) / ${error.message}`}</AlertDescription>
             </Alert>
           )
           break
         }
-        default:
-          return null
+
+        default: {
+          // v5: 使用 isToolUIPart 和 getToolName 处理工具调用
+          if (isToolUIPart(p)) {
+            // v5: state 从 "result" 改为 "output-available"
+            const isCalling = isCallingTool && p.state !== "output-available"
+            const toolCallingButtonString = isCalling
+              ? callingToolButtonStrings[0]
+              : callingToolButtonStrings[1]
+            // v5: 使用 getToolName 获取工具名称
+            const toolName = getToolName(p)
+            // v5: args 改为 input
+            const input = (p as any).input || {}
+
+            const argsDisplay = Object.entries(input).map(([key, value]) => (
+              <Badge key={key} variant="outline">
+                <span className="text-left whitespace-pre-wrap">
+                  {key}: {JSON.stringify(value)}
+                </span>
+              </Badge>
+            ))
+
+            const description = (
+              <div className="flex flex-col gap-1 border rounded-md p-2">
+                <div className="flex items-center gap-1">
+                  {callingToolDescStrings[0]}
+                  <Badge variant="secondary">{toolName}</Badge>
+                </div>
+                <div className="flex gap-2 items-center flex-wrap">
+                  <div>{callingToolDescStrings[1]}</div>
+                  <div className="flex gap-1 flex-wrap">
+                    {argsDisplay.length > 0 ? (
+                      argsDisplay
+                    ) : (
+                      <Badge variant="outline">None</Badge>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+
+            _inBox.push(
+              <div key={i} className="order-2">
+                <ToolCallDisplay
+                  isCalling={isCalling}
+                  buttonContent={toolCallingButtonString}
+                  toolCallResult={
+                    p.state === "output-available"
+                      ? (p as any).output
+                      : p.state === "output-error"
+                        ? (p as any).errorText
+                        : callingToolWaitingString
+                  }
+                  title={toolCallingButtonString}
+                  description={description}
+                />
+              </div>
+            )
+          }
+          break
+        }
       }
     })
 
@@ -288,8 +307,8 @@ export function ChatMessage({
             {date ? <RelativeTime date={date} /> : null}
             {message.tokenUsage ? (
               <span>
-                {message.tokenUsage.promptTokens}↑{" "}
-                {message.tokenUsage.completionTokens}↓
+                {message.tokenUsage.inputTokens}↑{" "}
+                {message.tokenUsage.outputTokens}↓
               </span>
             ) : null}
           </span>

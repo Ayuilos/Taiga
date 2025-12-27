@@ -126,33 +126,9 @@ function InternalProviderManagement({
   const prevProvider = useRef<IAIProvider>(undefined)
 
   const providerNameDuplicatedString = t`Provider name already exists`
+  
   const form = useForm<z.infer<typeof formSchema>>({
-    context: { providers, currentProvider },
-    resolver: async (
-      data,
-      context: { providers: IAIProvider[]; currentProvider: IAIProvider },
-      options
-    ) =>
-      zodResolver(
-        // Finish all validations here, refer to https://zod.dev/?id=refine
-        formSchema.refine(
-          ({ name }) =>
-            // The `resolver` function will be cached, provide dependencies in `context`.
-            // Refer to https://www.react-hook-form.com/api/useform/#resolver Rules#2
-            {
-              const _providers = context.providers
-
-              return _providers.every(
-                (p) =>
-                  context.currentProvider.name === p.name || name !== p.name
-              )
-            },
-          {
-            message: providerNameDuplicatedString,
-            path: ["name"],
-          }
-        )
-      )(data, context, options),
+    resolver: zodResolver(formSchema),
     defaultValues: { models: [] as string[] },
   })
 
@@ -271,6 +247,19 @@ function InternalProviderManagement({
 
   const onSubmit = useCallback(
     async (values: z.infer<typeof formSchema>) => {
+      // Check for duplicate provider name
+      const isDuplicate = providers.some(
+        (p) => p.name === values.name && currentProvider?.name !== p.name
+      )
+      
+      if (isDuplicate) {
+        form.setError("name", {
+          type: "manual",
+          message: providerNameDuplicatedString,
+        })
+        return
+      }
+
       if (isAddingNew) {
         await AIProviderManager.addProvider(values)
         fetchProviders()
@@ -288,7 +277,7 @@ function InternalProviderManagement({
       }
       updateProvider(values)
     },
-    [isAddingNew, currentProvider, fetchProviders, updateProvider]
+    [isAddingNew, currentProvider, fetchProviders, updateProvider, providers, form, providerNameDuplicatedString]
   )
 
   const providerItems = useMemo(() => {
@@ -419,12 +408,16 @@ function InternalProviderManagement({
           <FormField
             control={form.control}
             name="name"
-            disabled={pendingValues.preset}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{nameLabelString}</FormLabel>
                 <FormControl>
-                  <Input placeholder={nameLabelString} {...field} />
+                  <Input
+                    placeholder={nameLabelString}
+                    {...field}
+                    readOnly={pendingValues.preset}
+                    className={pendingValues.preset ? "opacity-50 cursor-not-allowed" : ""}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

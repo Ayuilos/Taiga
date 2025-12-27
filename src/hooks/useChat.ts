@@ -8,19 +8,21 @@ import {
 } from "react"
 import { createAISDKTools } from "@agentic/ai-sdk"
 import { jina } from "@agentic/jina"
-import { Message } from "@ai-sdk/react"
-import { TextUIPart, ToolInvocationUIPart } from "@ai-sdk/ui-utils"
+import { UIMessage as Message } from "@ai-sdk/react"
 import { t } from "@lingui/core/macro"
 import {
-  CoreMessage,
+  TextUIPart,
+  ModelMessage,
   FinishReason,
   LanguageModelUsage,
-  LanguageModelV1,
   streamText,
-  ToolResult,
+  stepCountIs,
+  ToolUIPart,
+  LanguageModel,
+  ReasoningUIPart,
 } from "ai"
 import { produce } from "immer"
-import { z } from "zod"
+import { z } from 'zod';
 
 import { commonAITools } from "@/lib/common-ai-tools"
 import { getSearchAITools } from "@/lib/search-ai-tools"
@@ -29,7 +31,7 @@ import { stringifyObject } from "@/lib/utils"
 import { SearchApisContext } from "@/components/SearchApisContext"
 
 interface IUseChat {
-  model: LanguageModelV1 | null
+  model: LanguageModel | null
   requireModel?: () => void
   onError?: (error: Error) => void
   onFinish?: (reason: FinishReason) => void
@@ -101,7 +103,6 @@ export function useChat({
   const userCancelController = useRef<AbortController | null>(null)
   const timer = useRef<number>(undefined)
 
-  const [textResult, setTextResult] = useState<string>("")
   const [messageId, setMessageId] = useState<string>("")
   const [startTimestamp, setStartTimestamp] = useState<number | undefined>(
     undefined
@@ -154,12 +155,23 @@ export function useChat({
       const searchTool = draft["search"]
 
       if (searchTool) {
-        ;(searchTool.parameters as any) = jina.SearchOptionsSchema.extend({
+        // v5: parameters → inputSchema
+        ;(searchTool.inputSchema as any) = jina.SearchOptionsSchema.extend({
           json: z.boolean().optional().default(true),
         })
       }
     })
   }, [options, searchApis])
+
+  // v5: LanguageModel 类型没有 modelId 属性，需要从 model 对象中获取
+  const modelName = useMemo(() => {
+    if (!model) return undefined
+    // 尝试从不同的属性获取模型名称
+    if (typeof model === 'string') return model
+    if ('modelId' in model && typeof (model as any).modelId === 'string') return (model as any).modelId
+    if ('id' in model && typeof (model as any).id === 'string') return (model as any).id
+    return undefined
+  }, [model])
 
   const result = useMemo(() => {
     const _result: TExpandedMessage = {
@@ -168,24 +180,23 @@ export function useChat({
       createdAt: startTimestamp,
       endedAt: endTimestamp,
       tokenUsage: (parts || [])
-        .filter((part) => part.type === "flag")
+        .filter((part): part is TStepFlag => part.type === "flag")
         .reduce(
           (usage, curr) => {
             return {
-              promptTokens: usage!.promptTokens + curr.tokenUsage.promptTokens,
-              completionTokens:
-                usage!.completionTokens + curr.tokenUsage.completionTokens,
-              totalTokens: usage!.totalTokens + curr.tokenUsage.totalTokens,
-            }
+              inputTokens: (usage?.inputTokens ?? 0) + (curr.tokenUsage.inputTokens ?? 0),
+              outputTokens:
+                (usage?.outputTokens ?? 0) + (curr.tokenUsage.outputTokens ?? 0),
+              totalTokens: (usage?.totalTokens ?? 0) + (curr.tokenUsage.totalTokens ?? 0),
+            };
           },
           {
-            promptTokens: 0,
-            completionTokens: 0,
+            inputTokens: 0,
+            outputTokens: 0,
             totalTokens: 0,
           } as TExpandedMessage["tokenUsage"]
         ),
-      modelName: model?.modelId,
-      content: textResult,
+      modelName,
       parts,
     }
 
@@ -194,16 +205,14 @@ export function useChat({
     messageId,
     startTimestamp,
     endTimestamp,
-    model?.modelId,
+    modelName,
     parts,
-    textResult,
   ])
 
   const stopChatString = t`User stopped chat`
 
   const clearChat = useCallback(() => {
     userCancelController.current?.abort(stopChatString)
-    setTextResult("")
     setIsChatting(false)
     setIsReasoning(false)
     setIsCallingTool(false)
@@ -230,7 +239,7 @@ export function useChat({
     }: {
       prompt?: string
       system?: string
-      messages?: Array<CoreMessage>
+      messages?: Array<ModelMessage>
     }) => {
       if (model) {
         clearChat()
@@ -238,16 +247,17 @@ export function useChat({
         userCancelController.current = new AbortController()
 
         try {
-          const response = await streamText({
+          // v5: messages 不能为 undefined，需要条件性地传递
+          const streamOptions = {
             model,
             system,
-            prompt,
             temperature: DEFAULT_TEMPERATURE,
-            maxSteps: 5,
-            messages,
+            stopWhen: stepCountIs(5),
             tools,
             abortSignal: userCancelController.current.signal,
-          })
+            ...(messages ? { messages } : { prompt }),
+          }
+          const response = streamText(streamOptions as any)
 
           let requestTimeout = true
           let newStep = false
@@ -277,206 +287,215 @@ export function useChat({
             }
 
             switch (chunk.type) {
-              case "step-start":
+              // v5: reasoning-start 表示推理开始
+              case "reasoning-start":
                 requestTimeout = false
-                newStep = true
-                setMessageId(chunk.messageId)
-
+                setIsReasoning(true)
+                setParts((prev) => [
+                  ...(prev || []),
+                  {
+                    type: "reasoning",
+                    text: "",
+                  } as ReasoningUIPart,
+                ])
                 break
-              case "reasoning":
+              // v5: reasoning-delta 替代了 reasoning
+              case "reasoning-delta":
                 setIsReasoning(true)
 
-                setParts(
-                  produce((draft) => {
-                    if (newStep) {
-                      draft!.push({
-                        type: "reasoning",
-                        reasoning: chunk.textDelta,
-                        details: [{ type: "text", text: chunk.textDelta }],
-                      })
-                      newStep = false
-                    } else {
-                      const lastPart = draft![draft!.length - 1]
+                setParts((prev) => {
+                  const draft = [...(prev || [])]
+                  const lastPart = draft[draft.length - 1]
 
-                      if (lastPart) {
-                        if (lastPart.type !== "reasoning") {
-                          draft!.push({
-                            type: "reasoning",
-                            reasoning: chunk.textDelta,
-                            details: [{ type: "text", text: chunk.textDelta }],
-                          })
-                        } else {
-                          lastPart.reasoning += chunk.textDelta
-
-                          const textTypeDetail = lastPart.details.find(
-                            (detail) => detail.type === "text"
-                          )
-                          textTypeDetail!.text += chunk.textDelta
-                        }
-                      } else {
-                        draft!.push({
-                          type: "reasoning",
-                          reasoning: chunk.textDelta,
-                          details: [{ type: "text", text: chunk.textDelta }],
-                        })
-                      }
-                    }
-                  })
-                )
+                  if (lastPart && lastPart.type === "reasoning") {
+                    // 创建新的 reasoning part 以保持不可变性
+                    draft[draft.length - 1] = {
+                      ...lastPart,
+                      text: (lastPart as ReasoningUIPart).text + chunk.text,
+                    } as ReasoningUIPart
+                  } else {
+                    draft.push({
+                      type: "reasoning",
+                      text: chunk.text,
+                    } as ReasoningUIPart)
+                  }
+                  return draft as TExpandedMessage["parts"]
+                })
 
                 break
-              case "reasoning-signature":
-                setParts(
-                  produce((draft) => {
-                    const reasoningPart = draft![draft!.length - 1]
-
-                    if (reasoningPart!.type === "reasoning") {
-                      const textTypeDetail = reasoningPart!.details!.find(
-                        (detail) => detail.type === "text"
-                      )
-                      textTypeDetail!.signature = chunk.signature
-                    }
-                  })
-                )
-
+              // v5: reasoning-end 表示推理结束
+              case "reasoning-end":
+                setIsReasoning(false)
                 break
-              case "redacted-reasoning":
-                setParts(
-                  produce((draft) => {
-                    const reasoningPart = draft![draft!.length - 1]
-
-                    if (reasoningPart.type === "reasoning") {
-                      reasoningPart.details.push({
-                        type: "redacted",
-                        data: chunk.data,
-                      })
-                    }
-                  })
-                )
-
+              // v5: text-start 表示文本开始
+              case "text-start":
+                requestTimeout = false
+                newStep = true
+                setMessageId(chunk.id)
                 break
+              // v5: text-delta 的属性从 textDelta 改为 text
               case "text-delta":
-                setParts(
-                  produce((draft) => {
-                    if (newStep) {
-                      draft!.push({
-                        type: "text",
-                        text: chunk.textDelta,
-                      })
-                    } else {
-                      const lastPart = draft![draft!.length - 1]
+                setParts((prev) => {
+                  const draft = [...(prev || [])]
+                  if (newStep) {
+                    draft.push({
+                      type: "text",
+                      text: chunk.text,
+                    } as TextUIPart)
+                  } else {
+                    const lastPart = draft[draft.length - 1]
 
-                      if (lastPart) {
-                        if (lastPart.type !== "text") {
-                          draft!.push({
-                            type: "text",
-                            text: chunk.textDelta,
-                          })
-                        } else {
-                          ;(lastPart as TextUIPart).text += chunk.textDelta
-                        }
-                      } else {
-                        draft!.push({
+                    if (lastPart) {
+                      if (lastPart.type !== "text") {
+                        draft.push({
                           type: "text",
-                          text: chunk.textDelta,
-                        })
+                          text: chunk.text,
+                        } as TextUIPart)
+                      } else {
+                        draft[draft.length - 1] = {
+                          ...lastPart,
+                          text: (lastPart as TextUIPart).text + chunk.text,
+                        } as TextUIPart
                       }
+                    } else {
+                      draft.push({
+                        type: "text",
+                        text: chunk.text,
+                      } as TextUIPart)
                     }
-                  })
-                )
+                  }
+                  return draft as TExpandedMessage["parts"]
+                })
 
                 newStep = false
-
-                setTextResult((r) =>
-                  newStep ? chunk.textDelta : r + chunk.textDelta
-                )
 
                 // If text gen start, means reasoning is over
                 setIsReasoning(false)
 
                 break
+              // v5: text-end 表示文本结束
+              case "text-end":
+                break
               case "tool-call":
                 setIsCallingTool(true)
 
-                setParts(
-                  produce((draft) => {
-                    draft!.push({
-                      type: "tool-invocation",
-                      toolInvocation: {
-                        state: "partial-call",
-                        toolName: chunk.toolName,
-                        toolCallId: chunk.toolCallId,
-                        args: chunk.args,
-                      },
-                    })
-                    newStep = false
-                  })
-                )
-                break
-              case "tool-call-delta":
+                // v5: 工具部分使用 tool-${toolName} 格式的 type
+                // 状态从 partial-call → input-streaming
+                // args → input
+                setParts((prev) => [
+                  ...(prev || []),
+                  {
+                    type: `tool-${chunk.toolName}`,
+                    toolCallId: chunk.toolCallId,
+                    state: "input-available",
+                    input: chunk.input,
+                  } as ToolUIPart,
+                ])
+                newStep = false
                 break
               case "tool-result":
                 setIsCallingTool(false)
 
-                setParts(
-                  produce((draft) => {
-                    const targetPart = draft!.find(
-                      (p) =>
-                        p.type === "tool-invocation" &&
-                        p.toolInvocation.toolCallId === chunk.toolCallId
-                    ) as ToolInvocationUIPart
+                setParts((prev) => {
+                  const draft = [...(prev || [])]
+                  // v5: 手动检查工具部分类型，因为 isToolUIPart 不能用于自定义类型
+                  const targetIndex = draft.findIndex(
+                    (p) =>
+                      typeof p.type === "string" &&
+                      p.type.startsWith("tool-") &&
+                      "toolCallId" in p &&
+                      (p as any).toolCallId === chunk.toolCallId
+                  )
 
-                    targetPart.toolInvocation.state = "result"
-
+                  if (targetIndex !== -1) {
+                    const targetPart = draft[targetIndex] as ToolUIPart
+                    // v5: 状态从 result → output-available
+                    // result → output
                     const isCallingSearchTool = SearchReturnSchema.safeParse(
-                      chunk.result
+                      chunk.output
                     ).success
 
-                    ;(
-                      targetPart.toolInvocation as ToolResult<string, any, any>
-                    ).result = isCallingSearchTool
-                      ? produce(chunk.result as TSearchReturnType, (draft) => {
-                          draft.data.forEach((item) => {
-                            // Cut down the content to 2000 characters
-                            item.content = item.content.slice(
-                              0,
-                              KEEPED_SEARCH_CONTENT_CHARACTOR_COUNT
-                            )
-                          })
-                        })
-                      : chunk.result
-                  })
-                )
-                break
-              case "source":
-                setParts(
-                  produce((draft) => {
-                    // @ts-ignore
-                    draft!.push({
-                      type: "source",
-                      source: chunk.source,
-                    })
-                  })
-                )
-                break
-              case "step-finish":
-                setParts(
-                  produce((draft) => {
-                    draft!.push({
-                      type: "flag",
-                      createdAt: chunk.response.timestamp.getTime(),
-                      endedAt: Date.now(),
-                      tokenUsage: chunk.usage,
-                    })
-                  })
-                )
-                setStartTimestamp(
-                  (prevT) => prevT ?? chunk.response.timestamp.getTime()
-                )
-                setEndTimestamp(Date.now())
+                    const processedOutput = isCallingSearchTool
+                      ? {
+                          ...(chunk.output as TSearchReturnType),
+                          data: (chunk.output as TSearchReturnType).data.map((item) => ({
+                            ...item,
+                            content: item.content.slice(0, KEEPED_SEARCH_CONTENT_CHARACTOR_COUNT),
+                          })),
+                        }
+                      : chunk.output
 
+                    draft[targetIndex] = {
+                      ...targetPart,
+                      state: "output-available",
+                      output: processedOutput,
+                    } as any
+                  }
+                  return draft as TExpandedMessage["parts"]
+                })
                 break
+              // v5: tool-error 是新增的状态
+              case "tool-error":
+                setIsCallingTool(false)
+
+                setParts((prev) => {
+                  const draft = [...(prev || [])]
+                  // v5: 手动检查工具部分类型
+                  const targetIndex = draft.findIndex(
+                    (p) =>
+                      typeof p.type === "string" &&
+                      p.type.startsWith("tool-") &&
+                      "toolCallId" in p &&
+                      (p as any).toolCallId === chunk.toolCallId
+                  )
+
+                  if (targetIndex !== -1) {
+                    const targetPart = draft[targetIndex] as ToolUIPart
+                    draft[targetIndex] = {
+                      ...targetPart,
+                      state: "output-error",
+                      errorText: chunk.error,
+                    } as any
+                  }
+                  return draft as TExpandedMessage["parts"]
+                })
+                break
+              // v5: source 类型变成了 source-url 和 source-document
+              case "source":
+                // v5: source 事件现在直接包含 sourceType, url, title 等属性
+                if (chunk.sourceType === "url") {
+                  setParts((prev) => [
+                    ...(prev || []),
+                    {
+                      type: "source-url",
+                      url: chunk.url,
+                      title: chunk.title,
+                    } as any,
+                  ])
+                } else if (chunk.sourceType === "document") {
+                  setParts((prev) => [
+                    ...(prev || []),
+                    {
+                      type: "source-document",
+                      documentId: (chunk as any).documentId,
+                      title: (chunk as any).title,
+                    } as any,
+                  ])
+                }
+                break
+              // v5: finish 事件包含 totalUsage 信息（从 usage 改名）
               case "finish":
+                setParts((prev) => [
+                  ...(prev || []),
+                  {
+                    type: "flag",
+                    createdAt: Date.now(),
+                    endedAt: Date.now(),
+                    tokenUsage: chunk.totalUsage,
+                  } as TStepFlag,
+                ])
+                setStartTimestamp((prevT) => prevT ?? Date.now())
+                setEndTimestamp(Date.now())
                 break
               case "error":
                 requestTimeout = false
@@ -492,15 +511,14 @@ export function useChat({
 
                 const now = Date.now()
 
-                setParts(
-                  produce((draft) => {
-                    draft!.push({
-                      type: "error",
-                      createdAt: now,
-                      error: recordedError,
-                    })
-                  })
-                )
+                setParts((prev) => [
+                  ...(prev || []),
+                  {
+                    type: "error",
+                    createdAt: now,
+                    error: recordedError,
+                  } as TErrorPart,
+                ])
                 setStartTimestamp(now)
                 setEndTimestamp(now)
 
