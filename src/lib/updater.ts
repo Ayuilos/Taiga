@@ -105,6 +105,7 @@ export const updaters: TUpdater[] = [
   ["0.1.0-rc.8", async () => {}],
   ["0.1.0-rc.9", async () => {}],
   ["0.1.0-rc.10", async () => {}],
+  ["1.0.0", async () => {}],
 ]
 export const getCurrentVersion = () => updaters[updaters.length - 1][0]
 
